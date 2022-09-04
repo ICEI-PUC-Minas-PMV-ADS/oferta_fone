@@ -6,13 +6,15 @@
 
 `SEMESTRE`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O objetivo deste projeto é criar uma plataforma de revenda de dispositivos eletrônicos, visando a redução de e-lixo por meio do aproveitamento máximo de sua usabilidade, bem como o cuidado da saúde humana e do meio ambiente, e rentabilidade advinda da venda destes produtos. 
+
+O lançamento de novos modelos de telefones e tablets têm levado as pessoas a trocar seus aparelhos ainda em condições satisfatórias de uso. Isso acarreta na geração de lixo eletrônico, que se não for descartado adequadamente, trará danos ao meio ambiente. Utilizar um aparelho até o fim de sua vida útil ainda é a melhor forma de economizar recursos naturais, pois se evita a fabricação de um novo aparelho que iria atender a esta demanda. Além disso, atinge-se um público que não teria acesso a aparelhos novos, pelo seu custo elevado, ou para aqueles que desejam apenas economizar ao adquirir um aparelho usado.
 
 ## Integrantes
 
 * Nome completo do aluno 1
 * Nome completo do aluno 2
-* Nome completo do aluno 3
+* Vivian Kimie Toyota
 * Ursula Daniela Figueiredo Barbosa
 
 ## Orientador
