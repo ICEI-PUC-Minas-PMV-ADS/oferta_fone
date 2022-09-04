@@ -8,37 +8,27 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+Diego Lopes tem 35 anos e é digital influencer. Pensa em fazer publicidades com grandes marcas, gosta muito de ler, ouvir música e está buscando um lugar para poder vender seu celular e comprar um modelo de ponta usado com um preço mais acessível.
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+Melissa Soares tem 56 anos e é publicitária em uma agência em período integral. Gostaria de morar em outro país para conhecer novas culturas e seu maior tesouro são seus filhos. Além disso gosta de cuidar de suas plantas e fazer natação. Procura um lugar para vender seu celular pois enjoou do seu atual e quer mudar um pouco de modelo.
 
-> **Links Úteis**:
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+Lucas Simão tem 15 anos e é estudante do ensino médio. Em seu tempo livre gosta de jogar free fire e espera um dia poder jogar profissionalmente também. Além disso gosta muito de andar de skate, assistir tv e encontrar seus amigos a noite. Por sempre estar jogando muito em seu celular, a bateria acaba sendo prejudicada tendo que trocar de celular várias vezes em um curto período de tempo, gastando muito dinheiro sempre. Por esses motivos está a procura de um celular usado que a bateria esteja em perfeitas condições gastando bem menos do que um celular novo.
+
+Elisa Andrade tem 75 anos e é dona de casa aposentada. Gosta muito de ler e jogar xadrez com seus amigos. Por seus netos não morarem na mesma cidade, só conseguem se falar por vídeo chamada. Procura um lugar para poder comprar um celular com uma câmera melhor.
+
+Sergio Souza tem 55 anos e é analista de compras em uma startup que assessora vendas de roupas em atacado. Seu grande sonho é viajar com sua esposa ao redor do mundo para conhecer novas culturas. Gosta de fazer academia e jogar tênis. Procura um lugar para comprar celulares usados para diminuir o custo da empresa ao comprar celulares corporativos novos.
 
 ## Histórias de Usuários
 
 Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
-
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
-
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
+|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE`         |PARA ... `MOTIVO/VALOR`                               |
+|--------------------|--------------------------------------------|------------------------------------------------------|
+|Diego Lopes         |Um celular de ponta                         |Para gravar vídeos e tirar fotos com qualidades       |
+|Melissa Soares      |Trocar o celular                            |Não tem um motivo específico, só quer trocar de modelo|
+|Lucas Simão         |Trocar o celular para o mesmo modelo        |A bateria estar ruim e não conseguir mais jogar nele  |
+|Elisa Andrade       |Trocar o celular para um modelo mais recente|Para obter um celular com uma câmera melhor           |
+|Sergio Souza        |Comprar celulares com baixo custo           |Para diminuir o custo de sua empresa                  |
 
 ## Requisitos
 
