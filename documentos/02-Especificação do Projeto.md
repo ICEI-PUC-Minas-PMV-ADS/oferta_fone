@@ -66,9 +66,11 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
-
+|01| A primeira etapa do projeto referente a concepção e proposta de solução deverá ser entregue até o dia 11/09/2022. |
+|02| A segunda etapa do projeto referente ao projeto da solução deverá ser entregue até o dia 02/10/2022. |
+|03| A terceira etapa do projeto referente a 1ª fase do desenvolvimento da solução deverá ser entregue até o dia 30/10/2022. |
+|04| A quarta etapa do projeto referente a 2ª fase do desenvolvimento da solução deverá ser entregue até o dia 27/11/2022. |
+|05| A quinta etapa do projeto referente aos relatórios das avaliações e entrega da solução deverá ser entregue até o dia 11/12/2022. |
 
 Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
