@@ -14,8 +14,8 @@ O lançamento de novos modelos de telefones e tablets têm levado as pessoas a t
 
 * Nome completo do aluno 1
 * Nome completo do aluno 2
-* Vivian Kimie Toyota
 * Ursula Daniela Figueiredo Barbosa
+* Vivian Kimie Toyota
 
 ## Orientador
 
