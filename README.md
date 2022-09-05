@@ -1,10 +1,15 @@
+
+<img src="docs/img/logo.jpg" width="300" >
+
 # OfertaFone
 
-`CURSO`
+#### PONTIFÍCIA UNIVERSIDADE CATÓLICA DE MINAS GERAIS 
 
-`DISCIPLINA`
+`TECNOLOGIA EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS`
 
-`SEMESTRE`
+`Projeto: Desenvolvimento de uma Aplicação Interativa `
+
+`2º semestre de 2022`
 
 O objetivo deste projeto é criar uma plataforma de revenda de dispositivos eletrônicos, visando a redução de e-lixo por meio do aproveitamento máximo de sua usabilidade, bem como o cuidado da saúde humana e do meio ambiente, e rentabilidade advinda da venda destes produtos. 
 
