@@ -43,27 +43,15 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Requisitos não Funcionais
 
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
-
-## Restrições
+|ID | Descrição do Requisito | Prioridade |
+|------|------------------------------------------|-----|
+|RNF-01| As extensões permitidas são PNG, JPEG e MP4. | Média |
+|RNF-02| O site precisa ser compatível com Microsoft Edge, Firefox, Google Chrome. | Alta |
+|RNF-03| Os anexos não devem exceder 25 MB de tamanho. | Média |
+|RNF-04| O código numérico enviado para redefinição de senha deve conter 6 dígitos. | Alta | 
+|RNF-05| A senha deve conter no mínimo 6 e no máximo 10 caracteres incluindo, letra maiúscula, minúscula e número. | Alta |
+|RNF-06| A interface do sistema deve ser responsiva em navegadores, tablets e smartphones. | Alta |
+|RNF-07| O sistema deverá manter o funcionamento de 96% do tempo em 24hrs por dia, dos 7 dias da semana. | Média |
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
 
