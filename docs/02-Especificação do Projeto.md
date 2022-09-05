@@ -38,7 +38,7 @@
 |Frustrações | Por seus netos não morarem na mesma cidade, só conseguem se falar por vídeo chamada, Gostaria de trocar de celular para obter um com uma câmera melhor |
 |Hobbies | Gosta de ler, Jogar Xadrez |
 
-|Sergio Souza | ![alt text](/docs/img/personas5.png width="300") |
+|Sergio Souza | ![alt text](/docs/img/personas5.png) |
 |-----------------------|-|
 |Idade:|55|
 |Ocupação:| Analista de compras em uma startup que assessora vendas de roupa em atacado |
