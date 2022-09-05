@@ -20,7 +20,7 @@
 |Frustrações | Gostaria de trocar seu aparelho, mas não sabe aonde vender |
 |Hobbies | Gosta de cuidar de suas plantas, Faz natação |
 
-|Lucas Simão| ![alt text](/docs/img/personas3.png) |
+|Lucas Simão| <img src="docs/img/personas3.png" width="200" > |
 |-----------------------|-|
 |Idade:|15|
 |Ocupação:| Estudante do ensino médio |
@@ -29,7 +29,7 @@
 |Frustrações | Por jogar tanto no celular, a bateria acaba sendo prejudicada e por esse motivo ele sempre precisa comprar um aparelho novo, gastando muito dinheiro sempre |
 |Hobbies | Andar de skate , Assistir TV  |
 
-|Elisa Andrade| ![alt text](/docs/img/personas4.png) |
+|Elisa Andrade| <img src="docs/img/personas4.png" width="200" > |
 |-----------------------|-|
 |Idade:|75|
 |Ocupação:| Dona de casa, aposentada. Criou seus 2 filhos e agora curte seus netos e seu jardim |
@@ -38,7 +38,7 @@
 |Frustrações | Por seus netos não morarem na mesma cidade, só conseguem se falar por vídeo chamada, Gostaria de trocar de celular para obter um com uma câmera melhor |
 |Hobbies | Gosta de ler, Jogar Xadrez |
 
-|Sergio Souza | ![alt text](/docs/img/personas5.png) |
+|Sergio Souza | <img src="docs/img/personas5.png" width="200" > |
 |-----------------------|-|
 |Idade:|55|
 |Ocupação:| Analista de compras em uma startup que assessora vendas de roupa em atacado |
@@ -105,5 +105,5 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Diagrama de Casos de Uso
 
-![alt text](docs/img/diagrama.png)
+![alt text](/docs/img/diagrama.png)
 ##### *Figura 1 - diagrama de caso de uso*
