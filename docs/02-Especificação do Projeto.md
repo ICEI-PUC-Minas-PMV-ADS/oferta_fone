@@ -74,10 +74,8 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-05| O usuário logado terá a opção de editar ou excluir seu anuncio.  | Alta |
 |RF-06| O sistema deverá ocultar das buscas anúncios que foram finalizados por venda. | Alta |
 |RF-07| O usuário logado poderá ver os itens comprados por ele. | Alta |
-|RF-08| O sistema deverá ter um ambiente de administrador | Alta |
-|RF-09| O sistema deverá manter logs de alterações feitas por usuários e administradores | Alta |
-|RF-10| O sistema deverá ter a opção de favoritar itens pelo usuário logado. (Será necessário a criação de uma tela para exibição dos itens favoritados.) | Baixa |
-|RF-11| O sistema deve ser capaz de enviar um código numérico por meio e-mail e/ou SMS. | Média |
+|RF-08| O sistema deverá ter a opção de favoritar itens pelo usuário logado. (Será necessário a criação de uma tela para exibição dos itens favoritados.) | Baixa |
+|RF-09| O sistema deve ser capaz de enviar um código numérico por meio e-mail e/ou SMS. | Média |
 
 ### Requisitos não Funcionais
 
