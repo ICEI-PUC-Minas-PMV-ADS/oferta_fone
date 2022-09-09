@@ -12,11 +12,7 @@ Por fim, o desenvolvimento sustentável deve ser visto além do campo econômico
 
 ## Problema
 
--Excesso de lixo eletrônico; 
-
--Descarte indevido de aparelhos eletrônicos que podem ser revendidos; 
-
--Alto consumo de produtos tecnológicos; 
+Como consequência da Era Digital e seus avanços tecnológicos, a sociedade tem se deparado com grandes desafios como, obsolescência programada e curto ciclo de vida de equipamentos e aparelhos eletrônicos, excesso de e-lixo e seu descarte indevido, e o alto consumo de produtos tecnológicos. Desta forma, o projeto tem como intuito mitigar estes problemas por intermédio da revenda de produtos que seriam descartados ou estariam em desuso, mas que estão em bom estado de funcionamento e conservação.
 
 ## Objetivo
 
