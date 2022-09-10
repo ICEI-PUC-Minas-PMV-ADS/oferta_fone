@@ -105,3 +105,21 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ![alt text](/docs/img/diagrama.png)
 ##### *Figura 1 - diagrama de caso de uso*
+
+## Backlog do Produto
+
+![alt text](/docs/img/backlogprod.png)
+
+##### *Fifura 2 - backlog do produto*
+
+## Plano de Sprints do Projeto
+
+![alt text](/docs/img/sprint.png)
+
+##### *Figura 3 - sprints do projeto*
+
+## Backlog do Projeto
+
+![alt text](/docs/img/backlogproj.png)
+
+##### *Figura 4 - backlog do projeto*
