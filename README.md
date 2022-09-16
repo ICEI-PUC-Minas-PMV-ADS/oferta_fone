@@ -1,5 +1,5 @@
 
-<img src="docs/img/logo.jpg" width="300" >
+<img src="src/SGN_09_05_2022_1662421850206.png" width="300" >
 
 # OfertaFone
 
