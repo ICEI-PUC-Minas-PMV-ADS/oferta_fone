@@ -39,22 +39,24 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 
 ### Divisão de Papéis
 
-Apresente a divisão de papéis entre os membros do grupo.
+   A equipe está organizada da seguinte forma: 
 
-> **Links Úteis**:
-> - [11 Passos Essenciais para Implantar Scrum no seu 
-> Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
+Scrum Master: Pedro Vitor. 
+
+Product Owner: Ursula Figueiredo. 
+
+Equipe de Desenvolvimento: José Vicente, Karen Franco, Luiz Carlos, Vivian Kimie. 
+
+Equipe de Design: José Vicente, Karen Franco, Luiz Carlos, Vivian Kimie.
 
 ### Processo
 
-Coloque  informações sobre detalhes da implementação do Scrum seguido pelo grupo. O grupo poderá fazer uso de ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
- 
-> **Links Úteis**:
-> - [Project management, made simple](https://github.com/features/project-management/)
-> - [Sobre quadros de projeto](https://docs.github.com/pt/github/managing-your-work-on-github/about-project-boards)
-> - [Como criar Backlogs no Github](https://www.youtube.com/watch?v=RXEy6CFu9Hk)
-> - [Tutorial Slack](https://slack.com/intl/en-br/)
+|         AMBIENTE`          |        PLATAFORMA         |                  LINK DE ACESSO                               |
+|----------------------------|---------------------------|---------------------------------------------------------------|
+|Repositório de código fonte |         GitHub            |[OfertaFone](https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone)|
+|Design de Interfaces        |         Miro              |[Miro.com](https://miro.com/app/board/uXjVPXc-W4E=/?share_link_id=735742997379)|
+|Gerenciamento do Projeto    |         GitHub            |[Planejamento do Projeto](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/61/views/1)  |
+|Comunicação e Reuniões      |      Teams/WhatsApp       |[Grupo 04 - Projeto: OfertaFone](https://teams.microsoft.com/l/channel/19%3a129553a617b6458dbd85f9d0b3529095%40thread.tacv2/Grupo%25204%2520-%2520Segunda%252020h%2520-%2520Troca%2520celulares?groupId=4b320cea-c5c5-4c56-a163-6d1bcaa5ef3f&tenantId=14cbd5a7-ec94-46ba-b314-cc0fc972a161)|
 
 ### Ferramentas
 
