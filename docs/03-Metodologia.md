@@ -51,7 +51,7 @@ Equipe de Design: José Vicente, Karen Franco, Luiz Carlos, Vivian Kimie.
 
 ### Processo
 
-O grupo poderá fazer uso de ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução, por meio das plataformas abaixo: 
+O grupo utilizará ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução, por meio das plataformas abaixo: 
 
 |         AMBIENTE`          |        PLATAFORMA         |                  LINK DE ACESSO                               |
 |----------------------------|---------------------------|---------------------------------------------------------------|
