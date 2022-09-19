@@ -51,6 +51,8 @@ Equipe de Design: José Vicente, Karen Franco, Luiz Carlos, Vivian Kimie.
 
 ### Processo
 
+O grupo poderá fazer uso de ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução, por meio das plataformas abaixo: 
+
 |         AMBIENTE`          |        PLATAFORMA         |                  LINK DE ACESSO                               |
 |----------------------------|---------------------------|---------------------------------------------------------------|
 |Repositório de código fonte |         GitHub            |[OfertaFone](https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone)|
