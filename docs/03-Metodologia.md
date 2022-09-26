@@ -3,11 +3,12 @@
 
 <span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
 
-Descreva aqui a metodologia de trabalho do grupo para atacar o problema. Definições sobre os ambiente de trabalho utilizados pela  equipe para desenvolver o projeto. Abrange a relação de ambientes utilizados, a estrutura para gestão do código fonte, além da definição do processo e ferramenta através dos quais a equipe se organiza (Gestão de Times).
-
 ## Controle de Versão
 
-A ferramenta de controle de versão adotada no projeto foi o
+Para a gestão do código fonte será utilizado o modelo de processo baseado no Git Flow, como mostrado na figura a seguir:
+
+<img src="docs/img/Flux.jpg" width="500">
+
 [Git](https://git-scm.com/), sendo que o [Github](https://github.com)
 foi utilizado para hospedagem do repositório.
 
@@ -21,10 +22,23 @@ O projeto segue a seguinte convenção para o nome de branches:
 Quanto à gerência de issues, o projeto adota a seguinte convenção para
 etiquetas:
 
-- `documentation`: melhorias ou acréscimos à documentação
-- `bug`: uma funcionalidade encontra-se com problemas
-- `enhancement`: uma funcionalidade precisa ser melhorada
-- `feature`: uma nova funcionalidade precisa ser introduzida
+- `Bug`: Indica um problema inesperado ou comportamento involuntário. 
+
+- `Documentation`: melhorias ou acréscimos à documentação. 
+
+- `Duplicate`: Indica problemas, pull requests ou discussões. 
+
+- `Enhancement`: uma funcionalidade precisa ser melhorada. 
+
+- `Feature`: uma nova funcionalidade precisa ser introduzida. 
+
+- `Help wanted`: Indica que um mantenedor deseja ajudar em um problema ou uma pull request. 
+
+- `Invalid`: Indica que um problema, pull request ou discussão já não é relevante. 
+
+- `Question`: Indica que um problema, pull request ou discussão precisa de mais informações. 
+
+- `Wontfix`: Indica que o trabalho não continuará em um problema, pull request ou discussão. 
 
 Discuta como a configuração do projeto foi feita na ferramenta de versionamento escolhida. Exponha como a gerência de tags, merges, commits e branchs é realizada. Discuta como a gerência de issues foi realizada.
 
@@ -64,18 +78,13 @@ O grupo utilizará ferramentas on-line para acompanhar o andamento do projeto, a
 
 As ferramentas empregadas no projeto são:
 
-- Editor de código.
-- Ferramentas de comunicação
-- Ferramentas de desenho de tela (_wireframing_)
+- Editor de código: *Visual Studio Community 2019*
+- Ferramentas de comunicação: *Teams e Whatsapp*
+- Ferramenta de gerenciamento: *Github/Classroom*
+- Ferramentas de desenho de tela (*wireframing*): *Miro*
 
 O editor de código foi escolhido porque ele possui uma integração com o
 sistema de versão. As ferramentas de comunicação utilizadas possuem
 integração semelhante e por isso foram selecionadas. Por fim, para criar
 diagramas utilizamos essa ferramenta por melhor captar as
 necessidades da nossa solução.
-
-Liste quais ferramentas foram empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível.
- 
-> **Possíveis Ferramentas que auxiliarão no gerenciamento**: 
-> - [Slack](https://slack.com/)
-> - [Github](https://github.com/)
