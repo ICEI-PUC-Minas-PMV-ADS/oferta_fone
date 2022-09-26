@@ -7,7 +7,7 @@
 
 Para a gestão do código fonte será utilizado o modelo de processo baseado no Git Flow, como mostrado na figura a seguir:
 
-<img src="/img/Flux.jpg" width="500">
+<img src="/docs/img/Flux.jpg" width="700">
 
 [Git](https://git-scm.com/), sendo que o [Github](https://github.com)
 foi utilizado para hospedagem do repositório.
