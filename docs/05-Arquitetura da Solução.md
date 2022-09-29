@@ -4,15 +4,18 @@
 
 O diagrama de classes ilustra graficamente como será a estrutura do software, e como cada uma das classes da sua estrutura estarão interligadas. Essas classes servem de modelo para materializar os objetos que executarão na memória.
 
-<img src="/docs/img/diagramaClasse.jpg" width="500"> 
+<img src="/docs/img/diagramaClasse.jpg" width="700">
+
 ##### *Figura 6.  Diagrama de classes*
+
 
 
 ## Modelo ER (Projeto Conceitual)
 
 O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.
 
-<img src="/docs/img/MER.png" width="500"> 
+<img src="/docs/img/MER.png" width="700"> 
+
 ##### *Figura 7. Modelo Entidade Relacionamento (MER)*
 
 
@@ -20,7 +23,8 @@ O Modelo ER representa através de um diagrama como as entidades (coisas, objeto
 
 O projeto da base de dados corresponde à representação das entidades e relacionamentos identificadas no Modelo ER, no formato de tabelas, com colunas e chaves primárias/estrangeiras necessárias para representar corretamente as restrições de integridade.
  
-<img src="/docs/img/DER.png" width="500"> 
+<img src="/docs/img/DER.png" width="700"> 
+
 ##### *Figura 8. Diagrama Entidade Relacionamento (DER)*
 
 
