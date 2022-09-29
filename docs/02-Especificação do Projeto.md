@@ -110,7 +110,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ![alt text](/docs/img/backlogprod.png)
 
-##### *Fifura 2 - backlog do produto*
+##### *Figura 2 - backlog do produto*
 
 ## Plano de Sprints do Projeto
 
