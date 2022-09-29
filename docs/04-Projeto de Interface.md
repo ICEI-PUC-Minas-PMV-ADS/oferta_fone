@@ -17,22 +17,39 @@ O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema 
 
 ## Wireframes
 
-<img src="/docs/img/Login.jpg" width="400">
+<img src="/docs/img/Login.jpg" width="700">
 
-<img src="/docs/img/Principal.jpg" width="400">
+##### *Figura 10. Login*
 
-<img src="/docs/img/MinhasCompras.jpg" width="400">
+<img src="/docs/img/Principal.jpg" width="700">
 
-<img src="/docs/img/CarrinhoCompras.jpg" width="400">
+##### *Figura 11. Principal*
 
-<img src="/docs/img/CadastrarAparelho.jpg" width="400">
+<img src="/docs/img/MinhasCompras.jpg" width="700">
 
-<img src="/docs/img/ProdutoCompra.jpg" width="400">
+##### *Figura 12. Minhas Compras*
 
-<img src="/docs/img/DadosPessoais.jpg" width="400">
+<img src="/docs/img/CarrinhoCompras.jpg" width="700">
 
-<img src="/docs/img/MinhasVendas.jpg" width="400">
+##### *Figura 13. Carrinho de Compras*
 
-<img src="/docs/img/CheckouPagamento.jpg" width="400">
+<img src="/docs/img/CadastrarAparelho.jpg" width="700">
 
+##### *Figura 14. Cadastrar Aparelho*
+
+<img src="/docs/img/ProdutoCompra.jpg" width="700">
+
+##### *Figura 15. Produto para Compra*
+
+<img src="/docs/img/DadosPessoais.jpg" width="700">
+
+##### *Figura 16. Dados Pessoais*
+
+<img src="/docs/img/MinhasVendas.jpg" width="700">
+
+##### *Figura 17. Minhas Vendas*
+
+<img src="/docs/img/CheckoutPagamento.jpg" width="700">
+
+##### *Figura 18. Checkout do Pagamento*
 
