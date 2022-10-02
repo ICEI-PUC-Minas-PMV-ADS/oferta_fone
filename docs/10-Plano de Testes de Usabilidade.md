@@ -12,10 +12,10 @@ Os objetivos dos testes de usabilidade durante o desenvolvimento do site OfertaF
 
 5. Aprender mais sobre o usuário, seu comportamento e suas preferências, afim de melhorar a eficiência, produtividade e satisfação do usuário final. 
 
-> - Seleção dos participantes 
+ - Seleção dos participantes 
 
 Para a realização do teste serão selecionados alunos e seus familiares que já acessaram ou não uma plataforma de revenda de dispositivos eletrônicos usados. 
 
-> - Local e Ambiente de Avaliação
+ - Local e Ambiente de Avaliação
 
 Os participantes participarão do teste de usabilidade remotamente através do método de avaliação por investigação, onde será entregue um questionário com 10 questões em escala Likert aplicado após o usuário usar o site ou conhecer como ele funciona.  
