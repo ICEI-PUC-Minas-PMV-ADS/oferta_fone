@@ -1,15 +1,21 @@
 # Plano de Testes de Usabilidade
 
-Os testes de usabilidade permitem avaliar a qualidade da interface com o usuário da aplicação interativa.
+Os objetivos dos testes de usabilidade durante o desenvolvimento do site OfertaFone incluem: 
 
-Um plano de teste de usabilidade deverá conter: o detalhamento dos objetivos (em função dos requisitos levantados/implementados), dos critérios que serão utilizados para a seleção dos participantes, dos procedimentos a serem adotados pelos condutores de teste (por exemplo: os testes serão presenciais ou remotos? o método será observação direta, medição ou avaliação?), das tarefas a serem executadas, dos dados a serem coletados (quantidade de cliques, número de erros, tempo etc.), a ordem de execução das tarefas e das etapas da sessão de teste, recursos demandados, métricas coletadas etc.
+1. Identificar problemas na interface e no design do site;  
 
-Para cada voluntário do teste, é fundamental coletar e apresentar todos os dados/métricas previamente definidos, mas não se esqueça: atendendo à LGPD (Lei Geral de Proteção de Dados), nenhum dado sensível, que permita identificar o voluntário, deverá ser apresentado).
+2. O usuário conseguirá criar e/ou acessar sua conta por meio de e-mail e senha; 
 
-As referências abaixo irão auxiliá-lo na geração do artefato "Plano de Testes de Usabilidade".
+3. Enquanto o usuário estiver logado, ele poderá cadastrar produtos para venda, incluindo fotos; 
 
-> **Links Úteis**:
-> - [Teste De Usabilidade: O Que É e Como Fazer Passo a Passo (neilpatel.com)](https://neilpatel.com/br/blog/teste-de-usabilidade/)
-> - [Teste de usabilidade: tudo o que você precisa saber! | by Jon Vieira | Aela.io | Medium](https://medium.com/aela/teste-de-usabilidade-o-que-voc%C3%AA-precisa-saber-39a36343d9a6/)
-> - [Planejando testes de usabilidade: o que (e o que não) fazer | iMasters](https://imasters.com.br/design-ux/planejando-testes-de-usabilidade-o-que-e-o-que-nao-fazer/)
-> - [Ferramentas de Testes de Usabilidade](https://www.usability.gov/how-to-and-tools/resources/templates.html)
+4. Enquanto o usuário estiver logado, ele poderá ver os itens comprados por ele; 
+
+5. Aprender mais sobre o usuário, seu comportamento e suas preferências, afim de melhorar a eficiência, produtividade e satisfação do usuário final. 
+
+ **- Seleção dos participantes** 
+
+Para a realização do teste serão selecionados alunos e seus familiares que já acessaram ou não uma plataforma de revenda de dispositivos eletrônicos usados. 
+
+ **- Local e Ambiente de Avaliação** 
+
+Os participantes participarão do teste de usabilidade remotamente através do método de avaliação por investigação, onde será entregue um questionário com 10 questões em escala Likert aplicado após o usuário usar o site ou conhecer como ele funciona.  
