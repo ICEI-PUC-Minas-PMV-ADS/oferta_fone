@@ -18,29 +18,45 @@ O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema 
 ## Wireframes
 
 <img src="/docs/img/Login.jpg" width="700">
-##### *Figura 10. Login*
 
+##### *Figura 10. Login*  
+<br>
+<br>
 <img src="/docs/img/Principal.jpg" width="700">
+
 ##### *Figura 11. Principal*
-
+<br>
+<br>
 <img src="/docs/img/MinhasCompras.jpg" width="700">
+
 ##### *Figura 12. Minhas Compras*
-
+<br>
+<br>
 <img src="/docs/img/CarrinhoCompras.jpg" width="700">
+
 ##### *Figura 13. Carrinho de Compras*
-
+<br>
+<br>
 <img src="/docs/img/CadastrarAparelho.jpg" width="700">
+
 ##### *Figura 14. Cadastrar Aparelho*
-
+<br>
+<br>
 <img src="/docs/img/ProdutoCompra.jpg" width="700">
+
 ##### *Figura 15. Produto para Compra*
-
+<br>
+<br>
 <img src="/docs/img/DadosPessoais.jpg" width="700">
+
 ##### *Figura 16. Dados Pessoais*
-
+<br>
+<br>
 <img src="/docs/img/MinhasVendas.jpg" width="700">
+
 ##### *Figura 17. Minhas Vendas*
-
+<br>
+<br>
 <img src="/docs/img/CheckoutPagamento.jpg" width="700">
-##### *Figura 18. Checkout do Pagamento*
 
+##### *Figura 18. Checkout do Pagamento*
