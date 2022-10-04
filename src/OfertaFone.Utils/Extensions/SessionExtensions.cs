@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.Json;
 
-namespace OfertaFone.WebUI.Extensions
+namespace OfertaFone.Utils.Extensions
 {
     public static class SessionExtensions
     {

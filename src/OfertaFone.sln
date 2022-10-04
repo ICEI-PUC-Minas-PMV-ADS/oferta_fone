@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.3.32819.101
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32802.440
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OfertaFone.WebUI", "OfertaFone\OfertaFone.WebUI.csproj", "{B2A16BFF-71DE-4758-A039-349C9536A8EF}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OfertaFone.Infra.IoC", "OfertaFone.Infra.IoC\OfertaFone.Infra.IoC.csproj", "{B852DEC1-00E5-4D19-B89C-3F4EAEB02E0C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OfertaFone.Domain", "OfertaFone.Domain\OfertaFone.Domain.csproj", "{6778CB84-CF66-49D9-9A34-E1917F98FD36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfertaFone.Utils", "OfertaFone.Utils\OfertaFone.Utils.csproj", "{8236BFC6-ADF5-48D5-9DB4-F0DCA58F0283}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6778CB84-CF66-49D9-9A34-E1917F98FD36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6778CB84-CF66-49D9-9A34-E1917F98FD36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6778CB84-CF66-49D9-9A34-E1917F98FD36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8236BFC6-ADF5-48D5-9DB4-F0DCA58F0283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8236BFC6-ADF5-48D5-9DB4-F0DCA58F0283}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8236BFC6-ADF5-48D5-9DB4-F0DCA58F0283}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8236BFC6-ADF5-48D5-9DB4-F0DCA58F0283}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

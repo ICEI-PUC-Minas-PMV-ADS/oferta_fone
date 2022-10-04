@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using OfertaFone.WebUI.Extensions;
+using OfertaFone.Utils.Extensions;
 
-namespace OfertaFone.WebUI.Attributes
+namespace OfertaFone.Utils.Attributes
 {
     public class SessionExpireAttribute : ActionFilterAttribute
     {

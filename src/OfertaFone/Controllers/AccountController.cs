@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OfertaFone.Domain.Entities;
 using OfertaFone.Domain.Interfaces;
-using OfertaFone.WebUI.Attributes;
-using OfertaFone.WebUI.Extensions;
+using OfertaFone.Utils.Attributes;
+using OfertaFone.Utils.Exceptions;
+using OfertaFone.Utils.Extensions;
 using OfertaFone.WebUI.Identity;
 using OfertaFone.WebUI.ViewModels.Account;
 using System;
@@ -48,12 +49,12 @@ namespace OfertaFone.WebUI.Controllers
                     var user = await _userRepository.Table.Where(user => user.Login.ToLower() == loginViewModel.Username.ToLower()).FirstOrDefaultAsync();
                     if (user == null || user.Id < 1)
                     {
-                        throw new ArgumentException("Username not registered!");
+                        throw new LogicalException("Username not registered!");
                     }
 
                     if (!user.Senha.Equals(loginViewModel.Password))
                     {
-                        throw new ArgumentException("Invalid password!");
+                        throw new LogicalException("Invalid password!");
                     }
 
                     HttpContext.Session.Set("UserId", user.Id);

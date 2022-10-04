@@ -2,7 +2,7 @@
 
 namespace OfertaFone.Infra.Data.Migrations
 {
-    public partial class InsertContext : Migration
+    public partial class insertContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -87,8 +87,7 @@ namespace OfertaFone.Infra.Data.Migrations
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     PerfilUsuarioId = table.Column<int>(type: "int", nullable: true),
-                    Situacao = table.Column<int>(type: "int", nullable: false),
-                    PerfilUsuarioId1 = table.Column<int>(type: "int", nullable: true)
+                    Situacao = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -99,13 +98,17 @@ namespace OfertaFone.Infra.Data.Migrations
                         principalTable: "PerfilUsuario",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Usuario_PerfilUsuario_PerfilUsuarioId1",
-                        column: x => x.PerfilUsuarioId1,
-                        principalTable: "PerfilUsuario",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "PerfilUsuario",
+                columns: new[] { "Id", "Nome", "Situacao" },
+                values: new object[] { 1, "ADMIN", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Usuario",
+                columns: new[] { "Id", "CpfCnpj", "Email", "Login", "Nome", "PerfilUsuarioId", "Senha", "Situacao" },
+                values: new object[] { 1, null, "admin@devscansados.com", "admin", "admin", 1, "admin@123", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_MapPerfilUsuariosAcessos_AcessoId",
@@ -121,11 +124,6 @@ namespace OfertaFone.Infra.Data.Migrations
                 name: "IX_Usuario_PerfilUsuarioId",
                 table: "Usuario",
                 column: "PerfilUsuarioId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Usuario_PerfilUsuarioId1",
-                table: "Usuario",
-                column: "PerfilUsuarioId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -22,12 +22,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OfertaFone.Infra.IoC\OfertaFone.Infra.IoC.csproj" />
+    <ProjectReference Include="..\OfertaFone.Utils\OfertaFone.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Enuns\" />
     <Folder Include="ViewModels\Home\" />
-    <Folder Include="ViewModels\Produto\" />
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 

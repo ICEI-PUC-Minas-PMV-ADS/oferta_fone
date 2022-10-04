@@ -12,6 +12,15 @@ namespace OfertaFone.Infra.Data.EntitiesConfigurations
             builder.HasKey(u => u.Id);
             builder.Property(u => u.Nome).HasMaxLength(30).IsRequired();
             builder.Property(u => u.Situacao).IsRequired();
+
+            builder.HasData(
+                new PerfilUsuario()
+                {
+                    Id = 1,
+                    Nome = "ADMIN",
+                    Situacao = 1
+                }
+            );
         }
     }
 }

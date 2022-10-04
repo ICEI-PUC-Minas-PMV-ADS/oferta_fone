@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using OfertaFone.Domain.Entities;
 using OfertaFone.Domain.Interfaces;
+using OfertaFone.WebUI.ViewModels.Produto;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OfertaFone.WebUI.Controllers
@@ -17,7 +19,8 @@ namespace OfertaFone.WebUI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await produtoRepository.FindAll());
+            var entity = await produtoRepository.FindAll();
+            return View(entity.Select(entity => new IndexViewModel() { Preco = entity.Preco, Id = entity.Id, Nome = entity.Nome }));
         }
 
         // GET: ProdutoController/Details/5

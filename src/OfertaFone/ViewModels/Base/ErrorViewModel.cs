@@ -1,6 +1,6 @@
 using System;
 
-namespace OfertaFone.WebUI.ViewModels
+namespace OfertaFone.WebUI.ViewModels.Base
 {
     public class ErrorViewModel
     {

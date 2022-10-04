@@ -23,6 +23,9 @@ namespace OfertaFone.Infra.IoC
                             options.UseSqlServer(configuration.GetConnectionString("DataContextConnection"),
                             b => b.MigrationsAssembly(typeof(DatabaseContext).Assembly.FullName)));
 
+            var databaseContext = services.BuildServiceProvider().GetRequiredService<DatabaseContext>();
+            databaseContext.Database.Migrate();
+
             services.AddScoped<IRepository<Usuario>, Repository<Usuario>>();
             services.AddScoped<IRepository<MapPerfilUsuariosAcessos>, Repository<MapPerfilUsuariosAcessos>>();
             services.AddScoped<IRepository<Acesso>, Repository<Acesso>>();

@@ -86,6 +86,14 @@ namespace OfertaFone.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PerfilUsuario");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nome = "ADMIN",
+                            Situacao = 1
+                        });
                 });
 
             modelBuilder.Entity("OfertaFone.Domain.Entities.ProdutoEntity", b =>
@@ -133,9 +141,6 @@ namespace OfertaFone.Infra.Data.Migrations
                     b.Property<int?>("PerfilUsuarioId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PerfilUsuarioId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("Senha")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -149,9 +154,19 @@ namespace OfertaFone.Infra.Data.Migrations
 
                     b.HasIndex("PerfilUsuarioId");
 
-                    b.HasIndex("PerfilUsuarioId1");
-
                     b.ToTable("Usuario");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "admin@devscansados.com",
+                            Login = "admin",
+                            Nome = "admin",
+                            PerfilUsuarioId = 1,
+                            Senha = "admin@123",
+                            Situacao = 1
+                        });
                 });
 
             modelBuilder.Entity("OfertaFone.Domain.Entities.MapPerfilUsuariosAcessos", b =>
@@ -172,12 +187,8 @@ namespace OfertaFone.Infra.Data.Migrations
             modelBuilder.Entity("OfertaFone.Domain.Entities.Usuario", b =>
                 {
                     b.HasOne("OfertaFone.Domain.Entities.PerfilUsuario", "PerfilUsuario")
-                        .WithMany()
-                        .HasForeignKey("PerfilUsuarioId");
-
-                    b.HasOne("OfertaFone.Domain.Entities.PerfilUsuario", null)
                         .WithMany("Usuarios")
-                        .HasForeignKey("PerfilUsuarioId1");
+                        .HasForeignKey("PerfilUsuarioId");
 
                     b.Navigation("PerfilUsuario");
                 });

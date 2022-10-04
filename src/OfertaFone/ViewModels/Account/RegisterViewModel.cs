@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using OfertaFone.WebUI.ViewModels.Base;
 using System.ComponentModel.DataAnnotations;
 
 namespace OfertaFone.WebUI.ViewModels.Account

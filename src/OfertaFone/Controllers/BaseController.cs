@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using OfertaFone.Utils.Exceptions;
 using OfertaFone.WebUI.ViewModels;
+using OfertaFone.WebUI.ViewModels.Base;
 using System;
 using System.Diagnostics;
 
@@ -14,7 +16,34 @@ namespace OfertaFone.WebUI.Controllers
         /// <param name="ex"></param>
         public void TratarException(Exception ex)
         {
-            AddError(JsonConvert.SerializeObject(ex));
+            if (ex.GetType() == typeof(LogicalException))
+            {
+                AddWarning(ex.Message);
+            }
+            else
+            {
+                AddError(JsonConvert.SerializeObject(ex));
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="func"></param>
+        public void TakeAction(Action func)
+        {
+            try
+            {
+                func();
+            }
+            catch(LogicalException logicalException)
+            {
+                AddWarning($"{logicalException}");
+            }
+            catch (Exception ex)
+            {
+                AddError(JsonConvert.SerializeObject(ex));
+            }
         }
 
         /// <summary>

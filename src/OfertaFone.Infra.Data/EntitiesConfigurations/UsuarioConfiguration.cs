@@ -15,7 +15,23 @@ namespace OfertaFone.Infra.Data.EntitiesConfigurations
             builder.Property(u => u.CpfCnpj).HasMaxLength(14);
             builder.Property(u => u.Email).HasMaxLength(60).IsRequired();
             builder.Property(u => u.Situacao).IsRequired();
-            builder.HasOne(u => u.PerfilUsuario).WithMany().HasForeignKey(a => a.PerfilUsuarioId);
+            builder.HasOne(u => u.PerfilUsuario)
+                .WithMany(u => u.Usuarios)
+                .HasForeignKey(a => a.PerfilUsuarioId);
+
+            // https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding
+            builder.HasData(
+                new Usuario()
+                {
+                    Id = 1,
+                    Login = "admin", 
+                    Nome = "admin",
+                    Email = "admin@devscansados.com",
+                    PerfilUsuarioId = 1,
+                    Situacao = 1,
+                    Senha = "admin@123"
+                }
+            );
         }
     }
 }

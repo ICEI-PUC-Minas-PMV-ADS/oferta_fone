@@ -1,4 +1,4 @@
-﻿namespace OfertaFone.WebUI.ViewModels.Account
+﻿namespace OfertaFone.WebUI.ViewModels.Base
 {
     public class BaseViewModel
     {
