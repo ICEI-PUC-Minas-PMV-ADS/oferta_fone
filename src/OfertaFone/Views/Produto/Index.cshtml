@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OfertaFone.Domain.Entities.ProdutoEntity>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .product-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<h1>Index</h1>
+
+<div class="row row-cols-1 row-cols-sm-2 m-3">
+    @foreach (var item in Model)
+    {
+        <div class="col pt-3">
+            <div class="card">
+                <div class="m-3">
+                    <img src="~/assets/galaxy.png" class="card-img-top" alt="card-grid-image">
+                </div>
+                <div class="card-body">
+                    <div class="product-name">Modelo Celular</div>
+                    <p><strong>R$ @Html.DisplayFor(modelItem => item.Preco)</strong></p>
+                    <div class="text-center">
+                        <a asp-action="carrinho"
+                       asp-route-codigo="@Html.DisplayFor(modelItem => item.Id)"
+                       class="btn btn-success">Adicionar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
