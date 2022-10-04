@@ -17,10 +17,10 @@ jobs:
         with:
           dotnet-version: 5.0.x
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore --source /src
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build --source /src --configuration Release --no-restore
 
       - name: Test
         run: dotnet test --no-restore --verbosity normal
