@@ -27,7 +27,7 @@
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="col-4 col col-xs-12 mb-3">
-                                <label asp-for="PerfilUsuarioId" class="col-md-6 control-label">User Profile</label>
+                                <label asp-for="PerfilUsuarioId" class="col-md-6 control-label">Perfil Usuário</label>
                                 <select id="drpEmpList" class="form-control" disabled asp-for="PerfilUsuarioId" asp-items="@(new SelectList(Model.Perfis, "Value", "Text"))">
                                     <option value="">Select...</option>
                                 </select>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="row">
                             <div class="col-2 col col-xs-12 mb-3">
-                                <label asp-for="TipoPessoas" class="col-md-6 control-label">Person Type</label>
+                                <label asp-for="TipoPessoas" class="col-md-6 control-label">Tipo Pessoa</label>
                                 <select asp-for="TipoPessoas" class="form-control" onchange="OnChangeTipoPessoas()" asp-items="Html.GetEnumSelectList<TipoPessoa>()"></select>
                                 <span asp-validation-for="TipoPessoas" class="text-danger"></span>
                             </div>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3">
-                                <label asp-for="DataNascimento" class="control-label"></label>
+                                <label asp-for="DataNascimento" class="control-label">Data Nascimento</label>
                                 <div class='input-group date'>
                                     <input asp-for="DataNascimento" type="text" class="form-control datepicker" />
                                     <span class="input-group-addon">
@@ -78,22 +78,27 @@
 
 @section Scripts{
     @await Html.PartialAsync("_ValidationScriptsPartial")
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function (){
-            OnChangeTipoPessoas()
+            OnChangeTipoPessoas();
+            SetTypeMask();
         });
 
         function OnChangeTipoPessoas(){
             var tipoPessoas = $('select[Name="@nameof(Model.TipoPessoas)"]').val();
             if (tipoPessoas == '@((int)TipoPessoa.FISICA)'){
-                $('input[Name="@nameof(Model.CpfCnpj)"]').mask('000.000.000-00');
+                $('input[Name="@nameof(Model.CpfCnpj)"]').mask('000.000.000-00', {placeholder:"000.000.000-00"});
                 $('input[Name="@nameof(Model.CpfCnpj)"]').attr("maxlenght", "14")
             }
             else if (tipoPessoas == '@((int)TipoPessoa.JURIDICA)'){
-                $('input[Name="@nameof(Model.CpfCnpj)"]').mask('00.000.000/0000-00');
+                $('input[Name="@nameof(Model.CpfCnpj)"]').mask('00.000.000/0000-00', {placeholder:"00.000.000/0000-00"});
                 $('input[Name="@nameof(Model.CpfCnpj)"]').attr("maxlenght", "18")
             }
         }
 
-    </script>
+        function SetTypeMask() {
+            $('input[Name="@nameof(Model.DataNascimento)"]').mask('99/99/9999', {placeholder:"mm/dd/yyyy"});
+        };
+
+</script>
 }
