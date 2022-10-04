@@ -1,13 +1,54 @@
-# Instruções de utilização
+# OfertaFone
 
-## Instalação do Site
+## Instalação
 
-O site em HTML/CSS/JS é um projeto estático, logo pode ser utilizado tanto em servidores...
+Para instalar as dependencias clone o projeto e execute o seguinte comando dentro da pasta.
 
-## Histórico de versões
+```shell
+dotnet build .\OfertaFone.WebUI.csproj
+```
 
-### [0.1.0] - DD/MM/AAAA
-#### Adicionado
-- Adicionado ...
+logo após execute o sistema:
 
-https://www.macoratti.net/21/01/aspnc_cleanarch3.htm
+```
+dotnet run OfertaFone.WebUI.dll
+```
+
+### Pré-requisitos
+
+Para executar este container deverá ter o Docker instalado.
+
+* [Windows](https://docs.docker.com/windows/started)
+* [OS X](https://docs.docker.com/mac/started/)
+* [Linux](https://docs.docker.com/linux/started/)
+
+### Containers
+
+#### Compose Project
+
+O projeto já possui um docker-compose configurado, conseguirá executar o projeto somente executando o código:
+
+```shell
+docker-compose up
+```
+
+Para construir a Imagem do Docker:
+
+```shell
+docker build -t ofertafone .
+```
+
+Para executar o Docker na porta 80:
+
+```shell
+docker container run --name ofertafone -p 80:80 ofertafone
+```
+
+## Authors
+
+* **Pedro Rodrigues** - *Work* - [pedrovitorrs](https://github.com/pedrovitorrs)
+
+## Como contribuir
+
+Esteja sempre atento à criação de novas branches, padronização de commits e comentários em código
+para que possamos melhorar sua mantenabilidade.
