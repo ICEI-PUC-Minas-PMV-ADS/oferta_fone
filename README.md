@@ -1,26 +1,26 @@
 
-<img src="src/SGN_09_05_2022_1662421850206.png" width="300" >
+<img src="docs/img/LogoProject/SGN_09_05_2022_1662421850206.png" width="300" >
 
 # OfertaFone
 
-#### PONTIFÍCIA UNIVERSIDADE CATÓLICA DE MINAS GERAIS 
+#### PONTIFÍCIA UNIVERSIDADE CATÓLICA DE MINAS GERAIS
 
 `TECNOLOGIA EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS`
 
-`Projeto: Desenvolvimento de uma Aplicação Interativa `
+`Projeto: Desenvolvimento de uma Aplicação Interativa`
 
 `2º semestre de 2022`
 
-O objetivo deste projeto é criar uma plataforma de revenda de dispositivos eletrônicos, visando a redução de e-lixo por meio do aproveitamento máximo de sua usabilidade, bem como o cuidado da saúde humana e do meio ambiente, e rentabilidade advinda da venda destes produtos. 
+O objetivo deste projeto é criar uma plataforma de revenda de dispositivos eletrônicos, visando a redução de e-lixo por meio do aproveitamento máximo de sua usabilidade, bem como o cuidado da saúde humana e do meio ambiente, e rentabilidade advinda da venda destes produtos.
 
 O lançamento de novos modelos de telefones e tablets têm levado as pessoas a trocar seus aparelhos ainda em condições satisfatórias de uso. Isso acarreta na geração de lixo eletrônico, que se não for descartado adequadamente, trará danos ao meio ambiente. Utilizar um aparelho até o fim de sua vida útil ainda é a melhor forma de economizar recursos naturais, pois se evita a fabricação de um novo aparelho que iria atender a esta demanda. Além disso, atinge-se um público que não teria acesso a aparelhos novos, pelo seu custo elevado, ou para aqueles que desejam apenas economizar ao adquirir um aparelho usado.
 
 ## Integrantes
 
-* José Vicente do Vale Melo 
+* José Vicente do Vale Melo
 * Karen Franco Alavarque Escobedo
-* Luiz Carlos Gil de Souza 
-* Pedro Vitor Rodrigues da Silva 
+* Luiz Carlos Gil de Souza
+* Pedro Vitor Rodrigues da Silva
 * Ursula Daniela Figueiredo Barbosa
 * Vivian Kimie Toyota
 
@@ -32,7 +32,7 @@ O lançamento de novos modelos de telefones e tablets têm levado as pessoas a t
 
 Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
 
-Não deixe de informar o link onde a aplicação estiver disponível para acesso (por exemplo: https://adota-pet.herokuapp.com/src/index.html).
+Não deixe de informar o link onde a aplicação estiver disponível para acesso (por exemplo: <https://adota-pet.herokuapp.com/src/index.html>).
 
 Se houver usuário de teste, o login e a senha também deverão ser informados aqui (por exemplo: usuário - admin / senha - admin).
 
