@@ -1,0 +1,63 @@
+﻿@model RegisterViewModel
+@{
+    Layout = "_LayoutAccount";
+}
+<style>
+    .authentication-wrapper.authentication-basic .authentication-inner{
+        max-width:600px;
+    }
+    .app-brand-text.demo {
+        font-size: 1.75rem;
+        letter-spacing: -0.5px;
+        text-transform: inherit !important;
+    }
+</style>
+<div class="app-brand justify-content-center">
+    <a class="app-brand-link gap-2" asp-area="" asp-controller="Produto" asp-action="">
+        <span class="app-brand-logo demo">
+        </span>
+        <span class="app-brand-text demo text-body fw-bolder">Oferta Fone</span>
+    </a>
+    </div>
+<div class="col-12">
+    <h4>
+        Register
+    </h4>
+        <form asp-action="Register" asp-controller="Account">
+        <div class="form-horizontal">
+            <div class="mb-3">
+                <label asp-for="Username" class="col-md-6 control-label">Username</label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="col-md-6 control-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            
+
+            <div class="mb-3">
+                <label asp-for="Password" class="col-md-6 control-label">Password</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="col-md-6 control-label">Confirm Password</label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <div style="justify-content:center">
+                    <input style="width:100%" type="submit" value="Register" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+  @await Html.PartialAsync("_ValidationScriptsPartial")
