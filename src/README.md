@@ -46,7 +46,12 @@ docker container run --name ofertafone -p 80:80 ofertafone
 
 ## Authors
 
+* **José Vicente** - *Work* - [Jvicentemelo](https://github.com/Jvicentemelo)
+* **Karen Franco** - *Work* - [Karenfranco23](https://github.com/Karenfranco23)
+* **Luiz Carlos** - *Work* - [Luiiz-Souza](https://github.com/Luiiz-Souza)
 * **Pedro Rodrigues** - *Work* - [pedrovitorrs](https://github.com/pedrovitorrs)
+* **Ursula Daniela** - *Work* - [Ursula01](https://github.com/Ursula01)
+* **Vivian Kimie** - *Work* - [viviantoyota](https://github.com/viviantoyota)
 
 ## Como contribuir
 
