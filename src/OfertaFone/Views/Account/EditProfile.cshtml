@@ -13,7 +13,7 @@
                 <h5 class="mb-0">Edit Profile</h5>
             </div>
             <div class="card-body">
-                <form asp-controller="Account">
+                <form asp-controller="Account" asp-action="EditProfile">
                     <div class="form-horizontal">
                         <div class="row">
                             <div class="col-4 col-xs-12 mb-3">
@@ -76,9 +76,10 @@
     </div>
 </div>
 
+@await Html.PartialAsync("_ValidationScriptsPartial")
+
 @section Scripts{
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-<script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function (){
             OnChangeTipoPessoas();
             SetTypeMask();
@@ -100,5 +101,5 @@
             $('input[Name="@nameof(Model.DataNascimento)"]').mask('99/99/9999', {placeholder:"mm/dd/yyyy"});
         };
 
-</script>
+    </script>
 }

@@ -114,6 +114,23 @@ namespace OfertaFone.WebUI.Controllers
             return View(viewModel);
         }
 
+        [HttpPost, Authorize, SessionExpire]
+        public async Task<IActionResult> EditProfile(EditProfileViewModel viewModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = await _userRepository.FindById(HttpContext.Session.Get<int>("UserId"));
+                }
+            }
+            catch (Exception ex)
+            {
+                TratarException(ex);
+            }
+            return View(viewModel);
+        }
+
         // GET: AccountController
         public ActionResult Index()
         {

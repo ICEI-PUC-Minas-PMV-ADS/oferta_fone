@@ -24,7 +24,7 @@ namespace OfertaFone.WebUI.ViewModels.Account
 
         public TipoPessoa TipoPessoas { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "")]
         public string CpfCnpj { get; set; }
 
         [Required]
@@ -41,10 +41,6 @@ namespace OfertaFone.WebUI.ViewModels.Account
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
-            //if (Nome == "1")
-            //{
-            //    results.Add(new ValidationResult("The DateEncaissement must be set", new string[] { nameof(Nome)}));
-            //}
             return results;
         }
     }
