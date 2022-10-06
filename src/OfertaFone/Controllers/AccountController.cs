@@ -9,6 +9,7 @@ using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Attributes;
 using OfertaFone.Utils.Exceptions;
 using OfertaFone.Utils.Extensions;
+using OfertaFone.WebUI.Enuns;
 using OfertaFone.WebUI.Identity;
 using OfertaFone.WebUI.ViewModels.Account;
 using System;
@@ -88,12 +89,68 @@ namespace OfertaFone.WebUI.Controllers
             return RedirectToAction("Index", "Produto");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet, AllowAnonymous]
-        public async Task<IActionResult> Register()
+        public IActionResult Register()
         {
             return View();
         }
 
+        ///
+        [HttpPost, AllowAnonymous]
+        public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
+        {
+            try
+            {
+                if (registerViewModel.Password != registerViewModel.ConfirmPassword)
+                {
+                    ModelState.AddModelError(nameof(registerViewModel.ConfirmPassword), "Passwords do not match.");
+                }
+
+                if (ModelState.IsValid)
+                {
+                    var usuario = new Usuario()
+                    {
+                        Nome = registerViewModel.Nome,
+                        Login = registerViewModel.Username,
+                        Senha = registerViewModel.Password,
+                        Email = registerViewModel.Email,
+                        Situacao = (int?)TipoSituacao.ATIVO,
+                        PerfilUsuarioId = (int?)TipoPerfil.ADMIN,
+                    };
+                    if (await _userRepository.Table.Where(a => a.Login.ToLower() == registerViewModel.Username.ToLower()).FirstOrDefaultAsync() != null)
+                    {
+                        throw new LogicalException("There is already a registered user with the entered username.");
+                    }
+
+                    if (await _userRepository.Table.Where(u => u.Email == usuario.Email).AnyAsync())
+                    {
+                        throw new LogicalException("There is already a registered user with the email provided");
+                    }
+
+                    await _userRepository.Insert(usuario);
+                    await _userRepository.CommitAsync();
+
+                    AddSuccess("User registered successfully");
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            catch (Exception ex)
+            {
+                TratarException(ex);
+            }
+
+            return View(registerViewModel);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet, Authorize, SessionExpire]
         public async Task<IActionResult> EditProfile()
         {
@@ -104,6 +161,7 @@ namespace OfertaFone.WebUI.Controllers
             {
                 Email = user.Email,
                 Username = user.Login,
+                Nome = user.Nome,
                 PerfilUsuarioId = user.PerfilUsuarioId,
                 Perfis = perfis.Select(p => new SelectListItem
                 {

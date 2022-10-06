@@ -3,9 +3,10 @@
     Layout = "_LayoutAccount";
 }
 <style>
-    .authentication-wrapper.authentication-basic .authentication-inner{
-        max-width:600px;
+    .authentication-wrapper.authentication-basic .authentication-inner {
+        max-width: 600px;
     }
+
     .app-brand-text.demo {
         font-size: 1.75rem;
         letter-spacing: -0.5px;
@@ -18,13 +19,20 @@
         </span>
         <span class="app-brand-text demo text-body fw-bolder">Oferta Fone</span>
     </a>
-    </div>
+</div>
 <div class="col-12">
     <h4>
         Register
     </h4>
-        <form asp-action="Register" asp-controller="Account">
+    <form asp-action="Register" asp-controller="Account">
         <div class="form-horizontal">
+
+            <div class="mb-3">
+                <label asp-for="Nome" class="col-md-6 control-label">Nome</label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
             <div class="mb-3">
                 <label asp-for="Username" class="col-md-6 control-label">Username</label>
                 <input asp-for="Username" class="form-control" />
@@ -36,8 +44,6 @@
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-
-            
 
             <div class="mb-3">
                 <label asp-for="Password" class="col-md-6 control-label">Password</label>
@@ -60,4 +66,4 @@
     </form>
 </div>
 
-  @await Html.PartialAsync("_ValidationScriptsPartial")
+@await Html.PartialAsync("_ValidationScriptsPartial")

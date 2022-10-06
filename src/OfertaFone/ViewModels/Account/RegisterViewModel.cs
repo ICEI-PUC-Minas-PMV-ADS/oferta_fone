@@ -6,6 +6,8 @@ namespace OfertaFone.WebUI.ViewModels.Account
     public class RegisterViewModel : BaseViewModel
     {
         [Required]
+        public string Nome { get; set; }
+        [Required]
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
@@ -15,7 +17,6 @@ namespace OfertaFone.WebUI.ViewModels.Account
         [Required]
         public string ConfirmPassword { get; set; }
         public bool Enabled { get; set; }
-        [Required]
         public int? PerfilUsuarioId { get; set; }
     }
 }

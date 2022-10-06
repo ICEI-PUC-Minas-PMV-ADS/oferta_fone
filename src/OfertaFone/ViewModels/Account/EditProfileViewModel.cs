@@ -24,7 +24,7 @@ namespace OfertaFone.WebUI.ViewModels.Account
 
         public TipoPessoa TipoPessoas { get; set; }
 
-        [Required(ErrorMessage = "")]
+        [Required]
         public string CpfCnpj { get; set; }
 
         [Required]
