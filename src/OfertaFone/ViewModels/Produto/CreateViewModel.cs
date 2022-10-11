@@ -7,9 +7,6 @@ namespace OfertaFone.WebUI.ViewModels.Produto
     {
         [Required]
         public string Nome { get; set; }
-
         public double Preco { get; set; }
-
-        public string Email { get; set; }
     }
 }

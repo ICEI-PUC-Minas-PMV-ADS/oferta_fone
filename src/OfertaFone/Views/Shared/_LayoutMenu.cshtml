@@ -1,6 +1,4 @@
-﻿@using OfertaFone.WebUI.Identity.Constants
-
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+﻿<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
         <a href="index.html" class="app-brand-link">
             <span class="app-brand-logo demo">
@@ -14,13 +12,13 @@
     </div>
     <div class="menu-inner-shadow"></div>
     <ul class="menu-inner py-1">
-        <li class="menu-item @VerifyMenuConditions(Roles.ADMIN, false)">
+        <li class="menu-item">
             <a asp-controller="home" asp-action="index" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div>Painel Gerencial</div>
             </a>
         </li>
-        <li class="menu-item @VerifyMenuConditions(Roles.ADMIN, false)">
+        <li class="menu-item">
             <a asp-controller="produto" asp-action="create" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div>Inserir Produto</div>
@@ -28,68 +26,3 @@
         </li>
     </ul>
 </aside>
-
-@functions {
-    string VerifyMenuConditions(string menu, bool hasParents)
-    {
-        var action = ViewContext.RouteData.Values["Action"].ToString().ToLower();
-        var controller = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
-        var classe = "";
-
-        if (menu.Equals(Roles.VISUALIZAR_DASHBOARD) && (controller.ToLower().Equals("home")))
-        {
-            classe = "active";
-        }
-        else if (menu.Equals(Roles.MANTER_CLIENTES) && (controller.ToLower().Equals("clientes")))
-        {
-            classe = "active";
-        }
-        else if (menu.Equals(Roles.MANTER_SERVICOS) && (controller.ToLower().Equals("servicos")))
-        {
-            classe = "active";
-        }
-        else if (menu.Equals(Roles.MANTER_ATENDIMENTOS) && (controller.ToLower().Equals("atendimentos")))
-        {
-            classe = "active";
-        }
-        if (hasParents && !string.IsNullOrEmpty(classe))
-        {
-            classe += " open";
-        }
-        return classe;
-    }
-
-    string VerifyMenuItemConditions(string menu, string actionMenu)
-    {
-        var action = ViewContext.RouteData.Values["Action"].ToString().ToLower();
-        var controller = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
-        var classe = "";
-
-        if (menu.Equals(Roles.VISUALIZAR_DASHBOARD) && (controller.ToLower().Equals("home")) && action == "")
-        {
-            classe = "active";
-        }
-
-        if (menu.Equals(Roles.MANTER_CLIENTES) && (controller.ToLower().Equals("clientes")))
-        {
-            classe = "active";
-        }
-
-        if (menu.Equals(Roles.MANTER_ATENDIMENTOS) && (controller.ToLower().Equals("atendimentos")))
-        {
-            classe = "active";
-        }
-
-        if (!string.IsNullOrEmpty(classe) && action.ToLower() == actionMenu.ToLower())
-        {
-            return classe;
-        }
-        else
-        {
-            classe = ""; ;
-        }
-
-        return classe;
-    }
-
-}
