@@ -3,6 +3,15 @@
     padding: 0;
 }
 
+:root {
+    --cortema: #fff;
+    --border: #e5e5e5;
+    --font-menu: black;
+    --body: black;
+    --tema-escuro: #f8f9fa;
+    --btn-primary: #007bff;
+}
+
 .svg-box {
     display: inline-block;
     position: relative;
@@ -334,16 +343,6 @@
     padding-bottom: 6px;
     border-bottom: 1px solid #e5e5e5;
 }
-
-:root {
-    --cortema: #eb9634;
-    --border: #e5e5e5;
-    --font-menu: black;
-    --body: black;
-    --tema-escuro: #f985b287;
-    --btn-primary: #007bff;
-}
-
 
 .linhaSolida {
     border-top: 1px solid var(--border);

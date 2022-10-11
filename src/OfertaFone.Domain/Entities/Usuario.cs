@@ -16,5 +16,6 @@ namespace OfertaFone.Domain.Entities
         public int? PerfilUsuarioId { get; set; }
         public int? Situacao { get; set; }
         public PerfilUsuario PerfilUsuario { get; set; }
+        public ICollection<ProdutoEntity> ProdutoEntity { get; set; }
     }
 }
