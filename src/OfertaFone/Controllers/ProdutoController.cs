@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using OfertaFone.Domain.Entities;
 using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Attributes;
 using OfertaFone.WebUI.ViewModels.Produto;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,6 +37,31 @@ namespace OfertaFone.WebUI.Controllers
         [HttpGet, Authorize, SessionExpire]
         public ActionResult Create()
         {
+            return View(new CreateViewModel());
+        }
+
+        [HttpPost, Authorize, SessionExpire]
+        public async Task<ActionResult> Create(CreateViewModel createViewModel)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    var produtoEntity = new ProdutoEntity()
+                    {
+                        Preco = createViewModel.Preco,
+                    };
+                    await produtoRepository.Insert(produtoEntity);
+                    await produtoRepository.CommitAsync();
+
+                    AddSuccess("User registered successfully");
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            catch(Exception ex)
+            {
+                TratarException(ex);
+            }
             return View(new CreateViewModel());
         }
 
