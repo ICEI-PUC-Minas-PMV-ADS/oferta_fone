@@ -20,6 +20,12 @@
                 <div>Painel Gerencial</div>
             </a>
         </li>
+        <li class="menu-item @VerifyMenuConditions(Roles.ADMIN, false)">
+            <a asp-controller="produto" asp-action="create" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div>Inserir Produto</div>
+            </a>
+        </li>
     </ul>
 </aside>
 
