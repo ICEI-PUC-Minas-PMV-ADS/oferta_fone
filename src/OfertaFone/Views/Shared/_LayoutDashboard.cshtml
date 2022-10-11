@@ -31,7 +31,7 @@
         <div class="layout-container">
             @await Html.PartialAsync("_LayoutMenu")
             <div class="layout-page">
-                @await Html.PartialAsync("_LayoutNavBar")
+                @await Component.InvokeAsync("LayoutNavBarViewComponent")
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
                         @RenderBody()
