@@ -35,7 +35,7 @@ namespace OfertaFone.WebUI.Controllers
         [HttpGet, Authorize, SessionExpire]
         public ActionResult Create()
         {
-            return View();
+            return View(new CreateViewModel());
         }
 
         // POST: ProdutoController/Create

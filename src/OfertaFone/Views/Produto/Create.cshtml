@@ -1,8 +1,9 @@
 ﻿@model OfertaFone.WebUI.ViewModels.Produto.CreateViewModel
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    Layout = "_LayoutDashboard";
 }
 
 <p>Teste</p>
+
+@await Html.PartialAsync("_ValidationScriptsPartial")
