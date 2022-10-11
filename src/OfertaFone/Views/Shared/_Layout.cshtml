@@ -5,6 +5,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
+    <link href="~/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - OfertaFone</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -42,15 +43,62 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="section-footer border-top p-3">
         <div class="container">
-            &copy; 2022 - OfertaFone - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <section class="footer-top padding-y">
+                <div class="row">
+                    <aside class="col-md-4">
+                        <article class="mr-3">
+                            <p class="logo-footer">OfertaFone</p>
+                            <p class="mt-3">A complete Microservices project based in .NET and best practices.</p>
+                            <div>
+                                <a class="btn btn-icon btn-light" title="Facebook" target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-icon btn-light" title="Instagram" target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-icon btn-light" title="Youtube" target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone"><i class="fab fa-youtube"></i></a>
+                                <a class="btn btn-icon btn-light" title="GitHub" target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone"><i class="fab fa-github"></i></a>
+                            </div>
+                        </article>
+                    </aside>
+                    <aside class="col-sm-4 col-md-3">
+                        <h6 class="title">About</h6>
+                        <ul class="list-unstyled">
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">About us</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Services</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Terms of use</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">FAQ</a></li>
+                        </ul>
+                    </aside>
+                    <aside class="col-sm-4 col-md-3">
+                        <h6 class="title">Services</h6>
+                        <ul class="list-unstyled">
+                            <li> <a asp-controller="Order" asp-action="MyOrders">My Orders</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Profile</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Canceled orders</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Chargeback</a></li>
+                        </ul>
+                    </aside>
+                    <aside class="col-sm-2  col-md-2">
+                        <h6 class="title">Mobile</h6>
+                        <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone" class="d-block mb-2"><img src="~/assets/misc/appstore.png" height="40"></a>
+                        <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone" class="d-block mb-2"><img src="~/assets/misc/playmarket.png" height="40"></a>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="footer-copyright border-top">
+                <p class="float-left text-muted"> OfertaFone</p>
+                <p class="float-right text-muted">
+                    Proudly developed and supported by
+                    <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">OfertaFone Team</a> - ❤
+                </p>
+            </section>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
