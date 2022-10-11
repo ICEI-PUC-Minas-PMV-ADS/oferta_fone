@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OfertaFone.Domain.Entities;
 using OfertaFone.Domain.Interfaces;
+using OfertaFone.Utils.Attributes;
 using OfertaFone.WebUI.ViewModels.Produto;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,9 +32,10 @@ namespace OfertaFone.WebUI.Controllers
         }
 
         // GET: ProdutoController/Create
+        [HttpGet, Authorize, SessionExpire]
         public ActionResult Create()
         {
-            return View();
+            return View(new CreateViewModel());
         }
 
         // POST: ProdutoController/Create
