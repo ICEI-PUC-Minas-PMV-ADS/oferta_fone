@@ -26,9 +26,19 @@ namespace OfertaFone.WebUI.Controllers
         }
 
         // GET: ProdutoController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var entity = await produtoRepository.FindById(id);
+            return View(new DetailsViewModel
+            {
+                Id = entity.Id,
+                Nome = entity.Nome,
+                Preco = entity.Preco,
+                Descricao = entity.Descricao,
+                Image = entity.Image,
+                Ativo = entity.Ativo,
+                UsuarioId = entity.UsuarioId           
+            });
         }
 
         // GET: ProdutoController/Create
