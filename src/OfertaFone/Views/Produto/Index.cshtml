@@ -6,9 +6,19 @@
     Layout = "_Layout";
 }
 
+<style>
+    .content {
+        background-image: url(images/banners/Template.jpg);
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover
+    }
+</style>
+
 <section>
     <div>
-        <div style="background-image: url(images/banners/Template.jpg); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover">
+        <div class="content">
             <div style="text-align: center;">
                 <img src="~/images/banners/devstore.png" />
             </div>
@@ -40,7 +50,7 @@
                     else
                     {
                         <div class="col-md-12" style="text-align: center">
-                            <h2>Oh no! 😮 <br><br> There's no products available. Try searching with another criteria</h2>
+                            <h2>Oh não! 😮 <br><br> Não há produtos disponíveis.</h2>
                         </div>
                     }
                 }

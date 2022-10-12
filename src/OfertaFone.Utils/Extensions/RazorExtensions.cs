@@ -16,7 +16,7 @@ namespace OfertaFone.Utils.Extensions
 
         private static string FormatMoney(decimal valor)
         {
-            return string.Format(System.Globalization.CultureInfo.GetCultureInfo("en-US"), "{0:C}", valor);
+            return string.Format(System.Globalization.CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", valor);
         }
     }
 }
