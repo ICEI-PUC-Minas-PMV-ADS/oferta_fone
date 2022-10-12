@@ -49,7 +49,14 @@ namespace OfertaFone.WebUI.Controllers
                 {
                     var produtoEntity = new ProdutoEntity()
                     {
+                        Marca = createViewModel.Marca,
+                        Modelo = createViewModel.Modelo,
+                        Processador = createViewModel.Processador,
+                        Memoria = createViewModel.Memoria,
+                        Camera = createViewModel.Camera,
+                        RAM = createViewModel.RAM,
                         Preco = createViewModel.Preco,
+                        Detalhes = createViewModel.Detalhes,
                     };
                     await produtoRepository.Insert(produtoEntity);
                     await produtoRepository.CommitAsync();
