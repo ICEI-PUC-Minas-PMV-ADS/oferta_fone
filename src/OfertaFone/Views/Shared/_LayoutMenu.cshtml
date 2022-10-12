@@ -1,6 +1,6 @@
 ﻿<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        <a asp-controller="produto" asp-action="index" class="app-brand-link">
             <span class="app-brand-logo demo">
                 <i class='bx bxs-book-content' style="FONT-SIZE: 28px;color: var(--font-menu) !important;"></i>
             </span>
@@ -20,8 +20,14 @@
         </li>
         <li class="menu-item">
             <a asp-controller="produto" asp-action="create" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <i class="menu-icon tf-icons bx bx-plus-circle"></i>
                 <div>Inserir Produto</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-controller="" asp-action="" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-cash-coin"></i>
+                <div>Pagamento</div>
             </a>
         </li>
     </ul>

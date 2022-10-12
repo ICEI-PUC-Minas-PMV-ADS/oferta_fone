@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.EntityFrameworkCore;
 using OfertaFone.Domain.Entities;
 using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Attributes;
+using OfertaFone.WebUI.ViewModels.Components;
+using OfertaFone.Utils.Extensions;
 using OfertaFone.WebUI.ViewModels.Produto;
 using System;
 using System.Linq;
@@ -21,10 +23,31 @@ namespace OfertaFone.WebUI.Controllers
             this.produtoRepository = produtoRepository;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery] int ps = 8, [FromQuery] int page = 1, [FromQuery] string q = null)
         {
-            var entity = await produtoRepository.FindAll();
-            return View(entity.Select(entity => new IndexViewModel() { Preco = entity.Preco, Id = entity.Id, Nome = entity.Nome }));
+            var catalogQuery = produtoRepository.Table.AsQueryable();
+
+            var catalog = await catalogQuery.AsNoTrackingWithIdentityResolution()
+                                            .Where(x => EF.Functions.Like(x.Nome, $"%{q}%"))
+                                            .OrderBy(x => x.Nome)
+                                            .Skip(ps * (page - 1))
+                                            .Take(ps)
+                                            .ToListAsync();
+
+            var listView = catalog.Select(entity => new IndexViewModel() { Preco = entity.Preco, Id = entity.Id, Nome = entity.Nome });
+
+            var total = await catalogQuery.AsNoTrackingWithIdentityResolution()
+                                          .Where(x => EF.Functions.Like(x.Nome, $"%{q}%"))
+                                          .CountAsync();
+
+            return View(new PagedViewModel<IndexViewModel>()
+            {
+                List = listView,
+                TotalResults = total,
+                PageIndex = page,
+                PageSize = ps,
+                Query = q
+            });
         }
 
         // GET: ProdutoController/Details/5
@@ -49,12 +72,20 @@ namespace OfertaFone.WebUI.Controllers
                 {
                     var produtoEntity = new ProdutoEntity()
                     {
+                        Marca = createViewModel.Marca,
+                        Modelo = createViewModel.Modelo,
+                        Processador = createViewModel.Processador,
+                        Memoria = createViewModel.Memoria,
+                        Camera = createViewModel.Camera,
+                        RAM = createViewModel.RAM,
                         Preco = createViewModel.Preco,
+                        Detalhes = createViewModel.Detalhes,
+                        UsuarioId = HttpContext.Session.Get<int>("UserId")
                     };
                     await produtoRepository.Insert(produtoEntity);
                     await produtoRepository.CommitAsync();
 
-                    AddSuccess("User registered successfully");
+                    AddSuccess("Produto registrado com sucesso!");
                     return RedirectToAction("Login", "Account");
                 }
             }
@@ -63,21 +94,6 @@ namespace OfertaFone.WebUI.Controllers
                 TratarException(ex);
             }
             return View(new CreateViewModel());
-        }
-
-        // POST: ProdutoController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: ProdutoController/Edit/5
