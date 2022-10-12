@@ -24,6 +24,6 @@ namespace OfertaFone.WebUI.ViewModels.Produto
 
         public string Detalhes { get; set; }
 
-        public string Img { get; set; }
+        public string Imagem { get; set; }
     }
 }

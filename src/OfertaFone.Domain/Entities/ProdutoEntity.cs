@@ -10,7 +10,7 @@ namespace OfertaFone.Domain.Entities
         public string Image { get; set; }
         public bool Ativo { get; set; }
         public int? UsuarioId { get; set; }
-        public object Usuario { get; set; }
+        public Usuario Usuario { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public string Processador { get; set; }
