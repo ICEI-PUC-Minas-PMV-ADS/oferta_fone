@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace OfertaFone.WebUI.ViewComponents
 {
     [ViewComponent(Name = "LayoutNavBarViewComponent")]
-    public class LayoutNaveBarViewComponent : ViewComponent
+    public class LayoutNavBarViewComponent : ViewComponent
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public LayoutNaveBarViewComponent(UserManager<ApplicationUser> userManager)
+        public LayoutNavBarViewComponent(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
