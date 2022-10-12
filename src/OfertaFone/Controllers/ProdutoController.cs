@@ -6,6 +6,7 @@ using OfertaFone.Domain.Entities;
 using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Attributes;
 using OfertaFone.WebUI.ViewModels.Components;
+using OfertaFone.Utils.Extensions;
 using OfertaFone.WebUI.ViewModels.Produto;
 using System;
 using System.Linq;
@@ -71,12 +72,20 @@ namespace OfertaFone.WebUI.Controllers
                 {
                     var produtoEntity = new ProdutoEntity()
                     {
+                        Marca = createViewModel.Marca,
+                        Modelo = createViewModel.Modelo,
+                        Processador = createViewModel.Processador,
+                        Memoria = createViewModel.Memoria,
+                        Camera = createViewModel.Camera,
+                        RAM = createViewModel.RAM,
                         Preco = createViewModel.Preco,
+                        Detalhes = createViewModel.Detalhes,
+                        UsuarioId = HttpContext.Session.Get<int>("UserId")
                     };
                     await produtoRepository.Insert(produtoEntity);
                     await produtoRepository.CommitAsync();
 
-                    AddSuccess("User registered successfully");
+                    AddSuccess("Produto registrado com sucesso!");
                     return RedirectToAction("Login", "Account");
                 }
             }
@@ -85,21 +94,6 @@ namespace OfertaFone.WebUI.Controllers
                 TratarException(ex);
             }
             return View(new CreateViewModel());
-        }
-
-        // POST: ProdutoController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: ProdutoController/Edit/5
