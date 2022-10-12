@@ -4,6 +4,35 @@
     Layout = "_LayoutDashboard";
 }
 
-<p>Teste</p>
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Product/</span>Create Product</h4>
+
+<!-- Basic Layout -->
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Edit Profile</h5>
+            </div>
+            <div class="card-body">
+                <form asp-controller="produto" asp-action="create" method="post">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-4 col-xs-12 mb-3">
+                                <label asp-for="Nome" class="control-label">Nome</label>
+                                <input asp-for="Nome" readonly="readonly" class="form-control" />
+                                <span asp-validation-for="Nome" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mb-3" style="text-align: right">
+                                <input type="submit" value="EditProfile" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 @await Html.PartialAsync("_ValidationScriptsPartial")
