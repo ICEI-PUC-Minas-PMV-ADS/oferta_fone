@@ -1,38 +1,63 @@
-﻿@model IEnumerable<OfertaFone.WebUI.ViewModels.Produto.IndexViewModel>
+﻿@using OfertaFone.Utils.Extensions;
+@model PagedViewModel<OfertaFone.WebUI.ViewModels.Produto.IndexViewModel>
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "_Layout";
 }
 
 <style>
-    .product-name {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .content {
+        background-image: url(images/banners/Template.jpg);
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover
     }
 </style>
 
-<h1>Index</h1>
-
-<div class="row row-cols-1 row-cols-sm-2 m-3">
-    @foreach (var item in Model)
-    {
-        <div class="col pt-3">
-            <div class="card">
-                <div class="m-3">
-                    <img src="~/assets/galaxy.png" class="card-img-top" alt="card-grid-image">
-                </div>
-                <div class="card-body">
-                    <div class="product-name">Modelo Celular</div>
-                    <p><strong>R$ @Html.DisplayFor(modelItem => item.Preco)</strong></p>
-                    <div class="text-center">
-                        <a asp-action="carrinho"
-                       asp-route-codigo="@Html.DisplayFor(modelItem => item.Id)"
-                       class="btn btn-success">Adicionar</a>
-                    </div>
-                </div>
+<section>
+    <div>
+        <div class="content">
+            <div style="text-align: center;">
+                <img src="~/images/banners/devstore.png" />
             </div>
         </div>
-    }
-</div>
+        <div class="container" style="padding-top: 20px">
+            <div class="row">
+                @{
+                    if (Model.List.Any())
+                    {
+                        foreach (var produto in Model.List.OrderBy(p => p.Nome))
+                        {
+                            <div class="col-md-3">
+                                <div href="#" class="card card-product-grid">
+                                    <a asp-controller="produto" asp-action="details" asp-route-id="@produto.Id" class="img-wrap">
+                                        <img src="~/assets/galaxy.png" alt="@produto.Nome">
+                                    </a>
+                                    <figcaption class="info-wrap">
+                                        <a asp-controller="produto" asp-action="details" asp-route-id="@produto.Id" class="title">
+                                            <b> @produto.Nome</b>
+                                        </a>
+                                    </figcaption>
+                                    <div class="card-footer price mt-1">
+                                        <h3>@this.FormatMoney(produto.Preco)</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-md-12" style="text-align: center">
+                            <h2>Oh não! 😮 <br><br> Não há produtos disponíveis.</h2>
+                        </div>
+                    }
+                }
+            </div>
+
+            <vc:paging paging-model="@Model"></vc:paging>
+
+        </div>
+    </div>
+</section>

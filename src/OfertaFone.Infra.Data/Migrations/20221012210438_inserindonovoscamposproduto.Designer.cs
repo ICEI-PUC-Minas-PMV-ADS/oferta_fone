@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OfertaFone.Data;
 
 namespace OfertaFone.Infra.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221012210438_inserindonovoscamposproduto")]
+    partial class inserindonovoscamposproduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,8 +134,8 @@ namespace OfertaFone.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Preco")
+                        .HasColumnType("float");
 
                     b.Property<string>("Processador")
                         .HasColumnType("nvarchar(max)");

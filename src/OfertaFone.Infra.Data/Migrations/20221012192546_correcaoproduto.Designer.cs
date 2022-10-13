@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OfertaFone.Data;
 
 namespace OfertaFone.Infra.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221012192546_correcaoproduto")]
+    partial class correcaoproduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,26 +108,11 @@ namespace OfertaFone.Infra.Data.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Camera")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Detalhes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Marca")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Memoria")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Modelo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
@@ -134,12 +121,6 @@ namespace OfertaFone.Infra.Data.Migrations
 
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Processador")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RAM")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UsuarioId")
                         .HasColumnType("int");
