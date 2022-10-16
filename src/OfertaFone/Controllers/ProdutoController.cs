@@ -58,11 +58,16 @@ namespace OfertaFone.WebUI.Controllers
             {
                 Id = entity.Id,
                 Nome = entity.Nome,
-                Preco = entity.Preco,
+                Preco = (double)entity.Preco,
                 Descricao = entity.Descricao,
                 Image = entity.Image,
                 Ativo = entity.Ativo,
-                UsuarioId = entity.UsuarioId           
+                UsuarioId = entity.UsuarioId,   
+                Modelo = entity.Modelo,
+                Memoria = entity.Memoria,
+                Camera = entity.Camera,
+                Processador = entity.Processador,
+                RAM = entity.RAM
             });
         }
 
@@ -82,14 +87,14 @@ namespace OfertaFone.WebUI.Controllers
                 {
                     var produtoEntity = new ProdutoEntity()
                     {
-                        Marca = createViewModel.Marca,
+                        Nome = createViewModel.Marca,
                         Modelo = createViewModel.Modelo,
                         Processador = createViewModel.Processador,
                         Memoria = createViewModel.Memoria,
                         Camera = createViewModel.Camera,
                         RAM = createViewModel.RAM,
                         Preco = createViewModel.Preco,
-                        Detalhes = createViewModel.Detalhes,
+                        Descricao = createViewModel.Detalhes,
                         UsuarioId = HttpContext.Session.Get<int>("UserId")
                     };
                     await produtoRepository.Insert(produtoEntity);
