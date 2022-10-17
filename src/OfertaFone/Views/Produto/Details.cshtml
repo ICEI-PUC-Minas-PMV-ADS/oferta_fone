@@ -1,0 +1,101 @@
+﻿@using OfertaFone.Utils.Extensions
+@model OfertaFone.WebUI.ViewModels.Produto.DetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .container-detail {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .information {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .descricao {
+        display: flex;
+        flex-direction: column;
+        padding: 28px 40px;
+        width: 1100px;
+    }
+    
+    .product-prices {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #d7d7d7;
+        padding: 57px 54px;
+        align-items: center;
+
+    }
+
+    .price {
+        margin-bottom: 25px;
+        font-weight: bold;
+        font-size: 25px;
+
+    }
+
+    .frete {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .btn-comprar {
+        margin-top: 76px;
+    }
+
+    .cep {
+        margin-right: 12px;
+    }
+
+    .responsive {
+        width: 100%;
+       
+    }
+
+</style>
+
+<div class="container-detail">
+    <div class="title">
+        <h2>
+            @Model.Nome
+            @Model.Modelo
+            @Model.Memoria
+            @Model.Processador
+            @Model.RAM
+            @Model.Camera
+        </h2>
+    </div>    
+    <div class="information">
+        <img src="~/assets/galaxy.png" class="responsive" alt="@Model.Nome">
+        <div class="descricao">
+            <p>
+                @Model.Descricao
+            </p>
+            <i class="menu-icon tf-icons bx bx-plus-circle"></i>
+        </div>
+
+    <div class="product-prices"> 
+        <div class="price">
+           <p>@this.FormatMoney((decimal)@Model.Preco)</p>
+        </div>
+        <div>
+            <p>Calcular frete:</p>
+            <div class="frete">
+                <input type="text" class="cep" placeholder="CEP"/>
+                <button type="submit" class="btn" style="background-color: white; border-color: orange; font-size: 15px; color: orange;">calcular</button>
+            </div>
+        </div>
+        <div class="details">
+             <button type="submit" class="btn btn-comprar" style="background-color: #fd7e14; font-size: 20px; color: white;">Comprar</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+

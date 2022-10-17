@@ -51,9 +51,24 @@ namespace OfertaFone.WebUI.Controllers
         }
 
         // GET: ProdutoController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var entity = await produtoRepository.FindById(id);
+            return View(new DetailsViewModel
+            {
+                Id = entity.Id,
+                Nome = entity.Nome,
+                Preco = (double)entity.Preco,
+                Descricao = entity.Descricao,
+                Image = entity.Image,
+                Ativo = entity.Ativo,
+                UsuarioId = entity.UsuarioId,   
+                Modelo = entity.Modelo,
+                Memoria = entity.Memoria,
+                Camera = entity.Camera,
+                Processador = entity.Processador,
+                RAM = entity.RAM
+            });
         }
 
         // GET: ProdutoController/Create
@@ -72,14 +87,14 @@ namespace OfertaFone.WebUI.Controllers
                 {
                     var produtoEntity = new ProdutoEntity()
                     {
-                        Marca = createViewModel.Marca,
+                        Nome = createViewModel.Marca,
                         Modelo = createViewModel.Modelo,
                         Processador = createViewModel.Processador,
                         Memoria = createViewModel.Memoria,
                         Camera = createViewModel.Camera,
                         RAM = createViewModel.RAM,
                         Preco = createViewModel.Preco,
-                        Detalhes = createViewModel.Detalhes,
+                        Descricao = createViewModel.Detalhes,
                         UsuarioId = HttpContext.Session.Get<int>("UserId")
                     };
                     await produtoRepository.Insert(produtoEntity);
