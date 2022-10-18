@@ -20,4 +20,4 @@ Para a realização do teste serão selecionados alunos e seus familiares que j�
 
 Os participantes participarão do teste de usabilidade remotamente e serão acompanhados por moderadores e pesquisadores. O teste será realizado  através de gravação e de prints de tela para monitorar a interação do usuário com o sistema. 
 
-Em paralelo, será feita uma avaliação do grau de satisfação do usuário, que tem por objetivo obter uma opinião geral sobre o portal ou sistema. Ela será realizada por meio de  questionário com 5 questões em escala Likert. 
+Em paralelo, será feita uma avaliação do grau de satisfação do usuário, que tem por objetivo obter uma opinião geral sobre o sistema. Ela será realizada por meio de  questionário com 5 questões em escala Likert. 
