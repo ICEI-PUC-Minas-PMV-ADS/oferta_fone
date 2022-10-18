@@ -1,12 +1,12 @@
-name: Build and deploy .NET Core app to Linux WebApp OfertaFoneWebUI20221018172328
+name: Build and deploy .NET Core app to Linux WebApp ofertafone
 on:
   push:
     branches:
     - main
 env:
-  AZURE_WEBAPP_NAME: OfertaFoneWebUI20221018172328
+  AZURE_WEBAPP_NAME: ofertafone
   AZURE_WEBAPP_PACKAGE_PATH: OfertaFone/publish
-  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.OfertaFoneWebUI20221018172328_23b4 }}
+  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.ofertafone_a0b9 }}
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 5.0.x
   WORKING_DIRECTORY: OfertaFone
