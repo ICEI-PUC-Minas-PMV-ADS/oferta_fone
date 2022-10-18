@@ -15,19 +15,31 @@
         <li class="menu-item">
             <a asp-controller="home" asp-action="index" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div>Painel Gerencial</div>
+                <div>Home</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-controller="account" asp-action="editprofile" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-person-lines-fill"></i>
+                <div>Dados Pessoais</div>
             </a>
         </li>
         <li class="menu-item">
             <a asp-controller="produto" asp-action="create" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-plus-circle"></i>
-                <div>Inserir Produto</div>
+                <div>Adicionar Produto</div>
             </a>
         </li>
         <li class="menu-item">
             <a asp-controller="" asp-action="" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cash-coin"></i>
-                <div>Pagamento</div>
+                <div>Minhas Vendas</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-controller="" asp-action="" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-bag-check"></i>
+                <div>Minhas Compras</div>
             </a>
         </li>
     </ul>
