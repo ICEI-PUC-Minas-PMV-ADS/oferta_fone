@@ -3,6 +3,7 @@
 
 # OfertaFone
 
+[![Deploy](https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone/actions/workflows/ofertafone.yml/badge.svg)](https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone/actions/workflows/ofertafone.yml)
 #### PONTIFÍCIA UNIVERSIDADE CATÓLICA DE MINAS GERAIS
 
 `TECNOLOGIA EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS`

@@ -9,8 +9,8 @@ using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Attributes;
 using OfertaFone.Utils.Exceptions;
 using OfertaFone.Utils.Extensions;
-using OfertaFone.WebUI.Enuns;
 using OfertaFone.WebUI.Identity;
+using OfertaFone.WebUI.Tipo;
 using OfertaFone.WebUI.ViewModels.Account;
 using System;
 using System.Linq;
@@ -50,12 +50,12 @@ namespace OfertaFone.WebUI.Controllers
                     var user = await _userRepository.Table.Where(user => user.Login.ToLower() == loginViewModel.Username.ToLower()).FirstOrDefaultAsync();
                     if (user == null || user.Id < 1)
                     {
-                        throw new LogicalException("Username not registered!");
+                        throw new LogicalException("Nome de usuário não registrado!");
                     }
 
                     if (!user.Senha.Equals(loginViewModel.Password))
                     {
-                        throw new LogicalException("Invalid password!");
+                        throw new LogicalException("Senha inválida!");
                     }
 
                     HttpContext.Session.Set("UserId", user.Id);
@@ -107,7 +107,7 @@ namespace OfertaFone.WebUI.Controllers
             {
                 if (registerViewModel.Password != registerViewModel.ConfirmPassword)
                 {
-                    ModelState.AddModelError(nameof(registerViewModel.ConfirmPassword), "Passwords do not match.");
+                    ModelState.AddModelError(nameof(registerViewModel.ConfirmPassword), "As senhas não coincidem.");
                 }
 
                 if (ModelState.IsValid)
@@ -123,18 +123,18 @@ namespace OfertaFone.WebUI.Controllers
                     };
                     if (await _userRepository.Table.Where(a => a.Login.ToLower() == registerViewModel.Username.ToLower()).FirstOrDefaultAsync() != null)
                     {
-                        throw new LogicalException("There is already a registered user with the entered username.");
+                        throw new LogicalException("Já existe um usuário registrado com o nome de usuário inserido.");
                     }
 
                     if (await _userRepository.Table.Where(u => u.Email == usuario.Email).AnyAsync())
                     {
-                        throw new LogicalException("There is already a registered user with the email provided");
+                        throw new LogicalException("Já existe um usuário cadastrado com o e-mail fornecido.");
                     }
 
                     await _userRepository.Insert(usuario);
                     await _userRepository.CommitAsync();
 
-                    AddSuccess("User registered successfully");
+                    AddSuccess("Usuário cadastrado com sucesso!");
                     return RedirectToAction("Login", "Account");
                 }
             }
@@ -187,6 +187,33 @@ namespace OfertaFone.WebUI.Controllers
                 TratarException(ex);
             }
             return View(viewModel);
+        }
+
+        [HttpGet, AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        ///
+        [HttpPost, AllowAnonymous]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel forgotPasswordViewModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    // TODO: Logica de esqueci minha senha
+                    AddSuccess("Email de recuperação enviado!");
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            catch (Exception ex)
+            {
+                TratarException(ex);
+            }
+
+            return View(forgotPasswordViewModel);
         }
 
         // GET: AccountController

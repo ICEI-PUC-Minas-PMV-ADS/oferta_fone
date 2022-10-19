@@ -6,6 +6,10 @@ using OfertaFone.Domain.Interfaces;
 using OfertaFone.Infra.Data.Repository;
 using OfertaFone.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
+using Azure.Security.KeyVault.Secrets;
+using System;
+using Azure.Identity;
 
 namespace OfertaFone.Infra.IoC
 {
@@ -19,8 +23,10 @@ namespace OfertaFone.Infra.IoC
         /// <returns></returns>
         public static IServiceCollection AddInfraEstructure(this IServiceCollection services, IConfiguration configuration)
         {
+            var enviroment = services.BuildServiceProvider().GetRequiredService<IHostingEnvironment>();
+
             services.AddDbContext<DatabaseContext>(options =>
-                            options.UseSqlServer(configuration.GetConnectionString("DataContextConnection"),
+                            options.UseSqlServer(enviroment.IsDevelopment() ? configuration.GetConnectionString("DataContextConnection") : GetSecret(configuration),
                             b => b.MigrationsAssembly(typeof(DatabaseContext).Assembly.FullName)));
 
             var databaseContext = services.BuildServiceProvider().GetRequiredService<DatabaseContext>();
@@ -33,6 +39,17 @@ namespace OfertaFone.Infra.IoC
             services.AddScoped<IRepository<ProdutoEntity>, Repository<ProdutoEntity>>();
 
             return services;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static string GetSecret(IConfiguration configuration)
+        {
+            var clienteKeyVault = new SecretClient(vaultUri: new Uri(configuration.GetSection("KeyVault").GetSection("URISecret").Value), credential: new DefaultAzureCredential());
+            KeyVaultSecret secret = clienteKeyVault.GetSecret("DataContextConnection");
+            return secret.Value;
         }
     }
 }

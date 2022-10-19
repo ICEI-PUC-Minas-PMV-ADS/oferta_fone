@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using OfertaFone.WebUI.Enuns;
+using OfertaFone.WebUI.Tipo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

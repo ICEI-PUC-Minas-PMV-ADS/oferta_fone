@@ -1,6 +1,6 @@
 ﻿using OfertaFone.WebUI.ViewModels.Base;
 
-namespace OfertaFone.WebUI.ViewModels.Produto
+namespace OfertaFone.WebUI.ViewModels.Vitrine
 {
     public class DetailsViewModel : BaseViewModel
     {

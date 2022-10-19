@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>7373c6e6-e4c8-47b1-b0ce-cd1b992cc7e9</UserSecretsId>
   </PropertyGroup>
 
   
@@ -28,7 +29,16 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\Home\" />
-    <Folder Include="wwwroot\assets\" />
+    <None Include="wwwroot\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Vitrine\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

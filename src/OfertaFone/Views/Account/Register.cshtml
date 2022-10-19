@@ -1,20 +1,14 @@
 ﻿@model RegisterViewModel
 @{
-    Layout = "_LayoutAccount";
+    Layout = TipoLayout.LAYOUT_ACCOUNT;
 }
 <style>
     .authentication-wrapper.authentication-basic .authentication-inner {
         max-width: 600px;
     }
-
-    .app-brand-text.demo {
-        font-size: 1.75rem;
-        letter-spacing: -0.5px;
-        text-transform: inherit !important;
-    }
 </style>
 <div class="app-brand justify-content-center">
-    <a class="app-brand-link gap-2" asp-area="" asp-controller="Produto" asp-action="">
+    <a class="app-brand-link gap-2" asp-area="" asp-controller="vitrine" asp-action="index">
         <span class="app-brand-logo demo">
         </span>
         <span class="app-brand-text demo text-body fw-bolder">Oferta Fone</span>
@@ -22,7 +16,7 @@
 </div>
 <div class="col-12">
     <h4>
-        Register
+        Registre-se
     </h4>
     <form asp-action="Register" asp-controller="Account">
         <div class="form-horizontal">
@@ -34,7 +28,7 @@
             </div>
 
             <div class="mb-3">
-                <label asp-for="Username" class="col-md-6 control-label">Username</label>
+                <label asp-for="Username" class="col-md-6 control-label">Nome de usuário</label>
                 <input asp-for="Username" class="form-control" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
@@ -46,13 +40,13 @@
             </div>
 
             <div class="mb-3">
-                <label asp-for="Password" class="col-md-6 control-label">Password</label>
+                <label asp-for="Password" class="col-md-6 control-label">Senha</label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
-                <label asp-for="ConfirmPassword" class="col-md-6 control-label">Confirm Password</label>
+                <label asp-for="ConfirmPassword" class="col-md-6 control-label">Confirme sua senha</label>
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>

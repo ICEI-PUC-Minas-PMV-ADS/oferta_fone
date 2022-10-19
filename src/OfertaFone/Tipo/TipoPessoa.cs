@@ -1,4 +1,4 @@
-﻿namespace OfertaFone.WebUI.Enuns
+﻿namespace OfertaFone.WebUI.Tipo
 {
     public enum TipoPessoa
     {

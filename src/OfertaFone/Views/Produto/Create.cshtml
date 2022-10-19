@@ -1,17 +1,17 @@
 ﻿@model OfertaFone.WebUI.ViewModels.Produto.CreateViewModel
 
 @{
-    Layout = "_LayoutDashboard";
+    Layout = TipoLayout.LAYOUT_DASHBOARD;
 }
 
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Product/</span> Create Product</h4>
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Product/</span>Adicionar Produto</h4>
 
 <!-- Basic Layout -->
 <div class="row">
     <div class="col-xl">
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Create Product</h5>
+                <h5 class="mb-0">PRODUTO</h5>
             </div>
             <div class="card-body">
                 <form asp-controller="produto" asp-action="create" method="post">
@@ -59,7 +59,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12 mb-3" style="text-align: right">
-                                <input type="submit" value="Create Product" class="btn btn-success" />
+                                <input type="submit" value="Adicionar" class="btn btn-success" />
                             </div>
                         </div>
                     </div>

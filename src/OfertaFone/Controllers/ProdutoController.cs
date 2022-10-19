@@ -1,15 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using OfertaFone.Domain.Entities;
 using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Attributes;
-using OfertaFone.WebUI.ViewModels.Components;
 using OfertaFone.Utils.Extensions;
 using OfertaFone.WebUI.ViewModels.Produto;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace OfertaFone.WebUI.Controllers
@@ -23,52 +20,16 @@ namespace OfertaFone.WebUI.Controllers
             this.produtoRepository = produtoRepository;
         }
 
-        public async Task<IActionResult> Index([FromQuery] int ps = 8, [FromQuery] int page = 1, [FromQuery] string q = null)
+        // GET: VitrineController
+        public ActionResult Index()
         {
-            var catalogQuery = produtoRepository.Table.AsQueryable();
-
-            var catalog = await catalogQuery.AsNoTrackingWithIdentityResolution()
-                                            .Where(x => EF.Functions.Like(x.Nome, $"%{q}%"))
-                                            .OrderBy(x => x.Nome)
-                                            .Skip(ps * (page - 1))
-                                            .Take(ps)
-                                            .ToListAsync();
-
-            var listView = catalog.Select(entity => new IndexViewModel() { Preco = entity.Preco, Id = entity.Id, Nome = entity.Nome });
-
-            var total = await catalogQuery.AsNoTrackingWithIdentityResolution()
-                                          .Where(x => EF.Functions.Like(x.Nome, $"%{q}%"))
-                                          .CountAsync();
-
-            return View(new PagedViewModel<IndexViewModel>()
-            {
-                List = listView,
-                TotalResults = total,
-                PageIndex = page,
-                PageSize = ps,
-                Query = q
-            });
+            return View();
         }
 
-        // GET: ProdutoController/Details/5
-        public async Task<IActionResult> Details(int id)
+        // GET: VitrineController/Details/5
+        public ActionResult Details(int id)
         {
-            var entity = await produtoRepository.FindById(id);
-            return View(new DetailsViewModel
-            {
-                Id = entity.Id,
-                Nome = entity.Nome,
-                Preco = (double)entity.Preco,
-                Descricao = entity.Descricao,
-                Image = entity.Image,
-                Ativo = entity.Ativo,
-                UsuarioId = entity.UsuarioId,   
-                Modelo = entity.Modelo,
-                Memoria = entity.Memoria,
-                Camera = entity.Camera,
-                Processador = entity.Processador,
-                RAM = entity.RAM
-            });
+            return View();
         }
 
         // GET: ProdutoController/Create
