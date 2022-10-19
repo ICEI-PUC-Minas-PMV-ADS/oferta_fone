@@ -16,11 +16,23 @@ namespace OfertaFone.WebUI.Controllers
         [HttpGet, Authorize, SessionExpire]
         public ActionResult Index()
         {
-            var pedidos = new List<IndexViewModel>()
+            var pedido = new List<IndexViewModel>()
             {
-                new IndexViewModel()
-            }.AsEnumerable();
-            return View(pedidos);
+
+               new IndexViewModel()
+                {
+                    Id = 1
+                },
+                 new IndexViewModel()
+                {
+                    Id = 2
+                },
+                 new IndexViewModel()
+                {
+                    Id = 3
+                }
+            };
+            return View(pedido);
         }
 
         // GET: PedidoController/Details/5

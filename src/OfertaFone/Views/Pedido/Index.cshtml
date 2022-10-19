@@ -1,7 +1,78 @@
 ﻿@using OfertaFone.Utils.Extensions;
-@model IEnumerable<OfertaFone.WebUI.ViewModels.Produto.IndexViewModel>
+@model IEnumerable<OfertaFone.WebUI.ViewModels.Pedido.IndexViewModel>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "_LayoutDashboard";
 }
+
+
+<style>
+    .card-product-grid {
+        background-color: aqua;
+    }
+    /*.img {
+        max-width: 80%;
+        height: auto;
+    }*/
+    .row-cols-auto {
+        background-color: antiquewhite;
+        
+
+    }
+    .col-sm-4 {
+        background-color: blueviolet;
+        
+    }
+    
+</style>
+
+
+<section>
+    <div class="row">
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Meus Pedidos</h5>
+                </div>
+                <div class="container-fluid">
+                    <div class="row-cols-auto">
+                        @{
+                            if (Model.Any())
+                            {
+                                foreach (var produto in Model.OrderBy(p => p.Nome))
+                                {
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div href="#" class="card card-product-grid">
+                                                    <a asp-controller="produto" asp-action="details" asp-route-id="@produto.Id">
+                                                        <img src="~/assets/galaxy.png" class="img-thumbnail" alt="@produto.Nome">
+                                                    </a>
+                                                    <a asp-controller="produto" asp-action="details" asp-route-id="@produto.Id" class="title">
+                                                        <h3>@(produto.Nome)</h3>
+                                                    </a>
+                                                    <a asp-controller="produto" asp-action="details" asp-route-id="@produto.Id" class="preco">
+                                                        <h4>@(produto.Preco)</h4>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="col-md-12" style="text-align: center">
+                                    <h2>Não há pedidos disponíveis.</h2>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>

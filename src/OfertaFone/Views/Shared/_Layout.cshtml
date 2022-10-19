@@ -33,6 +33,11 @@
                                     <button type="submit" class="btn btn-link">Logout</button>
                                 </form>
                             </li>
+                            <li class="nav-item">
+                                <a asp-controller="Pedido" asp-action="index">
+                                    <button type="submit" class="btn btn-link">Meus Pedidos</button>
+                                </a>
+                            </li>
                         }
                         else
                         {
@@ -83,7 +88,7 @@
                     <aside class="col-sm-4 col-md-3">
                         <h6 class="title">Services</h6>
                         <ul class="list-unstyled">
-                            <li> <a asp-controller="Order" asp-action="MyOrders">My Orders</a></li>
+                            <li> <a asp-controller="Pedido" asp-action="index">Meus Pedidos</a></li>
                             <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Profile</a></li>
                             <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Canceled orders</a></li>
                             <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Chargeback</a></li>
