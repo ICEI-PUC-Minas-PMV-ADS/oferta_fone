@@ -6,6 +6,17 @@
     .section-footer ul a {
         color: inherit;
     }
+
+    .header-main {
+        position: relative;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .section-header .logo {
+        max-height: 60px;
+        width: auto;
+    }
 </style>
 <html lang="pt-br">
 <head>
@@ -17,36 +28,35 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow p-0 nav-custom">
+    <header class="section-header">
+        <section class="header-main border-bottom">
             <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1 nav justify-content-end">
-                        @if (Context.User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <form asp-area="Core" asp-controller="Account" asp-action="Logout">
-                                    <button type="submit" class="btn btn-link">Logout</button>
-                                </form>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                            </li>
-                        }
-                    </ul>
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-4">
+                        <a asp-action="Index" asp-controller="Vitrine" class="brand-wrap">
+                            <img alt="OfertaFone" class="logo" src="~/assets/logo.png">
+                        </a>
+                    </div>
+                    <div class="col-lg-5 col-sm-12">
+                        <form method="get" asp-controller="Vitrine" asp-action="Index" class="search">
+                            <div class="input-group w-100">
+                                <input type="text" id="q" name="q" class="form-control" value="@ViewBag.Search" placeholder="O que você está procurando?">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="d-flex justify-content-end">
+                            <partial name="_LoginPartial" />
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
+        </section>
     </header>
 
     <div class="container">
