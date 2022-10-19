@@ -1,4 +1,6 @@
-﻿@model EditProfileViewModel
+﻿@using OfertaFone.Utils.Extensions
+@model EditProfileViewModel
+
 @{
     Layout = TipoLayout.LAYOUT_DASHBOARD;
 }
@@ -14,59 +16,89 @@
             </div>
             <div class="card-body">
                 <form asp-controller="Account" asp-action="EditProfile">
-                    <div class="form-horizontal">
-                        <div class="row">
-                            <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="Username" class="control-label">Nome de usuário</label>
-                                <input asp-for="Username" readonly="readonly" class="form-control" />
-                                <span asp-validation-for="Username" class="text-danger"></span>
-                            </div>
-                            <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="Email" class="control-label">Email</label>
-                                <input asp-for="Email" readonly="readonly" class="form-control" />
-                                <span asp-validation-for="Email" class="text-danger"></span>
-                            </div>
-                            <div class="col-4 col col-xs-12 mb-3">
-                                <label asp-for="PerfilUsuarioId" class="col-md-6 control-label">Perfil Usuário</label>
-                                <select id="drpEmpList" class="form-control" disabled asp-for="PerfilUsuarioId" asp-items="@(new SelectList(Model.Perfis, "Value", "Text"))">
-                                    <option value="">Select...</option>
-                                </select>
-                                <input type="hidden" asp-for="PerfilUsuarioId" />
-                                <span asp-validation-for="PerfilUsuarioId" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-2 col col-xs-12 mb-3">
-                                <label asp-for="TipoPessoas" class="col-md-6 control-label">Tipo Pessoa</label>
-                                <select asp-for="TipoPessoas" class="form-control" onchange="OnChangeTipoPessoas()" asp-items="Html.GetEnumSelectList<TipoPessoa>()"></select>
-                                <span asp-validation-for="TipoPessoas" class="text-danger"></span>
-                            </div>
-                            <div class="col-3 col col-xs-12 mb-3">
-                                <label asp-for="CpfCnpj" class="control-label">CPF\CNPJ</label>
-                                <input asp-for="CpfCnpj" class="form-control" />
-                                <span asp-validation-for="CpfCnpj" class="text-danger"></span>
-                            </div>
-                            <div class="col-7 col col-xs-12 mb-3">
-                                <label asp-for="Nome" class="control-label">Nome</label>
-                                <input asp-for="Nome" class="form-control" />
-                                <span asp-validation-for="Nome" class="text-danger"></span>
+                    <div class="card-body">
+                        <div class="d-flex align-items-start align-items-sm-center gap-4">
+                            <img src="https://s.gravatar.com/avatar/@this.HashForGravatar(Context.User.Identity.Name)?d=mm&s=45"
+                                 alt="user-avatar"
+                                 class="d-block rounded"
+                                 height="100"
+                                 width="100"
+                                 id="uploadedAvatar" />
+                            <div class="button-wrapper">
+                                <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                    <span class="d-none d-sm-block">Carregar nova foto</span>
+                                    <i class="bx bx-upload d-block d-sm-none"></i>
+                                    <input type="file"
+                                           id="upload"
+                                           class="account-file-input"
+                                           hidden
+                                           accept="image/png, image/jpeg" />
+                                </label>
+                                <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                                    <i class="bx bx-reset d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Reset</span>
+                                </button>
+
+                                <p class="text-muted mb-0">JPG, GIF ou PNG permitidos. Tamanho máximo de 800K</p>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <label asp-for="DataNascimento" class="control-label">Data Nascimento</label>
-                                <div class='input-group date'>
-                                    <input asp-for="DataNascimento" type="text" class="form-control datepicker" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
+                    </div>
+                    <hr class="my-0" />
+                    <div class="card-body">
+                        <div class="form-horizontal">
+                            <div class="row">
+                                <div class="col-4 col-xs-12 mb-3">
+                                    <label asp-for="Username" class="control-label">Nome de usuário</label>
+                                    <input asp-for="Username" readonly="readonly" class="form-control" />
+                                    <span asp-validation-for="Username" class="text-danger"></span>
                                 </div>
-                                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                                <div class="col-4 col-xs-12 mb-3">
+                                    <label asp-for="Email" class="control-label">Email</label>
+                                    <input asp-for="Email" readonly="readonly" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="col-4 col col-xs-12 mb-3">
+                                    <label asp-for="PerfilUsuarioId" class="col-md-6 control-label">Perfil Usuário</label>
+                                    <select id="drpEmpList" class="form-control" disabled asp-for="PerfilUsuarioId" asp-items="@(new SelectList(Model.Perfis, "Value", "Text"))">
+                                        <option value="">Select...</option>
+                                    </select>
+                                    <input type="hidden" asp-for="PerfilUsuarioId" />
+                                    <span asp-validation-for="PerfilUsuarioId" class="text-danger"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 mb-3" style="text-align: right">
-                                <input type="submit" value="EditProfile" class="btn btn-success" />
+                            <div class="row">
+                                <div class="col-2 col col-xs-12 mb-3">
+                                    <label asp-for="TipoPessoas" class="col-md-6 control-label">Tipo Pessoa</label>
+                                    <select asp-for="TipoPessoas" class="form-control" onchange="OnChangeTipoPessoas()" asp-items="Html.GetEnumSelectList<TipoPessoa>()"></select>
+                                    <span asp-validation-for="TipoPessoas" class="text-danger"></span>
+                                </div>
+                                <div class="col-3 col col-xs-12 mb-3">
+                                    <label asp-for="CpfCnpj" class="control-label">CPF\CNPJ</label>
+                                    <input asp-for="CpfCnpj" class="form-control" />
+                                    <span asp-validation-for="CpfCnpj" class="text-danger"></span>
+                                </div>
+                                <div class="col-7 col col-xs-12 mb-3">
+                                    <label asp-for="Nome" class="control-label">Nome</label>
+                                    <input asp-for="Nome" class="form-control" />
+                                    <span asp-validation-for="Nome" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <label asp-for="DataNascimento" class="control-label">Data Nascimento</label>
+                                    <div class='input-group date'>
+                                        <input asp-for="DataNascimento" type="text" class="form-control datepicker" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mb-3" style="text-align: right">
+                                    <input type="submit" value="EditProfile" class="btn btn-success" />
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -12,6 +12,12 @@
     --btn-primary: #007bff;
 }
 
+.app-brand-text.demo {
+    font-size: 1.75rem;
+    letter-spacing: -0.5px;
+    text-transform: inherit !important;
+}
+
 .svg-box {
     display: inline-block;
     position: relative;
