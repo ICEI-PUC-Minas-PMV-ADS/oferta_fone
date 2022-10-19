@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace OfertaFone.WebUI.ViewModels.Produto
+namespace OfertaFone.WebUI.ViewModels.Vitrine
 {
     public class IndexViewModel : BaseViewModel
     {

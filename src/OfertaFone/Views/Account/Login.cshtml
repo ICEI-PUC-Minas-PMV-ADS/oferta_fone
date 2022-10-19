@@ -1,6 +1,6 @@
 ﻿@model LoginViewModel
 @{
-    Layout = "_LayoutAccount";
+    Layout = TipoLayout.LAYOUT_ACCOUNT;
 }
 <style>
     .app-brand-text.demo {
@@ -10,7 +10,7 @@
     }
 </style>
 <div class="app-brand justify-content-center">
-<a href="/Produto" class="app-brand-link gap-2">
+<a asp-controller="vitrine" asp-action="index" class="app-brand-link gap-2">
     <span class="app-brand-logo demo">
     </span>
     <span class="app-brand-text demo text-body fw-bolder">Oferta Fone</span>

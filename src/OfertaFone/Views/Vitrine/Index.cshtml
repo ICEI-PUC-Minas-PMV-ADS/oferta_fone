@@ -1,0 +1,63 @@
+﻿@using OfertaFone.Utils.Extensions;
+@model PagedViewModel<OfertaFone.WebUI.ViewModels.Vitrine.IndexViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = TipoLayout.LAYOUT_VITRINE;
+}
+
+<style>
+    .content {
+        background-image: url(assets/banners/Template.jpg);
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover
+    }
+</style>
+
+<section>
+    <div>
+        <div class="content">
+            <div style="text-align: center;">
+                <div style="width:500px;height:300px;" />
+            </div>
+        </div>
+    </div>
+    <div class="container" style="padding-top: 20px">
+        <div class="row">
+            @{
+                if (Model.List.Any())
+                {
+                    foreach (var produto in Model.List.OrderBy(p => p.Nome))
+                    {
+                        <div class="col-md-3">
+                            <div href="#" class="card card-product-grid">
+                                <a asp-controller="vitrine" asp-action="details" asp-route-id="@produto.Id" class="img-wrap">
+                                    <img src="~/assets/galaxy.png" alt="@produto.Nome">
+                                </a>
+                                <figcaption class="info-wrap">
+                                    <a asp-controller="produto" asp-action="details" asp-route-id="@produto.Id" class="title">
+                                        <b> @produto.Nome</b>
+                                    </a>
+                                </figcaption>
+                                <div class="card-footer price mt-1">
+                                    <h3>@this.FormatMoney(produto.Preco)</h3>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="col-md-12" style="text-align: center">
+                        <h2>Oh não! 😮 <br><br> Não há produtos disponíveis.</h2>
+                    </div>
+                }
+            }
+        </div>
+
+        <vc:paging paging-model="@Model"></vc:paging>
+
+    </div>
+</section>
