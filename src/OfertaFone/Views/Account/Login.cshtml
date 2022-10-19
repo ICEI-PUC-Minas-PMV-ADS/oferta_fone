@@ -2,13 +2,7 @@
 @{
     Layout = TipoLayout.LAYOUT_ACCOUNT;
 }
-<style>
-    .app-brand-text.demo {
-        font-size: 1.75rem;
-        letter-spacing: -0.5px;
-        text-transform: inherit !important;
-    }
-</style>
+
 <div class="app-brand justify-content-center">
 <a asp-controller="vitrine" asp-action="index" class="app-brand-link gap-2">
     <span class="app-brand-logo demo">
@@ -28,7 +22,7 @@
     <div class="mb-3 form-password-toggle">
         <div class="d-flex justify-content-between">
            <label asp-for="Password" class="form-label">Senha</label>
-            <a href="auth-forgot-password-basic.html">
+            <a asp-action="ForgotPassword" asp-controller="Account">
                 <small>Esqueceu sua Senha?</small>
             </a>
         </div>

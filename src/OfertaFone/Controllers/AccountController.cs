@@ -189,6 +189,33 @@ namespace OfertaFone.WebUI.Controllers
             return View(viewModel);
         }
 
+        [HttpGet, AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        ///
+        [HttpPost, AllowAnonymous]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel forgotPasswordViewModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    // TODO: Logica de esqueci minha senha
+                    AddSuccess("Email de recuperação enviado!");
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            catch (Exception ex)
+            {
+                TratarException(ex);
+            }
+
+            return View(forgotPasswordViewModel);
+        }
+
         // GET: AccountController
         public ActionResult Index()
         {
