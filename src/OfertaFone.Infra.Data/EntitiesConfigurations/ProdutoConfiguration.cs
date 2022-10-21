@@ -15,7 +15,8 @@ namespace OfertaFone.Infra.Data.EntitiesConfigurations
         {
             builder.ToTable("ProdutoEntity")
                 .HasKey(u => u.Id);
-            builder.Property(u => u.Nome).IsRequired();
+            builder.Property(u => u.Marca).IsRequired();
+            builder.Property(u => u.Modelo).IsRequired();
             builder.Property(u => u.Preco).HasColumnType("decimal(18,2)").IsRequired();
             builder.Property(u => u.Descricao).IsRequired();
             builder.Property(u => u.Image);

@@ -14,7 +14,7 @@
                 <h5 class="mb-0">PRODUTO</h5>
             </div>
             <div class="card-body">
-                <form asp-controller="produto" asp-action="create" method="post">
+                <form asp-controller="produto" asp-action="create" method="post" enctype="multipart/form-data">
                     <div class="form-horizontal">
                         <div class="row">
                             <div class="col-4 col-xs-12 mb-3">
@@ -49,12 +49,13 @@
                                 <span asp-validation-for="Preco" class="text-danger"></span>
                             </div>
                             <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="Detalhes" class="control-label">Mais Informações</label>
-                                <input asp-for="Detalhes" class="form-control" />
+                                <label asp-for="Descricao" class="control-label">Mais Informações</label>
+                                <input asp-for="Descricao" class="form-control" />
+                                <span asp-validation-for="Descricao" class="text-danger"></span>
                             </div>
                             <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="Imagem" class="control-label">Inserir Imagem</label>
-                                <input asp-for="Imagem" name="" type="file" class="form-control" />
+                                <label class="control-label">Inserir Imagem</label>
+                                <input name="Image" type="file" class="form-control" />
                             </div>
                         </div>
                         <div class="row">
