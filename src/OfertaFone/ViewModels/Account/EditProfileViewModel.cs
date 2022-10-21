@@ -30,6 +30,8 @@ namespace OfertaFone.WebUI.ViewModels.Account
         [Required]
         public string Nome { get; set; }
 
+        public string Image { get; set; }
+
         [Required]
         public DateTime? DataNascimento { get; set; }
 

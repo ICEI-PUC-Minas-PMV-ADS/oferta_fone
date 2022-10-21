@@ -34,7 +34,7 @@
                         <div class="col-md-3">
                             <div href="#" class="card card-product-grid">
                                 <a asp-controller="vitrine" asp-action="details" asp-route-id="@produto.Id" class="img-wrap">
-                                    <img src="~/assets/galaxy.png" alt="@produto.Nome">
+                                    <img src="@produto.Image" alt="@produto.Nome">
                                 </a>
                                 <figcaption class="info-wrap">
                                     <a asp-controller="produto" asp-action="details" asp-route-id="@produto.Id" class="title">

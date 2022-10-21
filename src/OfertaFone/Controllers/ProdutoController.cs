@@ -5,6 +5,7 @@ using OfertaFone.Domain.Entities;
 using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Attributes;
 using OfertaFone.Utils.Extensions;
+using OfertaFone.WebUI.Tipo;
 using OfertaFone.WebUI.ViewModels.Produto;
 using System;
 using System.Threading.Tasks;
@@ -48,8 +49,9 @@ namespace OfertaFone.WebUI.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    string UrlImg = null;
-                    if(Request.Form != null && Request.Form.Files != null && Request.Form.Files.Count > 0)
+                    string UrlImg = TipoImagensPadrao._PRODUTO;
+
+                    if (Request.Form != null && Request.Form.Files != null && Request.Form.Files.Count > 0)
                     {
                         var file = Request.Form.Files[0];
                         UrlImg = await fileStorage.UploadAsync(file.OpenReadStream(), file.Name, file.ContentType);

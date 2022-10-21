@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace OfertaFone.WebUI.ViewModels.Components
 {
-    public class LayoutNavBarViewModel : BaseViewModel
+    public class LoginPartialViewModel : BaseViewModel
     {
-        public string Email { get; set; }
-        public string UserName { get; set; }
-        public bool Enabled { get; set; }
         public string Image { get; set; }
     }
 }

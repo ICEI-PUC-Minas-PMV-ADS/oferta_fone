@@ -15,10 +15,10 @@
                 <h5 class="mb-0">Edit Profile</h5>
             </div>
             <div class="card-body">
-                <form asp-controller="Account" asp-action="EditProfile">
+                <form asp-controller="Account" asp-action="EditProfile" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
-                            <img src="https://s.gravatar.com/avatar/@this.HashForGravatar(Context.User.Identity.Name)?d=mm&s=45"
+                            <img src="@Model.Image"
                                  alt="user-avatar"
                                  class="d-block rounded"
                                  height="100"
@@ -29,15 +29,11 @@
                                     <span class="d-none d-sm-block">Carregar nova foto</span>
                                     <i class="bx bx-upload d-block d-sm-none"></i>
                                     <input type="file"
+                                           name="Image"
                                            id="upload"
                                            class="account-file-input"
-                                           hidden
-                                           accept="image/png, image/jpeg" />
+                                           hidden />
                                 </label>
-                                <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                                    <i class="bx bx-reset d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Reset</span>
-                                </button>
 
                                 <p class="text-muted mb-0">JPG, GIF ou PNG permitidos. Tamanho máximo de 800K</p>
                             </div>
