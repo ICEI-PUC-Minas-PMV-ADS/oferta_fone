@@ -32,7 +32,7 @@ namespace OfertaFone.WebUI.Controllers
                                             .Take(ps)
                                             .ToListAsync();
 
-            var listView = catalog.Select(entity => new IndexViewModel() { Preco = entity.Preco, Id = entity.Id, Nome = entity.Modelo });
+            var listView = catalog.Select(entity => new IndexViewModel() { Preco = entity.Preco, Id = entity.Id, Nome = entity.Modelo, Image = entity.Image });
 
             var total = await catalogQuery.AsNoTrackingWithIdentityResolution()
                                           .Where(x => EF.Functions.Like(x.Modelo, $"%{q}%"))

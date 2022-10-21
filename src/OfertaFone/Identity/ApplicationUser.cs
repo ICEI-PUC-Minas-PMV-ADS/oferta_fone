@@ -11,5 +11,6 @@ namespace OfertaFone.WebUI.Identity
             PasswordHash = "";
         }
         public IList<string> Roles { get; set; }
+        public string Image { get; set; }
     }
 }

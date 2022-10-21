@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OfertaFone.Data;
 
 namespace OfertaFone.Infra.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221021010804_inserindocampoimgusuario")]
+    partial class inserindocampoimgusuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,9 +159,6 @@ namespace OfertaFone.Infra.Data.Migrations
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");
 
-                    b.Property<DateTime?>("DataNascimento")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(60)
@@ -199,7 +198,6 @@ namespace OfertaFone.Infra.Data.Migrations
                         {
                             Id = 1,
                             Email = "admin@devscansados.com",
-                            Image = "https://s.gravatar.com/avatar/aleatory?d=mm&s=45",
                             Login = "admin",
                             Nome = "admin",
                             PerfilUsuarioId = 1,

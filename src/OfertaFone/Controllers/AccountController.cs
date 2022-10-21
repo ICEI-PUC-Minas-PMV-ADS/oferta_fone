@@ -23,15 +23,18 @@ namespace OfertaFone.WebUI.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IRepository<Usuario> _userRepository;
         private readonly IRepository<PerfilUsuario> _perfilRepository;
+        private readonly IFileStorage fileStorage;
 
         public AccountController(
             SignInManager<ApplicationUser> signInManager,
             IRepository<Usuario> userRepository,
-            IRepository<PerfilUsuario> perfilRepository)
+            IRepository<PerfilUsuario> perfilRepository,
+            IFileStorage _fileStorage)
         {
             _signInManager = signInManager;
             _userRepository = userRepository;
             _perfilRepository = perfilRepository;
+            fileStorage = _fileStorage;
         }
 
         [HttpGet, AllowAnonymous]
@@ -120,7 +123,9 @@ namespace OfertaFone.WebUI.Controllers
                         Email = registerViewModel.Email,
                         Situacao = (int?)TipoSituacao.ATIVO,
                         PerfilUsuarioId = (int?)TipoPerfil.ADMIN,
+                        Image = TipoImagensPadrao._USUARIO
                     };
+
                     if (await _userRepository.Table.Where(a => a.Login.ToLower() == registerViewModel.Username.ToLower()).FirstOrDefaultAsync() != null)
                     {
                         throw new LogicalException("Já existe um usuário registrado com o nome de usuário inserido.");
@@ -155,7 +160,7 @@ namespace OfertaFone.WebUI.Controllers
         public async Task<IActionResult> EditProfile()
         {
             var user = await _userRepository.FindById(HttpContext.Session.Get<int>("UserId"));
-            var perfis = await _perfilRepository.Table.Where(a => a.Situacao == 1).ToListAsync();
+            var perfis = await _perfilRepository.Table.Where(a => a.Situacao == (int)TipoSituacao.ATIVO).ToListAsync();
 
             var viewModel = new EditProfileViewModel()
             {
@@ -163,6 +168,9 @@ namespace OfertaFone.WebUI.Controllers
                 Username = user.Login,
                 Nome = user.Nome,
                 PerfilUsuarioId = user.PerfilUsuarioId,
+                Image = user.Image,
+                CpfCnpj = user.CpfCnpj,
+                DataNascimento = user.DataNascimento,
                 Perfis = perfis.Select(p => new SelectListItem
                 {
                     Text = p.Nome,
@@ -179,7 +187,21 @@ namespace OfertaFone.WebUI.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    string UrlImg = null;
+                    if (Request.Form != null && Request.Form.Files != null && Request.Form.Files.Count > 0)
+                    {
+                        var file = Request.Form.Files[0];
+                        UrlImg = await fileStorage.UploadAsync(file.OpenReadStream(), file.Name, file.ContentType);
+                    }
+
                     var user = await _userRepository.FindById(HttpContext.Session.Get<int>("UserId"));
+                    user.CpfCnpj = viewModel.CpfCnpj;
+                    user.Nome = viewModel.Nome;
+                    user.DataNascimento = viewModel.DataNascimento;
+                    viewModel.Image = user.Image = UrlImg ?? user.Image;
+
+                    await _userRepository.Update(user);
+                    await _userRepository.CommitAsync();
                 }
             }
             catch (Exception ex)
