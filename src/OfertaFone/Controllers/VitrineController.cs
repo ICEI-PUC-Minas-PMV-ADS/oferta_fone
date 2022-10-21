@@ -26,16 +26,16 @@ namespace OfertaFone.WebUI.Controllers
             var catalogQuery = produtoRepository.Table.AsQueryable();
 
             var catalog = await catalogQuery.AsNoTrackingWithIdentityResolution()
-                                            .Where(x => EF.Functions.Like(x.Nome, $"%{q}%"))
-                                            .OrderBy(x => x.Nome)
+                                            .Where(x => EF.Functions.Like(x.Modelo, $"%{q}%"))
+                                            .OrderBy(x => x.Modelo)
                                             .Skip(ps * (page - 1))
                                             .Take(ps)
                                             .ToListAsync();
 
-            var listView = catalog.Select(entity => new IndexViewModel() { Preco = entity.Preco, Id = entity.Id, Nome = entity.Nome });
+            var listView = catalog.Select(entity => new IndexViewModel() { Preco = entity.Preco, Id = entity.Id, Nome = entity.Modelo });
 
             var total = await catalogQuery.AsNoTrackingWithIdentityResolution()
-                                          .Where(x => EF.Functions.Like(x.Nome, $"%{q}%"))
+                                          .Where(x => EF.Functions.Like(x.Modelo, $"%{q}%"))
                                           .CountAsync();
 
             return View(new PagedViewModel<IndexViewModel>()
@@ -55,13 +55,12 @@ namespace OfertaFone.WebUI.Controllers
             return View(new DetailsViewModel
             {
                 Id = entity.Id,
-                Nome = entity.Nome,
-                Preco = (double)entity.Preco,
+                Preco = entity.Preco,
                 Descricao = entity.Descricao,
                 Image = entity.Image,
-                Ativo = entity.Ativo,
                 UsuarioId = entity.UsuarioId,
                 Modelo = entity.Modelo,
+                Marca = entity.Marca,
                 Memoria = entity.Memoria,
                 Camera = entity.Camera,
                 Processador = entity.Processador,

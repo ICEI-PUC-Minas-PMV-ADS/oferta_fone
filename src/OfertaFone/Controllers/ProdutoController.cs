@@ -14,10 +14,12 @@ namespace OfertaFone.WebUI.Controllers
     public class ProdutoController : BaseController
     {
         private readonly IRepository<ProdutoEntity> produtoRepository;
+        private readonly IFileStorage fileStorage;
 
-        public ProdutoController(IRepository<ProdutoEntity> produtoRepository)
+        public ProdutoController(IRepository<ProdutoEntity> _produtoRepository, IFileStorage _fileStorage)
         {
-            this.produtoRepository = produtoRepository;
+            this.produtoRepository = _produtoRepository;
+            this.fileStorage = _fileStorage;
         }
 
         // GET: VitrineController
@@ -46,23 +48,33 @@ namespace OfertaFone.WebUI.Controllers
             {
                 if(ModelState.IsValid)
                 {
+                    string UrlImg = null;
+                    if(Request.Form != null && Request.Form.Files != null && Request.Form.Files.Count > 0)
+                    {
+                        var file = Request.Form.Files[0];
+                        UrlImg = await fileStorage.UploadAsync(file.OpenReadStream(), file.Name, file.ContentType);
+                    }
+
                     var produtoEntity = new ProdutoEntity()
                     {
-                        Nome = createViewModel.Marca,
+                        Marca = createViewModel.Marca,
                         Modelo = createViewModel.Modelo,
                         Processador = createViewModel.Processador,
                         Memoria = createViewModel.Memoria,
                         Camera = createViewModel.Camera,
                         RAM = createViewModel.RAM,
                         Preco = createViewModel.Preco,
-                        Descricao = createViewModel.Detalhes,
+                        Descricao = createViewModel.Descricao,
+                        Ativo = true,
+                        Image = UrlImg,
                         UsuarioId = HttpContext.Session.Get<int>("UserId")
                     };
+
                     await produtoRepository.Insert(produtoEntity);
                     await produtoRepository.CommitAsync();
 
                     AddSuccess("Produto registrado com sucesso!");
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("Create", "Produto");
                 }
             }
             catch(Exception ex)

@@ -59,8 +59,8 @@
 <div class="container-detail">
     <div class="title">
         <h2>
-            @Model.Nome
             @Model.Modelo
+            @Model.Marca
             @Model.Memoria
             @Model.Processador
             @Model.RAM
@@ -68,7 +68,7 @@
         </h2>
     </div>
     <div class="information">
-        <img src="~/assets/galaxy.png" class="responsive" alt="@Model.Nome">
+        <img src="@Model.Image" class="responsive" alt="@Model.Modelo">
         <div class="descricao">
             <p>
                 @Model.Descricao

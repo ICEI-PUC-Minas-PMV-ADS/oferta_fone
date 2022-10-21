@@ -86,7 +86,7 @@ namespace OfertaFone.WebUI.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Produto");
+            return RedirectToAction("Index", "Vitrine");
         }
 
         /// <summary>
