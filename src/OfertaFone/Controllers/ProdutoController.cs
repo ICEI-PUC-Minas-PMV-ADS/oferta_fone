@@ -35,11 +35,14 @@ namespace OfertaFone.WebUI.Controllers
 
             var model = new IndexViewModel()
             {
-                CreateViewModels = entity.Select(produto =>
-                   new CreateViewModel()
+                IndexTableViewModels = entity.Select(produto =>
+                   new IndexTableViewModel()
                    {
+                       Id = produto.Id,
                        Marca = produto.Marca,
                        Modelo = produto.Modelo,
+                       Image = produto.Image,
+                       Status = produto.Ativo
                    }).ToList()
             };
 
