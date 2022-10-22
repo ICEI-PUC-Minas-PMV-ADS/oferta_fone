@@ -2,12 +2,8 @@
 
 namespace OfertaFone.WebUI.ViewModels.Produto
 {
-    public class IndexViewModel
+    public class IndexViewModel : IndexTableViewModel
     {
-        public string Marca { get; set; }
-
-        public string Modelo { get; set; }
-
-        public List<CreateViewModel> CreateViewModels { get; set; }
+        public List<IndexTableViewModel> IndexTableViewModels { get; set; }
     }
 }
