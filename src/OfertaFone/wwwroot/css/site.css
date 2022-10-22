@@ -641,3 +641,8 @@ div.dropdown-divider {
         flex-direction: column;
     }
 }
+
+.FormTitle {
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e5e5e5;
+}

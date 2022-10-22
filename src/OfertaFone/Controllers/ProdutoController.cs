@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OfertaFone.Domain.Entities;
 using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Attributes;
@@ -8,6 +9,7 @@ using OfertaFone.Utils.Extensions;
 using OfertaFone.WebUI.Tipo;
 using OfertaFone.WebUI.ViewModels.Produto;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OfertaFone.WebUI.Controllers
@@ -23,13 +25,28 @@ namespace OfertaFone.WebUI.Controllers
             this.fileStorage = _fileStorage;
         }
 
-        // GET: VitrineController
-        public ActionResult Index()
+        // GET: ProdutoController
+        [HttpGet, Authorize, SessionExpire]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var entity = await produtoRepository.Table.Where(produto => 
+                produto.UsuarioId == HttpContext.Session.Get<int>("UserId")
+            ).ToListAsync();
+
+            var model = new IndexViewModel()
+            {
+                CreateViewModels = entity.Select(produto =>
+                   new CreateViewModel()
+                   {
+                       Marca = produto.Marca,
+                       Modelo = produto.Modelo,
+                   }).ToList()
+            };
+
+            return View(model);
         }
 
-        // GET: VitrineController/Details/5
+        // GET: ProdutoController/Details/5
         public ActionResult Details(int id)
         {
             return View();
