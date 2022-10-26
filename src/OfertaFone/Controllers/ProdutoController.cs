@@ -69,13 +69,7 @@ namespace OfertaFone.WebUI.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    string UrlImg = TipoImagensPadrao._PRODUTO;
-
-                    if (Request.Form != null && Request.Form.Files != null && Request.Form.Files.Count > 0)
-                    {
-                        var file = Request.Form.Files[0];
-                        UrlImg = await fileStorage.UploadAsync(file.OpenReadStream(), file.Name, file.ContentType);
-                    }
+                    string UrlImg = await Request.UploadFile(fileStorage: fileStorage, fileDefault: TipoImagensPadrao._PRODUTO);
 
                     var produtoEntity = new ProdutoEntity()
                     {
@@ -107,24 +101,56 @@ namespace OfertaFone.WebUI.Controllers
         }
 
         // GET: ProdutoController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet, Authorize, SessionExpire]
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var entity = await produtoRepository.FindById(id);
+            return View(new EditViewModel
+            {
+                Id = entity.Id,
+                Preco = entity.Preco,
+                Descricao = entity.Descricao,
+                Modelo = entity.Modelo,
+                Marca = entity.Marca,
+                Memoria = entity.Memoria,
+                Camera = entity.Camera,
+                Processador = entity.Processador,
+                RAM = entity.RAM
+            });
         }
 
-        // POST: ProdutoController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        // GET: ProdutoController/Edit/5
+        [HttpPost, Authorize, SessionExpire]
+        public async Task<IActionResult> Edit(EditViewModel editViewModel)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    string UrlImg = await Request.UploadFile(fileStorage: fileStorage);
+                    var entity = await produtoRepository.FindById(editViewModel.Id);
+
+                    entity.Preco = editViewModel.Preco;
+                    entity.Descricao = editViewModel.Descricao;
+                    entity.Modelo = editViewModel.Modelo;
+                    entity.Marca = editViewModel.Marca;
+                    entity.Processador = editViewModel.Processador;
+                    entity.Memoria = editViewModel.Memoria;
+                    entity.Camera = editViewModel.Camera;
+                    entity.RAM = editViewModel.RAM;
+                    entity.Image = UrlImg ?? entity.Image;
+
+                    await produtoRepository.Update(entity);
+                    await produtoRepository.CommitAsync();
+
+                    AddSuccess("Produto editado com sucesso!");
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                TratarException(ex);
             }
+            return View(editViewModel);
         }
 
         // GET: ProdutoController/Delete/5
