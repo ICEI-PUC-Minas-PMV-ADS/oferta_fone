@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Attributes;
 using OfertaFone.Utils.Extensions;
 using OfertaFone.WebUI.Tipo;
+using OfertaFone.WebUI.ViewModels.Base;
 using OfertaFone.WebUI.ViewModels.Produto;
 using System;
 using System.Linq;
@@ -16,43 +18,35 @@ namespace OfertaFone.WebUI.Controllers
 {
     public class ProdutoController : BaseController
     {
-        private readonly IRepository<ProdutoEntity> produtoRepository;
-        private readonly IFileStorage fileStorage;
+        private readonly IRepository<ProdutoEntity> _produtoRepository;
+        private readonly IFileStorage _fileStorage;
+        private readonly IMapper _imapper;
 
-        public ProdutoController(IRepository<ProdutoEntity> _produtoRepository, IFileStorage _fileStorage)
+        public ProdutoController(
+            IRepository<ProdutoEntity> produtoRepository, 
+            IFileStorage fileStorage, 
+            IMapper imapper)
         {
-            this.produtoRepository = _produtoRepository;
-            this.fileStorage = _fileStorage;
+            this._produtoRepository = produtoRepository;
+            this._fileStorage = fileStorage;
+            this._imapper = imapper;
         }
 
         // GET: ProdutoController
         [HttpGet, Authorize, SessionExpire]
         public async Task<IActionResult> Index()
         {
-            var entity = await produtoRepository.Table.Where(produto => 
+            var entity = await _produtoRepository.Table.Where(produto =>
                 produto.UsuarioId == HttpContext.Session.Get<int>("UserId")
             ).ToListAsync();
 
             var model = new IndexViewModel()
             {
                 IndexTableViewModels = entity.Select(produto =>
-                   new IndexTableViewModel()
-                   {
-                       Id = produto.Id,
-                       Marca = produto.Marca,
-                       Modelo = produto.Modelo,
-                       Image = produto.Image,
-                       Status = produto.Ativo
-                   }).ToList()
+                    _imapper.Map<IndexTableViewModel>(produto)).ToList()
             };
 
             return View(model);
-        }
-
-        // GET: ProdutoController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         // GET: ProdutoController/Create
@@ -69,25 +63,15 @@ namespace OfertaFone.WebUI.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    string UrlImg = await Request.UploadFile(fileStorage: fileStorage, fileDefault: TipoImagensPadrao._PRODUTO);
+                    string UrlImg = await Request.UploadFile(fileStorage: _fileStorage, fileDefault: TipoImagensPadrao._PRODUTO);
+                    
+                    var produtoEntity = _imapper.Map<ProdutoEntity>(createViewModel);
+                    produtoEntity.Ativo = true;
+                    produtoEntity.Image = UrlImg;
+                    produtoEntity.UsuarioId = HttpContext.Session.Get<int>("UserId");
 
-                    var produtoEntity = new ProdutoEntity()
-                    {
-                        Marca = createViewModel.Marca,
-                        Modelo = createViewModel.Modelo,
-                        Processador = createViewModel.Processador,
-                        Memoria = createViewModel.Memoria,
-                        Camera = createViewModel.Camera,
-                        RAM = createViewModel.RAM,
-                        Preco = createViewModel.Preco,
-                        Descricao = createViewModel.Descricao,
-                        Ativo = true,
-                        Image = UrlImg,
-                        UsuarioId = HttpContext.Session.Get<int>("UserId")
-                    };
-
-                    await produtoRepository.Insert(produtoEntity);
-                    await produtoRepository.CommitAsync();
+                    await _produtoRepository.Insert(produtoEntity);
+                    await _produtoRepository.CommitAsync();
 
                     AddSuccess("Produto registrado com sucesso!");
                     return RedirectToAction("Create", "Produto");
@@ -104,19 +88,7 @@ namespace OfertaFone.WebUI.Controllers
         [HttpGet, Authorize, SessionExpire]
         public async Task<IActionResult> Edit(int id)
         {
-            var entity = await produtoRepository.FindById(id);
-            return View(new EditViewModel
-            {
-                Id = entity.Id,
-                Preco = entity.Preco,
-                Descricao = entity.Descricao,
-                Modelo = entity.Modelo,
-                Marca = entity.Marca,
-                Memoria = entity.Memoria,
-                Camera = entity.Camera,
-                Processador = entity.Processador,
-                RAM = entity.RAM
-            });
+            return View(_imapper.Map<EditViewModel>(await _produtoRepository.FindById(id)));
         }
 
         // GET: ProdutoController/Edit/5
@@ -127,8 +99,8 @@ namespace OfertaFone.WebUI.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    string UrlImg = await Request.UploadFile(fileStorage: fileStorage);
-                    var entity = await produtoRepository.FindById(editViewModel.Id);
+                    string UrlImg = await Request.UploadFile(fileStorage: _fileStorage);
+                    var entity = await _produtoRepository.FindById(editViewModel.Id);
 
                     entity.Preco = editViewModel.Preco;
                     entity.Descricao = editViewModel.Descricao;
@@ -140,8 +112,8 @@ namespace OfertaFone.WebUI.Controllers
                     entity.RAM = editViewModel.RAM;
                     entity.Image = UrlImg ?? entity.Image;
 
-                    await produtoRepository.Update(entity);
-                    await produtoRepository.CommitAsync();
+                    await _produtoRepository.Update(entity);
+                    await _produtoRepository.CommitAsync();
 
                     AddSuccess("Produto editado com sucesso!");
                 }
@@ -151,27 +123,6 @@ namespace OfertaFone.WebUI.Controllers
                 TratarException(ex);
             }
             return View(editViewModel);
-        }
-
-        // GET: ProdutoController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ProdutoController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

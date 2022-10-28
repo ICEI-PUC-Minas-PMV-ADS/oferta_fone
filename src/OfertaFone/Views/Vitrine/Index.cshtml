@@ -29,16 +29,16 @@
             @{
                 if (Model.List.Any())
                 {
-                    foreach (var produto in Model.List.OrderBy(p => p.Nome))
+                    foreach (var produto in Model.List.OrderBy(p => p.Modelo))
                     {
                         <div class="col-md-3">
                             <div href="#" class="card card-product-grid">
                                 <a asp-controller="vitrine" asp-action="details" asp-route-id="@produto.Id" class="img-wrap">
-                                    <img src="@produto.Image" alt="@produto.Nome">
+                                    <img src="@produto.Image" alt="@produto.Modelo">
                                 </a>
                                 <figcaption class="info-wrap">
                                     <a asp-controller="produto" asp-action="details" asp-route-id="@produto.Id" class="title">
-                                        <b> @produto.Nome</b>
+                                        <b> @produto.Modelo</b>
                                     </a>
                                 </figcaption>
                                 <div class="card-footer price mt-1">

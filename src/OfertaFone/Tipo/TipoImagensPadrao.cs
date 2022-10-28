@@ -10,7 +10,7 @@ namespace OfertaFone.WebUI.Tipo
         /// <summary>
         /// Essa constante representa uma url para o link de imagem para produto padrao
         /// </summary>
-        public static string _PRODUTO = "https://ofertafonestorageassets.blob.core.windows.net/publicuploads/user1/stories/galaxy.png";
+        public static string _PRODUTO = "http://localhost:58204/assets/galaxy.png";
         /// <summary>
         /// Essa constante representa uma url para o link de imagem para usuario padrao
         /// </summary>

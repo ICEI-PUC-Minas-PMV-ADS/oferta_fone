@@ -9,7 +9,7 @@ namespace OfertaFone.WebUI.ViewModels.Account
     public class EditProfileViewModel : IValidatableObject
     {
         [Required]
-        public string Username { get; set; }
+        public string Login { get; set; }
 
         [Required]
         [EmailAddress]
