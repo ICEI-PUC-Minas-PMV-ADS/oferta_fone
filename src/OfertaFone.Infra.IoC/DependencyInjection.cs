@@ -29,12 +29,13 @@ namespace OfertaFone.Infra.IoC
             var enviroment = services.BuildServiceProvider().GetRequiredService<IWebHostEnvironment>();
 
             services.AddDbContext<DatabaseContext>(options =>
-                            options.UseSqlServer(enviroment.IsDevelopment() ? configuration.GetConnectionString("DataContextConnection") : configuration.GetSecret("DataContextConnection"),
-                            b => b.MigrationsAssembly(typeof(DatabaseContext).Assembly.FullName)));
+                options.UseSqlServer(enviroment.IsDevelopment() ? configuration.GetConnectionString("DataContextConnection") : configuration.GetSecret("DataContextConnection"),
+                b => b.MigrationsAssembly(typeof(DatabaseContext).Assembly.FullName)));
+            
             if (!enviroment.IsDevelopment())
             {
                 services.AddSingleton(svc =>
-                new BlobServiceClient(configuration.GetSecret("ofertafoneblobstorage")));
+                    new BlobServiceClient(configuration.GetSecret("ofertafoneblobstorage")));
 
                 services.AddScoped<IFileStorage, BlobStorageServiceAzure>();
             }

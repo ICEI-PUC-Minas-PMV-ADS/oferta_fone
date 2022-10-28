@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,18 +24,21 @@ namespace OfertaFone.WebUI.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IRepository<Usuario> _userRepository;
         private readonly IRepository<PerfilUsuario> _perfilRepository;
-        private readonly IFileStorage fileStorage;
+        private readonly IFileStorage _fileStorage;
+        private readonly IMapper _imapper;
 
         public AccountController(
             SignInManager<ApplicationUser> signInManager,
             IRepository<Usuario> userRepository,
             IRepository<PerfilUsuario> perfilRepository,
-            IFileStorage _fileStorage)
+            IFileStorage fileStorage,
+            IMapper imapper)
         {
             _signInManager = signInManager;
             _userRepository = userRepository;
             _perfilRepository = perfilRepository;
-            fileStorage = _fileStorage;
+            _fileStorage = fileStorage;
+            _imapper = imapper;
         }
 
         [HttpGet, AllowAnonymous]
@@ -108,25 +112,19 @@ namespace OfertaFone.WebUI.Controllers
         {
             try
             {
-                if (registerViewModel.Password != registerViewModel.ConfirmPassword)
+                if (registerViewModel.Senha != registerViewModel.ConfirmPassword)
                 {
                     ModelState.AddModelError(nameof(registerViewModel.ConfirmPassword), "As senhas não coincidem.");
                 }
 
                 if (ModelState.IsValid)
                 {
-                    var usuario = new Usuario()
-                    {
-                        Nome = registerViewModel.Nome,
-                        Login = registerViewModel.Username,
-                        Senha = registerViewModel.Password,
-                        Email = registerViewModel.Email,
-                        Situacao = (int?)TipoSituacao.ATIVO,
-                        PerfilUsuarioId = (int?)TipoPerfil.ADMIN,
-                        Image = TipoImagensPadrao._USUARIO
-                    };
+                    var usuario = _imapper.Map<Usuario>(registerViewModel);
+                    usuario.Situacao = (int?)TipoSituacao.ATIVO;
+                    usuario.PerfilUsuarioId = (int?)TipoPerfil.ADMIN;
+                    usuario.Image = TipoImagensPadrao._USUARIO;
 
-                    if (await _userRepository.Table.Where(a => a.Login.ToLower() == registerViewModel.Username.ToLower()).FirstOrDefaultAsync() != null)
+                    if (await _userRepository.Table.Where(a => a.Login.ToLower() == registerViewModel.Login.ToLower()).FirstOrDefaultAsync() != null)
                     {
                         throw new LogicalException("Já existe um usuário registrado com o nome de usuário inserido.");
                     }
@@ -162,21 +160,13 @@ namespace OfertaFone.WebUI.Controllers
             var user = await _userRepository.FindById(HttpContext.Session.Get<int>("UserId"));
             var perfis = await _perfilRepository.Table.Where(a => a.Situacao == (int)TipoSituacao.ATIVO).ToListAsync();
 
-            var viewModel = new EditProfileViewModel()
+            var viewModel = _imapper.Map<EditProfileViewModel>(user);
+            viewModel.Perfis = perfis.Select(p => new SelectListItem
             {
-                Email = user.Email,
-                Username = user.Login,
-                Nome = user.Nome,
-                PerfilUsuarioId = user.PerfilUsuarioId,
-                Image = user.Image,
-                CpfCnpj = user.CpfCnpj,
-                DataNascimento = user.DataNascimento,
-                Perfis = perfis.Select(p => new SelectListItem
-                {
-                    Text = p.Nome,
-                    Value = p.Id.ToString(),
-                }).ToList(),
-            };
+                Text = p.Nome,
+                Value = p.Id.ToString(),
+            }).ToList();
+
             return View(viewModel);
         }
 
@@ -187,7 +177,7 @@ namespace OfertaFone.WebUI.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    string UrlImg = await Request.UploadFile(fileStorage);
+                    string UrlImg = await Request.UploadFile(_fileStorage);
 
                     var user = await _userRepository.FindById(HttpContext.Session.Get<int>("UserId"));
                     user.CpfCnpj = viewModel.CpfCnpj;

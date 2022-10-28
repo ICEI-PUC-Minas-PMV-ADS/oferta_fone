@@ -8,11 +8,11 @@ namespace OfertaFone.WebUI.ViewModels.Account
         [Required]
         public string Nome { get; set; }
         [Required]
-        public string Username { get; set; }
+        public string Login { get; set; }
         [Required]
         [StringLength(20, ErrorMessage = "O {0} deve ter pelo menos {2} e no máximo {1} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string Senha { get; set; }
         [Required]
         [EmailAddress]
         public string Email { get; set; }

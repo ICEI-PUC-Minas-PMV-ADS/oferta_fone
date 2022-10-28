@@ -10,7 +10,7 @@ namespace OfertaFone.WebUI.ViewModels.Produto
     {
         public string Marca { get; set; }
         public string Modelo { get; set; }
-        public bool Status { get; set; }
+        public bool Ativo { get; set; }
         public string Image { get; set; }
     }
 }

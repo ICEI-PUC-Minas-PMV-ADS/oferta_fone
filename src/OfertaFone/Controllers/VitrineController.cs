@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfertaFone.Domain.Entities;
@@ -14,16 +15,21 @@ namespace OfertaFone.WebUI.Controllers
 {
     public class VitrineController : Controller
     {
-        private readonly IRepository<ProdutoEntity> produtoRepository;
+        private readonly IRepository<ProdutoEntity> _produtoRepository;
+        private readonly IMapper _imapper;
 
-        public VitrineController(IRepository<ProdutoEntity> produtoRepository)
+        public VitrineController(
+            IRepository<ProdutoEntity> produtoRepository,
+            IMapper imapper)
         {
-            this.produtoRepository = produtoRepository;
+            this._produtoRepository = produtoRepository;
+            this._imapper = imapper;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index([FromQuery] int ps = 8, [FromQuery] int page = 1, [FromQuery] string q = null)
         {
-            var catalogQuery = produtoRepository.Table.AsQueryable();
+            var catalogQuery = _produtoRepository.Table.AsQueryable();
 
             var catalog = await catalogQuery.AsNoTrackingWithIdentityResolution()
                                             .Where(x => EF.Functions.Like(x.Modelo, $"%{q}%"))
@@ -32,7 +38,7 @@ namespace OfertaFone.WebUI.Controllers
                                             .Take(ps)
                                             .ToListAsync();
 
-            var listView = catalog.Select(entity => new IndexViewModel() { Preco = entity.Preco, Id = entity.Id, Nome = entity.Modelo, Image = entity.Image });
+            var listView = catalog.Select(entity => _imapper.Map<IndexViewModel>(entity));
 
             var total = await catalogQuery.AsNoTrackingWithIdentityResolution()
                                           .Where(x => EF.Functions.Like(x.Modelo, $"%{q}%"))
@@ -49,86 +55,10 @@ namespace OfertaFone.WebUI.Controllers
         }
 
         // GET: ProdutoController/Details/5
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var entity = await produtoRepository.FindById(id);
-            return View(new DetailsViewModel
-            {
-                Id = entity.Id,
-                Preco = entity.Preco,
-                Descricao = entity.Descricao,
-                Image = entity.Image,
-                UsuarioId = entity.UsuarioId,
-                Modelo = entity.Modelo,
-                Marca = entity.Marca,
-                Memoria = entity.Memoria,
-                Camera = entity.Camera,
-                Processador = entity.Processador,
-                RAM = entity.RAM
-            });
-        }
-
-        // GET: VitrineController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: VitrineController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: VitrineController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: VitrineController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: VitrineController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: VitrineController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return View(_imapper.Map<DetailsViewModel>(await _produtoRepository.FindById(id)));
         }
     }
 }
