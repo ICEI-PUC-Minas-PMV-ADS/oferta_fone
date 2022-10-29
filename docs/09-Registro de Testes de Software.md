@@ -4,13 +4,15 @@
 
 * Os campos estipulados no cadastro e dados pessoais foram devidamente preenchidos. Após o preenchimento de todos os campos o cadastro deve ser efetuado. Todos os testes realizados foram concluídos com sucesso nesta etapa.
 
-(IMAGEM)
+<img src="/docs/img/Registro_Plano_Teste/1.jpeg" width="500">
+
+<img src="/docs/img/Registro_Plano_Teste/2.jpeg" width="500">
 
 ## Plano de Teste 2 – Login 
 
 * Após a realização do cadastro, o usuário é redirecionado para tela de login, no qual verifica-se se os campos foram preenchidos e se usuário existe no sistema para realizar o login. Todos os testes realizados foram concluídos com sucesso nesta etapa.
 
-(IMAGEM)
+<img src="/docs/img/Registro_Plano_Teste/3.jpeg" width="500">
 
 ## Plano de Teste 3 - Editar Perfil 
 
@@ -20,7 +22,11 @@
 
 * O CPF não deve ser alterado – Não passou no teste.
     
- (IMAGEM)
+<img src="/docs/img/Registro_Plano_Teste/4.jpeg" width="500">
+
+<img src="/docs/img/Registro_Plano_Teste/5.jpeg" width="500">
+
+<img src="/docs/img/Registro_Plano_Teste/6.jpeg" width="500">
  
  ## Plano de Teste 4 – Cadastrar Produto 
 
@@ -30,13 +36,17 @@
 
   *  Alterar informações do produto cadastrado – OK.
 
-(IMAGEM)
+<img src="/docs/img/Registro_Plano_Teste/7.jpeg" width="500">
+
+<img src="/docs/img/Registro_Plano_Teste/8.jpeg" width="500">
+
+<img src="/docs/img/Registro_Plano_Teste/9.jpeg" width="500">
 
 ## Plano de Teste 5 - Produtos à venda 
 
  *   Exibir lista dos produtos cadastrados – OK.
 
-(IMAGEM)
+<img src="/docs/img/Registro_Plano_Teste/10.jpeg" width="500">
 
 ## Plano de Teste 6 – Editar produtos à venda 
 
@@ -50,23 +60,27 @@
 
 *    Verificar se as informações foram deletadas – Não passou no teste.
 
-(IMAGEM)
+<img src="/docs/img/Registro_Plano_Teste/11.jpeg" width="500">
+
+<img src="/docs/img/Registro_Plano_Teste/12.jpeg" width="500">
+
+<img src="/docs/img/Registro_Plano_Teste/13.jpeg" width="500">
 
 ### Excluindo anúncio 
 
-(IMAGEM)
+<img src="/docs/img/Registro_Plano_Teste/14.jpeg" width="500">
 
 ## Plano de Teste 7 – Vitrine 
 
 *    Exibir os produtos cadastrados na tela inicial – OK 
 
-(IMAGEM)
+<img src="/docs/img/Registro_Plano_Teste/15.jpeg" width="500">
 
 ## Plano de Teste 8 – Comprar Produto 
 
 *    Exibir detalhes/informações sobre o produto -
     
-(IMAGEM)
+<img src="/docs/img/Registro_Plano_Teste/16.jpeg" width="500">
 
 ## Plano de Teste 9 – Carrinho de compras 
 
