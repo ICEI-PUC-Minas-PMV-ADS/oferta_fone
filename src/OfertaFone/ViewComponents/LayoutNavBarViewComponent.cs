@@ -24,6 +24,7 @@ namespace OfertaFone.WebUI.ViewComponents
             {
                 UserName = appUser?.UserName,
                 Email = appUser?.Email,
+                Image = appUser?.Image
             };
 
             return View("../Shared/_LayoutNavBar.cshtml", vm);

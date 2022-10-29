@@ -1,6 +1,6 @@
 ﻿<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a asp-controller="produto" asp-action="index" class="app-brand-link">
+        <a asp-controller="vitrine" asp-action="index" class="app-brand-link">
             <span class="app-brand-logo demo">
                 <i class='bx bxs-book-content' style="FONT-SIZE: 28px;color: var(--font-menu) !important;"></i>
             </span>
@@ -15,19 +15,25 @@
         <li class="menu-item">
             <a asp-controller="home" asp-action="index" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div>Painel Gerencial</div>
+                <div>Home</div>
             </a>
         </li>
         <li class="menu-item">
-            <a asp-controller="produto" asp-action="create" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-plus-circle"></i>
-                <div>Inserir Produto</div>
+            <a asp-controller="account" asp-action="editprofile" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user-pin"></i>
+                <div>Dados Pessoais</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a asp-controller="produto" asp-action="index" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-devices"></i>
+                <div>Produto</div>
             </a>
         </li>
         <li class="menu-item">
             <a asp-controller="" asp-action="" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-cash-coin"></i>
-                <div>Pagamento</div>
+                <i class="menu-icon tf-icons bx bx-bag-check"></i>
+                <div>Minhas Compras</div>
             </a>
         </li>
     </ul>

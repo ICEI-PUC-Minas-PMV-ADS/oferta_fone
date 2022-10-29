@@ -1,0 +1,46 @@
+﻿@using OfertaFone.Utils.Extensions
+@using Microsoft.AspNetCore.Identity
+@using OfertaFone.WebUI.Identity
+@model LoginPartialViewModel
+
+@if (Context.User.Identity.IsAuthenticated)
+{
+    <div>
+        <vc:carrinho />
+    </div>
+    <div>
+        <div class="dropdown d-inline-block">
+            <a href="#" class="icontext dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <img class="icon icon-sm rounded-circle" src="@Model.Image">
+            </a> <!-- iconbox // -->
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <a class="dropdown-item" asp-action="EditProfile" asp-controller="Account">
+                        <i class="bx bx-user me-2"></i>
+                        <span class="align-middle">Meu Perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="dropdown-divider"></div>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-action="Logout" asp-controller="Account">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+else
+{
+    <div class="widget-header">
+        <small class="title text-muted">Bem Vindo!</small>
+        <div>
+            <a style="color: inherit;" asp-controller="Account" asp-action="Register">Crie sua conta</a>
+            <span> | </span>
+            <a style="color: inherit;" asp-controller="Account" asp-action="Login"> Sign In</a>
+        </div>
+    </div>
+}

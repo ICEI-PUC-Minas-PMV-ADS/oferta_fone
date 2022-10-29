@@ -11,5 +11,6 @@ namespace OfertaFone.WebUI.ViewModels.Components
         public string Email { get; set; }
         public string UserName { get; set; }
         public bool Enabled { get; set; }
+        public string Image { get; set; }
     }
 }

@@ -3,6 +3,7 @@
 
 # OfertaFone
 
+[![Deploy](https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone/actions/workflows/ofertafone.yml/badge.svg)](https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone/actions/workflows/ofertafone.yml)
 #### PONTIFÍCIA UNIVERSIDADE CATÓLICA DE MINAS GERAIS
 
 `TECNOLOGIA EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS`
@@ -28,15 +29,12 @@ O lançamento de novos modelos de telefones e tablets têm levado as pessoas a t
 
 * Rosilane Ribeiro da Mota
 
-## Instruções de utilização
+## Estamos Online
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+Veja o projeto em execução na instância oficial do <a href="https://ofertafone.azurewebsites.net/" target="_blank">OfertaFone</a>.
 
-Não deixe de informar o link onde a aplicação estiver disponível para acesso (por exemplo: <https://adota-pet.herokuapp.com/src/index.html>).
-
-Se houver usuário de teste, o login e a senha também deverão ser informados aqui (por exemplo: usuário - admin / senha - admin).
-
-O link e o usuário/senha descritos acima são apenas exemplos de como tais informações deverão ser apresentadas.
+* usuário - admin
+* senha - admin@123
 
 # Documentação
 

@@ -113,22 +113,17 @@ namespace OfertaFone.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Detalhes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Marca")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Memoria")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Modelo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -162,10 +157,16 @@ namespace OfertaFone.Infra.Data.Migrations
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");
 
+                    b.Property<DateTime?>("DataNascimento")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Login")
                         .IsRequired()
@@ -198,6 +199,7 @@ namespace OfertaFone.Infra.Data.Migrations
                         {
                             Id = 1,
                             Email = "admin@devscansados.com",
+                            Image = "https://s.gravatar.com/avatar/aleatory?d=mm&s=45",
                             Login = "admin",
                             Nome = "admin",
                             PerfilUsuarioId = 1,

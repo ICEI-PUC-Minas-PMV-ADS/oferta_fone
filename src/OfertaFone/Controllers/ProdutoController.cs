@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfertaFone.Domain.Entities;
 using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Attributes;
-using OfertaFone.WebUI.ViewModels.Components;
 using OfertaFone.Utils.Extensions;
+using OfertaFone.WebUI.Tipo;
+using OfertaFone.WebUI.ViewModels.Base;
 using OfertaFone.WebUI.ViewModels.Produto;
 using System;
 using System.Linq;
@@ -16,59 +18,35 @@ namespace OfertaFone.WebUI.Controllers
 {
     public class ProdutoController : BaseController
     {
-        private readonly IRepository<ProdutoEntity> produtoRepository;
+        private readonly IRepository<ProdutoEntity> _produtoRepository;
+        private readonly IFileStorage _fileStorage;
+        private readonly IMapper _imapper;
 
-        public ProdutoController(IRepository<ProdutoEntity> produtoRepository)
+        public ProdutoController(
+            IRepository<ProdutoEntity> produtoRepository, 
+            IFileStorage fileStorage, 
+            IMapper imapper)
         {
-            this.produtoRepository = produtoRepository;
+            this._produtoRepository = produtoRepository;
+            this._fileStorage = fileStorage;
+            this._imapper = imapper;
         }
 
-        public async Task<IActionResult> Index([FromQuery] int ps = 8, [FromQuery] int page = 1, [FromQuery] string q = null)
+        // GET: ProdutoController
+        [HttpGet, Authorize, SessionExpire]
+        public async Task<IActionResult> Index()
         {
-            var catalogQuery = produtoRepository.Table.AsQueryable();
+            var entity = await _produtoRepository.Table.Where(produto =>
+                produto.UsuarioId == HttpContext.Session.Get<int>("UserId")
+            ).ToListAsync();
 
-            var catalog = await catalogQuery.AsNoTrackingWithIdentityResolution()
-                                            .Where(x => EF.Functions.Like(x.Nome, $"%{q}%"))
-                                            .OrderBy(x => x.Nome)
-                                            .Skip(ps * (page - 1))
-                                            .Take(ps)
-                                            .ToListAsync();
-
-            var listView = catalog.Select(entity => new IndexViewModel() { Preco = entity.Preco, Id = entity.Id, Nome = entity.Nome });
-
-            var total = await catalogQuery.AsNoTrackingWithIdentityResolution()
-                                          .Where(x => EF.Functions.Like(x.Nome, $"%{q}%"))
-                                          .CountAsync();
-
-            return View(new PagedViewModel<IndexViewModel>()
+            var model = new IndexViewModel()
             {
-                List = listView,
-                TotalResults = total,
-                PageIndex = page,
-                PageSize = ps,
-                Query = q
-            });
-        }
+                IndexTableViewModels = entity.Select(produto =>
+                    _imapper.Map<IndexTableViewModel>(produto)).ToList()
+            };
 
-        // GET: ProdutoController/Details/5
-        public async Task<IActionResult> Details(int id)
-        {
-            var entity = await produtoRepository.FindById(id);
-            return View(new DetailsViewModel
-            {
-                Id = entity.Id,
-                Nome = entity.Nome,
-                Preco = (double)entity.Preco,
-                Descricao = entity.Descricao,
-                Image = entity.Image,
-                Ativo = entity.Ativo,
-                UsuarioId = entity.UsuarioId,   
-                Modelo = entity.Modelo,
-                Memoria = entity.Memoria,
-                Camera = entity.Camera,
-                Processador = entity.Processador,
-                RAM = entity.RAM
-            });
+            return View(model);
         }
 
         // GET: ProdutoController/Create
@@ -85,23 +63,18 @@ namespace OfertaFone.WebUI.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    var produtoEntity = new ProdutoEntity()
-                    {
-                        Nome = createViewModel.Marca,
-                        Modelo = createViewModel.Modelo,
-                        Processador = createViewModel.Processador,
-                        Memoria = createViewModel.Memoria,
-                        Camera = createViewModel.Camera,
-                        RAM = createViewModel.RAM,
-                        Preco = createViewModel.Preco,
-                        Descricao = createViewModel.Detalhes,
-                        UsuarioId = HttpContext.Session.Get<int>("UserId")
-                    };
-                    await produtoRepository.Insert(produtoEntity);
-                    await produtoRepository.CommitAsync();
+                    string UrlImg = await Request.UploadFile(fileStorage: _fileStorage, fileDefault: TipoImagensPadrao._PRODUTO);
+                    
+                    var produtoEntity = _imapper.Map<ProdutoEntity>(createViewModel);
+                    produtoEntity.Ativo = true;
+                    produtoEntity.Image = UrlImg;
+                    produtoEntity.UsuarioId = HttpContext.Session.Get<int>("UserId");
+
+                    await _produtoRepository.Insert(produtoEntity);
+                    await _produtoRepository.CommitAsync();
 
                     AddSuccess("Produto registrado com sucesso!");
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("Create", "Produto");
                 }
             }
             catch(Exception ex)
@@ -112,45 +85,44 @@ namespace OfertaFone.WebUI.Controllers
         }
 
         // GET: ProdutoController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet, Authorize, SessionExpire]
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            return View(_imapper.Map<EditViewModel>(await _produtoRepository.FindById(id)));
         }
 
-        // POST: ProdutoController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        // GET: ProdutoController/Edit/5
+        [HttpPost, Authorize, SessionExpire]
+        public async Task<IActionResult> Edit(EditViewModel editViewModel)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                if (ModelState.IsValid)
+                {
+                    string UrlImg = await Request.UploadFile(fileStorage: _fileStorage);
+                    var entity = await _produtoRepository.FindById(editViewModel.Id);
 
-        // GET: ProdutoController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+                    entity.Preco = editViewModel.Preco;
+                    entity.Descricao = editViewModel.Descricao;
+                    entity.Modelo = editViewModel.Modelo;
+                    entity.Marca = editViewModel.Marca;
+                    entity.Processador = editViewModel.Processador;
+                    entity.Memoria = editViewModel.Memoria;
+                    entity.Camera = editViewModel.Camera;
+                    entity.RAM = editViewModel.RAM;
+                    entity.Image = UrlImg ?? entity.Image;
 
-        // POST: ProdutoController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
+                    await _produtoRepository.Update(entity);
+                    await _produtoRepository.CommitAsync();
+
+                    AddSuccess("Produto editado com sucesso!");
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                TratarException(ex);
             }
+            return View(editViewModel);
         }
     }
 }
