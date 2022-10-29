@@ -139,5 +139,3 @@
 *    Enviar código numérico para o e-mail cadastrado -  
 
 *    Verificar recebimento do código numérico no e-mail cadastrado -
-
-
