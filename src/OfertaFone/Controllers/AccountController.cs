@@ -42,9 +42,12 @@ namespace OfertaFone.WebUI.Controllers
         }
 
         [HttpGet, AllowAnonymous]
-        public IActionResult Login(string returnUrl)
+        public IActionResult Login(string returnUrl = null)
         {
-            return View();
+            return View(new LoginViewModel()
+            {
+                ReturnUrl = returnUrl
+            });
         }
 
         [HttpPost, AllowAnonymous]
@@ -74,7 +77,9 @@ namespace OfertaFone.WebUI.Controllers
 
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("EditProfile", "Account");
+                        return !string.IsNullOrEmpty(loginViewModel.ReturnUrl) ?
+                            Redirect(loginViewModel.ReturnUrl) :
+                            RedirectToAction("EditProfile", "Account");
                     }
 
                 }

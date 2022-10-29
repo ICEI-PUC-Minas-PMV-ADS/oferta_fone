@@ -52,6 +52,8 @@ namespace OfertaFone.Infra.IoC
             services.AddScoped<IRepository<Acesso>, Repository<Acesso>>();
             services.AddScoped<IRepository<PerfilUsuario>, Repository<PerfilUsuario>>();
             services.AddScoped<IRepository<ProdutoEntity>, Repository<ProdutoEntity>>();
+            services.AddScoped<IRepository<Pedido>, Repository<Pedido>>();
+            services.AddScoped<IRepository<ItemPedido>, Repository<ItemPedido>>();
 
             return services;
         }
