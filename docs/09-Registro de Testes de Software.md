@@ -4,7 +4,7 @@
 
 * Os campos estipulados no cadastro e dados pessoais foram devidamente preenchidos. Após o preenchimento de todos os campos o cadastro deve ser efetuado. Todos os testes realizados foram concluídos com sucesso nesta etapa.
 
-<img src="/Users/User/Pictures/Registro_Plano_Teste/1.jpeg" width="500">
+<img src="/User/Imagens/Registro_Plano_Teste/1.jpeg" width="500">
 
 <img src="/docs/img/Registro_Plano_Teste/2.jpeg" width="500">
 
