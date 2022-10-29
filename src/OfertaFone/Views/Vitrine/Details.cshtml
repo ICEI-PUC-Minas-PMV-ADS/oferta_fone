@@ -10,25 +10,34 @@
     .container-detail {
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
 
     .information {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .img-produto {
+        width: auto;
+        margin: auto;
     }
 
     .descricao {
         display: flex;
         flex-direction: column;
         padding: 28px 40px;
-        width: 1100px;
+        width: auto;
     }
 
     .product-prices {
         display: flex;
         flex-direction: column;
         border: 1px solid #d7d7d7;
-        padding: 57px 54px;
+        border-radius: 5px;
+        padding: 15px 30px;
         align-items: center;
     }
 
@@ -51,9 +60,6 @@
         margin-right: 12px;
     }
 
-    .responsive {
-        width: 100%;
-    }
 </style>
 
 <div class="container-detail">
@@ -68,27 +74,25 @@
         </h2>
     </div>
     <div class="information">
-        <img src="@Model.Image" class="responsive" alt="@Model.Modelo">
-        <div class="descricao">
-            <p>
-                @Model.Descricao
-            </p>
-            <i class="menu-icon tf-icons bx bx-plus-circle"></i>
+        <div class="img-produto">
+            <img src="~/assets/galaxy.png" alt="@Model.Marca">
         </div>
-
-        <div class="product-prices">
+        <div class="descricao">
+            <p>@Model.Descricao</p>
+        </div>
+        <div class="product-prices"> 
             <div class="price">
-                <p>@this.FormatMoney((decimal)@Model.Preco)</p>
+               <p>@this.FormatMoney((decimal)@Model.Preco)</p>
             </div>
             <div>
                 <p>Calcular frete:</p>
                 <div class="frete">
-                    <input type="text" class="cep" placeholder="CEP" />
+                    <input type="text" class="cep" placeholder="CEP"/>
                     <button type="submit" class="btn" style="background-color: white; border-color: orange; font-size: 15px; color: orange;">calcular</button>
                 </div>
             </div>
             <div class="details">
-                <button type="submit" class="btn btn-comprar" style="background-color: #fd7e14; font-size: 20px; color: white;">Comprar</button>
+                 <button type="submit" class="btn btn-comprar" style="background-color: #fd7e14; font-size: 20px; color: white;">Comprar</button>
             </div>
         </div>
     </div>
