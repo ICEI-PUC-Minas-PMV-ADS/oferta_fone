@@ -19,5 +19,6 @@ namespace OfertaFone.Domain.Entities
         public DateTime? DataNascimento { get; set; }
         public PerfilUsuario PerfilUsuario { get; set; }
         public ICollection<ProdutoEntity> ProdutoEntity { get; set; }
+        public ICollection<Pedido> Pedido { get; set; }
     }
 }

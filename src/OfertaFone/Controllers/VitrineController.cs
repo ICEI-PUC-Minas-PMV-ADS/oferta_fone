@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfertaFone.Domain.Entities;
 using OfertaFone.Domain.Interfaces;
+using OfertaFone.Utils.Attributes;
 using OfertaFone.WebUI.ViewModels.Components;
 using OfertaFone.WebUI.ViewModels.Vitrine;
 using System;
@@ -13,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace OfertaFone.WebUI.Controllers
 {
-    public class VitrineController : Controller
+    public class VitrineController : BaseController
     {
         private readonly IRepository<ProdutoEntity> _produtoRepository;
         private readonly IMapper _imapper;
