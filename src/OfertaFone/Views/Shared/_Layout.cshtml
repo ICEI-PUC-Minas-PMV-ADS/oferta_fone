@@ -65,6 +65,8 @@
         </main>
     </div>
 
+    <div id="alertsModal"></div>
+
     <footer class="section-footer border-top p-3">
         <div class="container">
             <section class="footer-top padding-y">
@@ -82,20 +84,20 @@
                         </article>
                     </aside>
                     <aside class="col-sm-4 col-md-3">
-                        <h6 class="title">About</h6>
+                        <h6 class="title">Sobre</h6>
                         <ul class="list-unstyled">
-                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">About us</a></li>
-                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Services</a></li>
-                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Terms of use</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Sobre nós</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Serviços</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Termos de Uso</a></li>
                             <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">FAQ</a></li>
                         </ul>
                     </aside>
                     <aside class="col-sm-4 col-md-3">
-                        <h6 class="title">Services</h6>
+                        <h6 class="title">Serviços</h6>
                         <ul class="list-unstyled">
-                            <li> <a asp-controller="Order" asp-action="MyOrders">My Orders</a></li>
-                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Profile</a></li>
-                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Canceled orders</a></li>
+                            <li> <a asp-controller="Order" asp-action="MyOrders">Minhas Compras</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Perfil</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Pedidos cancelados</a></li>
                             <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Chargeback</a></li>
                         </ul>
                     </aside>
@@ -107,14 +109,63 @@
                 </div>
             </section>
 
-            <section class="footer-copyright border-top">
-                <p class="float-left text-muted"> ©2022, feito com 🧡 por OfertaFone Team</p>
-            </section>
+            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column border-top">
+                <div class="mb-2 mb-md-0 footer-copyright">
+                    <p class="float-left text-muted"> ©2022, feito com 🧡 por OfertaFone Team</p>
+                </div>
+                <div>
+                    <img src="~/assets/misc/payments.png" />
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/theme/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="~/theme/assets/vendor/libs/popper/popper.js"></script>
+    <script src="~/theme/assets/vendor/js/bootstrap.js"></script>
+    <script src="~/theme/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="~/theme/assets/vendor/js/menu.js"></script>
+    <script src="~/theme/assets/js/main.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        $('form').on('submit', function () {
+            new bootstrap.Modal(document.getElementById("modalLoading"), {}).show();
+        });
+
+        $('.action-loading').click(function () {
+            new bootstrap.Modal(document.getElementById("modalLoading"), {}).show();
+        });
+
+        $(document).ready(function () {
+            new bootstrap.Modal(document.getElementById("modalLoading"), {}).hide();
+        });
+
+        window.onunload = function () {
+            new bootstrap.Modal(document.getElementById("modalLoading"), {}).hide();
+        };
+
+        $(document).ajaxComplete(function () {
+            new bootstrap.Modal(document.getElementById("modalLoading"), {}).hide();
+        });
+
+        $(function () {
+            var alert = '@TempData["warning"]';
+            var error = '@TempData["error"]';
+            var sucess = '@TempData["success"]';
+            var err = '';
+            if (sucess != "" && sucess != null) {
+                addSuccess(sucess);
+            }
+            if (alert != "" && alert != null) {
+                addWarning(alert);
+            }
+            if (error != "" && error != null) {
+                addError(error);
+            }
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

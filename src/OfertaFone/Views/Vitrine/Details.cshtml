@@ -60,6 +60,58 @@
         margin-right: 12px;
     }
 
+    .rating-stars {
+        display: inline-block;
+        vertical-align: middle;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        white-space: nowrap;
+        clear: both;
+    }
+
+    .rating-stars i {
+        font-size: 14px;
+        color: #ccc;
+        display: inline;
+    }
+
+    .rating-stars li {
+        display: block;
+        text-overflow: clip;
+        white-space: nowrap;
+        z-index: 1;
+    }
+
+    .rating-stars li.stars-active {
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+    }
+
+    .rating-stars li.stars-active i {
+        color: orange;
+    }
+
+    .content-body {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 2rem 2.3rem;
+    }
+
+    .bg {
+        background-color: #f8f9fa;
+    }
+
+    .price {
+        font-weight: 600;
+        color: #212529;
+    }
+
 </style>
 
 <div class="container-detail">
@@ -75,25 +127,50 @@
     </div>
     <div class="information">
         <div class="img-produto">
-            <img src="~/assets/galaxy.png" alt="@Model.Marca">
+            <img src="@Model.Image" alt="@Model.Marca">
         </div>
-        <div class="descricao">
-            <p>@Model.Descricao</p>
-        </div>
-        <div class="product-prices"> 
-            <div class="price">
-               <p>@this.FormatMoney((decimal)@Model.Preco)</p>
-            </div>
-            <div>
-                <p>Calcular frete:</p>
-                <div class="frete">
-                    <input type="text" class="cep" placeholder="CEP"/>
-                    <button type="submit" class="btn" style="background-color: white; border-color: orange; font-size: 15px; color: orange;">calcular</button>
-                </div>
-            </div>
-            <div class="details">
-                 <button type="submit" class="btn btn-comprar" style="background-color: #fd7e14; font-size: 20px; color: white;">Comprar</button>
-            </div>
-        </div>
+        <main class="col-md-6 border-left">
+            <article class="content-body">
+                <form asp-controller="carrinho" asp-route-id="@Model.Id" asp-action="adicionar" method="post">
+
+                    <input asp-for="Id" hidden />
+
+                    <h2 class="title">@Model.Modelo</h2>
+
+                    <div class="rating-wrap my-3">
+                        <ul class="rating-stars">
+                            <li style="width: 80%" class="stars-active">
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </li>
+                        </ul>
+                        <small class="label-rating text-muted">132 estrelas</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="price h4">@this.FormatMoney(@Model.Preco)</p>
+                    </div>
+
+                    <h5>@Model.Descricao</h5>
+                    <br />
+
+                    <hr>
+                    <br />
+
+                    <button type="submit" class="btn btn-outline-primary">
+                        <span class="text">Adicionar</span> <i class="fas fa-shopping-cart"> &nbsp;</i>
+                    </button>
+                    <a asp-action="Index" class="btn  btn-info">
+                        <span class="text">Voltar</span>
+                    </a>
+                </form>
+            </article>
+        </main>
     </div>
 </div>
