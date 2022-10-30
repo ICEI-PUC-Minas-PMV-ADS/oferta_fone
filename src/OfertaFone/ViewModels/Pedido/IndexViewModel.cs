@@ -9,7 +9,7 @@ namespace OfertaFone.WebUI.ViewModels.Pedido
     public class IndexViewModel: BaseViewModel
     {
         public string Nome { get; set; }
-        public Decimal Preco { get; set; }
+        public decimal Preco { get; set; }
         public string Descricao { get; set; }
         public string Image { get; set; }
         public bool Ativo { get; set; }
