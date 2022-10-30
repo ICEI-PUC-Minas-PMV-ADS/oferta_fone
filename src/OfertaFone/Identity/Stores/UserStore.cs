@@ -48,7 +48,8 @@ namespace OfertaFone.WebUI.Identity.Stores
                 Id = user.Id,
                 UserName = user.Login,
                 Email = user.Email,
-                PasswordHash = user.Senha
+                PasswordHash = user.Senha,
+                Image = user.Image
             };
         }
 
@@ -60,7 +61,8 @@ namespace OfertaFone.WebUI.Identity.Stores
                 Id = user.Id,
                 UserName = user.Login,
                 Email = user.Email,
-                PasswordHash = user.Senha
+                PasswordHash = user.Senha,
+                Image = user.Image
             };
         }
 

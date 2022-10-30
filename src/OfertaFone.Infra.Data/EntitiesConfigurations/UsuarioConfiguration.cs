@@ -29,7 +29,8 @@ namespace OfertaFone.Infra.Data.EntitiesConfigurations
                     Email = "admin@devscansados.com",
                     PerfilUsuarioId = 1,
                     Situacao = 1,
-                    Senha = "admin@123"
+                    Senha = "admin@123",
+                    Image = $"https://s.gravatar.com/avatar/aleatory?d=mm&s=45"
                 }
             );
         }

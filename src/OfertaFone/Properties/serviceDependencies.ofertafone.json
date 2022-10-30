@@ -5,6 +5,18 @@
       "type": "mssql.azure",
       "connectionId": "VaultUri",
       "secretStore": null
+    },
+    "secrets1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/ofertafonesecrets",
+      "type": "secrets.keyVault",
+      "connectionId": "VaultUri",
+      "secretStore": null
+    },
+    "storage1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/ofertafonestorageassets",
+      "type": "storage.azure",
+      "connectionId": "ofertafoneblobstorage",
+      "secretStore": "AzureKeyVault"
     }
   }
 }

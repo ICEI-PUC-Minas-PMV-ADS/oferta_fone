@@ -15,7 +15,10 @@ namespace OfertaFone.Domain.Entities
         public string Email { get; set; }
         public int? PerfilUsuarioId { get; set; }
         public int? Situacao { get; set; }
+        public string Image { get; set; }
+        public DateTime? DataNascimento { get; set; }
         public PerfilUsuario PerfilUsuario { get; set; }
         public ICollection<ProdutoEntity> ProdutoEntity { get; set; }
+        public ICollection<Pedido> Pedido { get; set; }
     }
 }

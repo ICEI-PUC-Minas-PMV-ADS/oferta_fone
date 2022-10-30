@@ -27,5 +27,7 @@ namespace OfertaFone.Data
         public DbSet<Usuario> Users { get; set; }
         public DbSet<Acesso> Acessos { get; set; }
         public DbSet<MapPerfilUsuariosAcessos> MapPerfilUsuariosAcessos { get; set; }
+        public DbSet<Pedido> Pedido { get; set; }
+        public DbSet<ItemPedido> ItemPedido { get; set; }
     }
 }

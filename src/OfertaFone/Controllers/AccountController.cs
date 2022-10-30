@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,21 +24,30 @@ namespace OfertaFone.WebUI.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IRepository<Usuario> _userRepository;
         private readonly IRepository<PerfilUsuario> _perfilRepository;
+        private readonly IFileStorage _fileStorage;
+        private readonly IMapper _imapper;
 
         public AccountController(
             SignInManager<ApplicationUser> signInManager,
             IRepository<Usuario> userRepository,
-            IRepository<PerfilUsuario> perfilRepository)
+            IRepository<PerfilUsuario> perfilRepository,
+            IFileStorage fileStorage,
+            IMapper imapper)
         {
             _signInManager = signInManager;
             _userRepository = userRepository;
             _perfilRepository = perfilRepository;
+            _fileStorage = fileStorage;
+            _imapper = imapper;
         }
 
         [HttpGet, AllowAnonymous]
-        public IActionResult Login(string returnUrl)
+        public IActionResult Login(string returnUrl = null)
         {
-            return View();
+            return View(new LoginViewModel()
+            {
+                ReturnUrl = returnUrl
+            });
         }
 
         [HttpPost, AllowAnonymous]
@@ -67,7 +77,9 @@ namespace OfertaFone.WebUI.Controllers
 
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("EditProfile", "Account");
+                        return !string.IsNullOrEmpty(loginViewModel.ReturnUrl) ?
+                            Redirect(loginViewModel.ReturnUrl) :
+                            RedirectToAction("EditProfile", "Account");
                     }
 
                 }
@@ -86,7 +98,7 @@ namespace OfertaFone.WebUI.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Produto");
+            return RedirectToAction("Index", "Vitrine");
         }
 
         /// <summary>
@@ -105,23 +117,19 @@ namespace OfertaFone.WebUI.Controllers
         {
             try
             {
-                if (registerViewModel.Password != registerViewModel.ConfirmPassword)
+                if (registerViewModel.Senha != registerViewModel.ConfirmPassword)
                 {
                     ModelState.AddModelError(nameof(registerViewModel.ConfirmPassword), "As senhas não coincidem.");
                 }
 
                 if (ModelState.IsValid)
                 {
-                    var usuario = new Usuario()
-                    {
-                        Nome = registerViewModel.Nome,
-                        Login = registerViewModel.Username,
-                        Senha = registerViewModel.Password,
-                        Email = registerViewModel.Email,
-                        Situacao = (int?)TipoSituacao.ATIVO,
-                        PerfilUsuarioId = (int?)TipoPerfil.ADMIN,
-                    };
-                    if (await _userRepository.Table.Where(a => a.Login.ToLower() == registerViewModel.Username.ToLower()).FirstOrDefaultAsync() != null)
+                    var usuario = _imapper.Map<Usuario>(registerViewModel);
+                    usuario.Situacao = (int?)TipoSituacao.ATIVO;
+                    usuario.PerfilUsuarioId = (int?)TipoPerfil.ADMIN;
+                    usuario.Image = TipoImagensPadrao._USUARIO;
+
+                    if (await _userRepository.Table.Where(a => a.Login.ToLower() == registerViewModel.Login.ToLower()).FirstOrDefaultAsync() != null)
                     {
                         throw new LogicalException("Já existe um usuário registrado com o nome de usuário inserido.");
                     }
@@ -155,20 +163,15 @@ namespace OfertaFone.WebUI.Controllers
         public async Task<IActionResult> EditProfile()
         {
             var user = await _userRepository.FindById(HttpContext.Session.Get<int>("UserId"));
-            var perfis = await _perfilRepository.Table.Where(a => a.Situacao == 1).ToListAsync();
+            var perfis = await _perfilRepository.Table.Where(a => a.Situacao == (int)TipoSituacao.ATIVO).ToListAsync();
 
-            var viewModel = new EditProfileViewModel()
+            var viewModel = _imapper.Map<EditProfileViewModel>(user);
+            viewModel.Perfis = perfis.Select(p => new SelectListItem
             {
-                Email = user.Email,
-                Username = user.Login,
-                Nome = user.Nome,
-                PerfilUsuarioId = user.PerfilUsuarioId,
-                Perfis = perfis.Select(p => new SelectListItem
-                {
-                    Text = p.Nome,
-                    Value = p.Id.ToString(),
-                }).ToList(),
-            };
+                Text = p.Nome,
+                Value = p.Id.ToString(),
+            }).ToList();
+
             return View(viewModel);
         }
 
@@ -179,7 +182,18 @@ namespace OfertaFone.WebUI.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    string UrlImg = await Request.UploadFile(_fileStorage);
+
                     var user = await _userRepository.FindById(HttpContext.Session.Get<int>("UserId"));
+                    user.CpfCnpj = viewModel.CpfCnpj;
+                    user.Nome = viewModel.Nome;
+                    user.DataNascimento = viewModel.DataNascimento;
+                    viewModel.Image = user.Image = UrlImg ?? user.Image;
+
+                    await _userRepository.Update(user);
+                    await _userRepository.CommitAsync();
+
+                    AddSuccess("Usuário editado com sucesso!");
                 }
             }
             catch (Exception ex)
@@ -214,81 +228,6 @@ namespace OfertaFone.WebUI.Controllers
             }
 
             return View(forgotPasswordViewModel);
-        }
-
-        // GET: AccountController
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: AccountController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: AccountController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AccountController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AccountController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AccountController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AccountController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AccountController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@using OfertaFone.Utils.Extensions
 @using Microsoft.AspNetCore.Identity
 @using OfertaFone.WebUI.Identity
+@model LoginPartialViewModel
 
 @if (Context.User.Identity.IsAuthenticated)
 {
@@ -10,7 +11,7 @@
     <div>
         <div class="dropdown d-inline-block">
             <a href="#" class="icontext dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img class="icon icon-sm rounded-circle" src="https://s.gravatar.com/avatar/@this.HashForGravatar(Context.User.Identity.Name)?d=mm&s=45">
+                <img class="icon icon-sm rounded-circle" src="@Model.Image">
             </a> <!-- iconbox // -->
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
@@ -37,7 +38,7 @@ else
     <div class="widget-header">
         <small class="title text-muted">Bem Vindo!</small>
         <div>
-            <a style="color: inherit;" asp-controller="Account" asp-action="Register">Crie sua conta</a> 
+            <a style="color: inherit;" asp-controller="Account" asp-action="Register">Crie sua conta</a>
             <span> | </span>
             <a style="color: inherit;" asp-controller="Account" asp-action="Login"> Sign In</a>
         </div>

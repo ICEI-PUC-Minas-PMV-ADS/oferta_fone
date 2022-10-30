@@ -16,7 +16,7 @@ namespace OfertaFone.Utils.Extensions
         /// <param name="page"></param>
         /// <param name="email"></param>
         /// <returns></returns>
-        public static string HashForGravatar(this RazorPage page, string chave)
+        public static string HashForGravatar(string chave)
         {
             var md5Hasher = MD5.Create();
             var data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(chave));

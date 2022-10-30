@@ -4,63 +4,63 @@
     Layout = TipoLayout.LAYOUT_DASHBOARD;
 }
 
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Product/</span>Adicionar Produto</h4>
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Produto/</span> Adicionar Produto</h4>
 
 <!-- Basic Layout -->
 <div class="row">
     <div class="col-xl">
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">PRODUTO</h5>
+                <h5 class="mb-0">Adicionar Produto</h5>
             </div>
             <div class="card-body">
-                <form asp-controller="produto" asp-action="create" method="post">
-                    <div class="form-horizontal">
-                        <div class="row">
-                            <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="Marca" class="control-label">Marca</label>
-                                <input asp-for="Marca" class="form-control" />
-                                <span asp-validation-for="Marca" class="text-danger"></span>
-                            </div>
-                            <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="Modelo" class="control-label">Modelo</label>
-                                <input asp-for="Modelo" class="form-control" />
-                                <span asp-validation-for="Modelo" class="text-danger"></span>
-                            </div>
-                            <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="Processador" class="control-label">Processador</label>
-                                <input asp-for="Processador" class="form-control" />
-                            </div>
-                            <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="Memoria" class="control-label">Memória</label>
-                                <input asp-for="Memoria" class="form-control" />
-                            </div>
-                            <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="Camera" class="control-label">Câmera</label>
-                                <input asp-for="Camera" class="form-control" />
-                            </div>
-                            <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="RAM" class="control-label">RAM</label>
-                                <input asp-for="RAM" class="form-control" />
-                            </div>
-                            <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="Preco" class="control-label">Preço</label>
-                                <input asp-for="Preco" class="form-control" />
-                                <span asp-validation-for="Preco" class="text-danger"></span>
-                            </div>
-                            <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="Detalhes" class="control-label">Mais Informações</label>
-                                <input asp-for="Detalhes" class="form-control" />
-                            </div>
-                            <div class="col-4 col-xs-12 mb-3">
-                                <label asp-for="Imagem" class="control-label">Inserir Imagem</label>
-                                <input asp-for="Imagem" name="" type="file" class="form-control" />
-                            </div>
+                <form asp-controller="produto" asp-action="create" method="post" enctype="multipart/form-data">
+                    <div class="row form-horizontal">
+                        <div class="col-4 col-xs-12 mb-3">
+                            <label asp-for="Marca" class="control-label">Marca</label>
+                            <input asp-for="Marca" class="form-control" />
+                            <span asp-validation-for="Marca" class="text-danger"></span>
                         </div>
-                        <div class="row">
-                            <div class="col-12 mb-3" style="text-align: right">
-                                <input type="submit" value="Adicionar" class="btn btn-success" />
-                            </div>
+                        <div class="col-4 col-xs-12 mb-3">
+                            <label asp-for="Modelo" class="control-label">Modelo</label>
+                            <input asp-for="Modelo" class="form-control" />
+                            <span asp-validation-for="Modelo" class="text-danger"></span>
+                        </div>
+                        <div class="col-4 col-xs-12 mb-3">
+                            <label asp-for="Processador" class="control-label">Processador</label>
+                            <input asp-for="Processador" class="form-control" />
+                        </div>
+                        <div class="col-4 col-xs-12 mb-3">
+                            <label asp-for="Memoria" class="control-label">Memória</label>
+                            <input asp-for="Memoria" class="form-control" />
+                        </div>
+                        <div class="col-4 col-xs-12 mb-3">
+                            <label asp-for="Camera" class="control-label">Câmera</label>
+                            <input asp-for="Camera" class="form-control" />
+                        </div>
+                        <div class="col-4 col-xs-12 mb-3">
+                            <label asp-for="RAM" class="control-label">RAM</label>
+                            <input asp-for="RAM" class="form-control" />
+                        </div>
+                        <div class="col-4 col-xs-12 mb-3">
+                            <label asp-for="Preco" class="control-label">Preço</label>
+                            <input asp-for="Preco" class="form-control" />
+                            <span asp-validation-for="Preco" class="text-danger"></span>
+                        </div>
+                        <div class="col-4 col-xs-12 mb-3">
+                            <label asp-for="Descricao" class="control-label">Mais Informações</label>
+                            <input asp-for="Descricao" class="form-control" />
+                            <span asp-validation-for="Descricao" class="text-danger"></span>
+                        </div>
+                        <div class="col-4 col-xs-12 mb-3">
+                            <label class="control-label">Inserir Imagem</label>
+                            <input name="Image" type="file" class="form-control" />
+                        </div>
+                        <div class="col-12 mb-3" style="text-align: right">
+                            <input type="submit" value="Adicionar" class="btn btn-success" />
+                            <a asp-action="index" asp-controller="produto" class="btn btn-secondary">
+                                <span class="tf-icons bx bx-arrow-back"></span>&nbsp; Voltar
+                            </a>
                         </div>
                     </div>
                 </form>

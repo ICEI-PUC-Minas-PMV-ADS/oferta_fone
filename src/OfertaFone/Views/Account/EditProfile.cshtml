@@ -5,20 +5,20 @@
     Layout = TipoLayout.LAYOUT_DASHBOARD;
 }
 
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">User/</span> Edit Profile</h4>
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Usuário/</span> Editar Perfil</h4>
 
 <!-- Basic Layout -->
 <div class="row">
     <div class="col-xl">
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Edit Profile</h5>
+                <h5 class="mb-0">Editar Perfil</h5>
             </div>
             <div class="card-body">
-                <form asp-controller="Account" asp-action="EditProfile">
+                <form asp-controller="Account" asp-action="EditProfile" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
-                            <img src="https://s.gravatar.com/avatar/@this.HashForGravatar(Context.User.Identity.Name)?d=mm&s=45"
+                            <img src="@Model.Image"
                                  alt="user-avatar"
                                  class="d-block rounded"
                                  height="100"
@@ -29,15 +29,11 @@
                                     <span class="d-none d-sm-block">Carregar nova foto</span>
                                     <i class="bx bx-upload d-block d-sm-none"></i>
                                     <input type="file"
+                                           name="Image"
                                            id="upload"
                                            class="account-file-input"
-                                           hidden
-                                           accept="image/png, image/jpeg" />
+                                           hidden />
                                 </label>
-                                <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                                    <i class="bx bx-reset d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Reset</span>
-                                </button>
 
                                 <p class="text-muted mb-0">JPG, GIF ou PNG permitidos. Tamanho máximo de 800K</p>
                             </div>
@@ -48,9 +44,9 @@
                         <div class="form-horizontal">
                             <div class="row">
                                 <div class="col-4 col-xs-12 mb-3">
-                                    <label asp-for="Username" class="control-label">Nome de usuário</label>
-                                    <input asp-for="Username" readonly="readonly" class="form-control" />
-                                    <span asp-validation-for="Username" class="text-danger"></span>
+                                    <label asp-for="Login" class="control-label">Nome de usuário</label>
+                                    <input asp-for="Login" readonly="readonly" class="form-control" />
+                                    <span asp-validation-for="Login" class="text-danger"></span>
                                 </div>
                                 <div class="col-4 col-xs-12 mb-3">
                                     <label asp-for="Email" class="control-label">Email</label>
@@ -97,7 +93,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 mb-3" style="text-align: right">
-                                    <input type="submit" value="EditProfile" class="btn btn-success" />
+                                    <input type="submit" value="Editar" class="btn btn-success" />
                                 </div>
                             </div>
                         </div>

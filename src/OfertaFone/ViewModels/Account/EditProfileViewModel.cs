@@ -9,7 +9,7 @@ namespace OfertaFone.WebUI.ViewModels.Account
     public class EditProfileViewModel : IValidatableObject
     {
         [Required]
-        public string Username { get; set; }
+        public string Login { get; set; }
 
         [Required]
         [EmailAddress]
@@ -29,6 +29,8 @@ namespace OfertaFone.WebUI.ViewModels.Account
 
         [Required]
         public string Nome { get; set; }
+
+        public string Image { get; set; }
 
         [Required]
         public DateTime? DataNascimento { get; set; }

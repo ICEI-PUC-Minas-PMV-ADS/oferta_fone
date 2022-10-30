@@ -45,6 +45,28 @@ namespace OfertaFone.Infra.Data.Migrations
                     b.ToTable("Acesso");
                 });
 
+            modelBuilder.Entity("OfertaFone.Domain.Entities.ItemPedido", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("PedidoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProdutoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PedidoId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("ItemPedido");
+                });
+
             modelBuilder.Entity("OfertaFone.Domain.Entities.MapPerfilUsuariosAcessos", b =>
                 {
                     b.Property<int>("Id")
@@ -65,6 +87,32 @@ namespace OfertaFone.Infra.Data.Migrations
                     b.HasIndex("PerfilUsuarioId");
 
                     b.ToTable("MapPerfilUsuariosAcessos");
+                });
+
+            modelBuilder.Entity("OfertaFone.Domain.Entities.Pedido", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("QuantidadeItens")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Pedido");
                 });
 
             modelBuilder.Entity("OfertaFone.Domain.Entities.PerfilUsuario", b =>
@@ -113,22 +161,17 @@ namespace OfertaFone.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Detalhes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Marca")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Memoria")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Modelo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -162,10 +205,16 @@ namespace OfertaFone.Infra.Data.Migrations
                         .HasMaxLength(14)
                         .HasColumnType("nvarchar(14)");
 
+                    b.Property<DateTime?>("DataNascimento")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Login")
                         .IsRequired()
@@ -198,12 +247,28 @@ namespace OfertaFone.Infra.Data.Migrations
                         {
                             Id = 1,
                             Email = "admin@devscansados.com",
+                            Image = "https://s.gravatar.com/avatar/aleatory?d=mm&s=45",
                             Login = "admin",
                             Nome = "admin",
                             PerfilUsuarioId = 1,
                             Senha = "admin@123",
                             Situacao = 1
                         });
+                });
+
+            modelBuilder.Entity("OfertaFone.Domain.Entities.ItemPedido", b =>
+                {
+                    b.HasOne("OfertaFone.Domain.Entities.Pedido", "Pedido")
+                        .WithMany("ItemPedido")
+                        .HasForeignKey("PedidoId");
+
+                    b.HasOne("OfertaFone.Domain.Entities.ProdutoEntity", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId");
+
+                    b.Navigation("Pedido");
+
+                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("OfertaFone.Domain.Entities.MapPerfilUsuariosAcessos", b =>
@@ -219,6 +284,15 @@ namespace OfertaFone.Infra.Data.Migrations
                     b.Navigation("Acesso");
 
                     b.Navigation("PerfilUsuario");
+                });
+
+            modelBuilder.Entity("OfertaFone.Domain.Entities.Pedido", b =>
+                {
+                    b.HasOne("OfertaFone.Domain.Entities.Usuario", "Usuario")
+                        .WithMany("Pedido")
+                        .HasForeignKey("UsuarioId");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("OfertaFone.Domain.Entities.ProdutoEntity", b =>
@@ -244,6 +318,11 @@ namespace OfertaFone.Infra.Data.Migrations
                     b.Navigation("MapPerfilUsuariosAcessos");
                 });
 
+            modelBuilder.Entity("OfertaFone.Domain.Entities.Pedido", b =>
+                {
+                    b.Navigation("ItemPedido");
+                });
+
             modelBuilder.Entity("OfertaFone.Domain.Entities.PerfilUsuario", b =>
                 {
                     b.Navigation("MapPerfilUsuariosAcessos");
@@ -253,6 +332,8 @@ namespace OfertaFone.Infra.Data.Migrations
 
             modelBuilder.Entity("OfertaFone.Domain.Entities.Usuario", b =>
                 {
+                    b.Navigation("Pedido");
+
                     b.Navigation("ProdutoEntity");
                 });
 #pragma warning restore 612, 618

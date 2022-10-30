@@ -51,7 +51,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="d-flex justify-content-end">
-                            <partial name="_LoginPartial" />
+                            @await Component.InvokeAsync("LoginPartial")
                         </div>
                     </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
