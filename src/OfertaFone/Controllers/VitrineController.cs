@@ -34,7 +34,7 @@ namespace OfertaFone.WebUI.Controllers
             var catalogQuery = _produtoRepository.Table.AsQueryable();
 
             var catalog = await catalogQuery.AsNoTrackingWithIdentityResolution()
-                                            .Where(x => EF.Functions.Like(x.Modelo, $"%{q}%"))
+                                            .Where(x => EF.Functions.Like(x.Modelo, $"%{q}%") && x.Ativo == true)
                                             .OrderBy(x => x.Modelo)
                                             .Skip(ps * (page - 1))
                                             .Take(ps)
@@ -43,7 +43,7 @@ namespace OfertaFone.WebUI.Controllers
             var listView = catalog.Select(entity => _imapper.Map<IndexViewModel>(entity));
 
             var total = await catalogQuery.AsNoTrackingWithIdentityResolution()
-                                          .Where(x => EF.Functions.Like(x.Modelo, $"%{q}%"))
+                                          .Where(x => EF.Functions.Like(x.Modelo, $"%{q}%") && x.Ativo == true)
                                           .CountAsync();
 
             return View(new PagedViewModel<IndexViewModel>()

@@ -39,6 +39,11 @@ namespace OfertaFone.Utils.Extensions
             return FormatMoney(valor);
         }
 
+        public static string FormatFraseItem(this RazorPage page, int quantidade)
+        {
+            return quantidade > 1 ? $"{quantidade} - itens" : $"{quantidade} - item";
+        }
+
         /// <summary>
         /// 
         /// </summary>

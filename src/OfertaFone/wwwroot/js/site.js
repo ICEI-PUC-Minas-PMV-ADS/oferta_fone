@@ -31,7 +31,7 @@ function addSuccess(success) {
     if (success != null && success != "") {
         $("button[id='btnFechar']").click();
         $('#alertsModal').html("");
-        var modal = GetModal().replace("TITLE_MODAL", "Attention!");
+        var modal = GetModal().replace("TITLE_MODAL", "Atenção!");
         modal = modal.replace("SVG_ICON", IconSuccess());
         modal = modal.replace("MSG_ALERT", success);
 
@@ -45,7 +45,7 @@ function addError(error) {
     if (error != null && error != "") {
         $("button[id='btnFechar']").click();
         $('#alertsModal').html("");
-        var modal = GetModal().replace("TITLE_MODAL", "Attention!");
+        var modal = GetModal().replace("TITLE_MODAL", "Atenção!");
         modal = modal.replace("SVG_ICON", IconError());
         modal = modal.replace("MSG_ALERT", error);
 
@@ -60,7 +60,7 @@ function addWarning(warning) {
     if (warning != null && warning != "") {
         $("button[id='btnFechar']").click();
         $('#alertsModal').html("");
-        var modal = GetModal().replace("TITLE_MODAL", "Attention!");
+        var modal = GetModal().replace("TITLE_MODAL", "Atenção!");
         modal = modal.replace("SVG_ICON", IconWarning());
         modal = modal.replace("MSG_ALERT", warning);
 

@@ -332,9 +332,9 @@
     transform-origin: 0 0; /* see note above */
 }
 
-    .ldio-mej6n7e7g5f div {
-        box-sizing: content-box;
-    }
+.ldio-mej6n7e7g5f div {
+    box-sizing: content-box;
+}
 /*Site*/
 
 .breadcrumbLink {

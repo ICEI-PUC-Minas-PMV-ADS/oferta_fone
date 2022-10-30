@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OfertaFone.Domain.Entities;
+using OfertaFone.Domain.Interfaces;
+using OfertaFone.Utils.Extensions;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,16 +12,20 @@ namespace OfertaFone.WebUI.ViewComponents
     [ViewComponent(Name = "carrinho")]
     public class CarrinhoViewComponent : ViewComponent
     {
+        public readonly IRepository<Pedido> _pedidoRepository;
 
-        public CarrinhoViewComponent()
+        public CarrinhoViewComponent(IRepository<Pedido> pedidoRepository)
         {
-            
+            this._pedidoRepository = pedidoRepository;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            // TODO: Realizar chamada no banco
-            return View(1);
+            var pedido = await _pedidoRepository.Table
+                    .Where(pedido => pedido.Status == true && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
+                    .SingleOrDefaultAsync();
+
+            return View(pedido != null ? pedido.QuantidadeItens : 0);
         }
     }
 }
