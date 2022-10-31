@@ -29,3 +29,13 @@ As Tabelas abaixo apresentam uma avaliação das respostas dos participantes do 
 Análise, Discussão das Descobertas e Recomendações 
 
 A análise compreende a descrição dos problemas, possível proposta de solução e a prioridade para tal. A partir dos resultados obtidos no teste de usabilidade, foi realizada uma análise para detectar problemas de usabilidade e propor as respectivas alterações. 
+
+
+Conclusão do relatório 
+
+ Anexo 1 - Questionário de avaliação dos usuários 
+ 
+ Acesse através do seguinte link:
+ https://docs.google.com/forms/d/e/1FAIpQLSe5Z0Bde-ok4VGZyMH0Beg4mNvj8aPPpLSoeeigky8GvhUj7g/viewform
+ 
+ 
