@@ -38,6 +38,6 @@ Conclusão do relatório
  Acesse através do seguinte link:
  https://docs.google.com/forms/d/e/1FAIpQLSe5Z0Bde-ok4VGZyMH0Beg4mNvj8aPPpLSoeeigky8GvhUj7g/viewform
  
- ![alt text](/docs/img/questionario.png)
+ ![alt text](/docs/img/questionario.PNG)
  
  
