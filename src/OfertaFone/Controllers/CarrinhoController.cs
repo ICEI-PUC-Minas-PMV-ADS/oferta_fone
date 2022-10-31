@@ -114,9 +114,11 @@ namespace OfertaFone.WebUI.Controllers
                     await _pedidoRepository.CommitAsync();
                 }
 
-                var itemPedido = new ItemPedido();
-                itemPedido.PedidoId = pedido.Id;
-                itemPedido.ProdutoId = produto.Id;
+                var itemPedido = new ItemPedido
+                {
+                    PedidoId = pedido.Id,
+                    ProdutoId = produto.Id
+                };
 
                 await _itemPedidoRepository.Insert(itemPedido);
                 await _itemPedidoRepository.CommitAsync();
