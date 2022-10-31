@@ -93,25 +93,24 @@ namespace OfertaFone.WebUI.Controllers
                     {
                         throw new LogicalException("Este item já se encontra no carrinho.");
                     }
-                }
 
-                if (pedido == null)
-                {
-                    pedido = new Pedido();
-                    pedido.Status = true;
-                    pedido.QuantidadeItens = 1;
-                    pedido.Total = produto.Preco;
-                    pedido.UsuarioId = HttpContext.Session.Get<int>("UserId");
-
-                    await _pedidoRepository.Insert(pedido);
-                    await _pedidoRepository.CommitAsync();
-                }
-                else
-                {
                     pedido.QuantidadeItens += 1;
                     pedido.Total += produto.Preco;
 
                     await _pedidoRepository.Update(pedido);
+                    await _pedidoRepository.CommitAsync();
+                }
+                else
+                {
+                    pedido = new Pedido
+                    {
+                        Status = true,
+                        QuantidadeItens = 1,
+                        Total = produto.Preco,
+                        UsuarioId = HttpContext.Session.Get<int>("UserId")
+                    };
+
+                    await _pedidoRepository.Insert(pedido);
                     await _pedidoRepository.CommitAsync();
                 }
 
