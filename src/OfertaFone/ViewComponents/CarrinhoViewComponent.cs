@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using OfertaFone.Domain.Entities;
 using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Extensions;
+using OfertaFone.WebUI.Tipo;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace OfertaFone.WebUI.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var pedido = await _pedidoRepository.Table
-                    .Where(pedido => pedido.Status == true && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
+                    .Where(pedido => pedido.Status == TipoPedidoStatus._NAO_FINALIZADO && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
                     .SingleOrDefaultAsync();
 
             return View(pedido != null ? pedido.QuantidadeItens : 0);

@@ -8,6 +8,7 @@ using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Attributes;
 using OfertaFone.Utils.Exceptions;
 using OfertaFone.Utils.Extensions;
+using OfertaFone.WebUI.Tipo;
 using OfertaFone.WebUI.ViewModels.Base;
 using OfertaFone.WebUI.ViewModels.Carrinho;
 using System;
@@ -42,7 +43,7 @@ namespace OfertaFone.WebUI.Controllers
             var pedido = await _pedidoRepository.Table
                 .Include(p => p.ItemPedido)
                 .ThenInclude(p => p.Produto)
-                .Where(pedido => pedido.Status == true && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
+                .Where(pedido => pedido.Status == TipoPedidoStatus._NAO_FINALIZADO && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
                 .SingleOrDefaultAsync();
 
             pedido ??= new Pedido();
@@ -80,7 +81,7 @@ namespace OfertaFone.WebUI.Controllers
                 }
 
                 var pedido = await _pedidoRepository.Table
-                    .Where(pedido => pedido.Status == true && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
+                    .Where(pedido => pedido.Status == TipoPedidoStatus._NAO_FINALIZADO && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
                     .SingleOrDefaultAsync();
 
                 if (pedido != null)
@@ -104,7 +105,7 @@ namespace OfertaFone.WebUI.Controllers
                 {
                     pedido = new Pedido
                     {
-                        Status = true,
+                        Status = TipoPedidoStatus._NAO_FINALIZADO,
                         QuantidadeItens = 1,
                         Total = produto.Preco,
                         UsuarioId = HttpContext.Session.Get<int>("UserId")
