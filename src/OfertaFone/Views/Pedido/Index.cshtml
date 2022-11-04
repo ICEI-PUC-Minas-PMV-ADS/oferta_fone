@@ -1,0 +1,87 @@
+﻿@using OfertaFone.Utils.Extensions;
+@model IList<OfertaFone.WebUI.ViewModels.Pedido.IndexViewModel>;
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = TipoLayout.LAYOUT_DASHBOARD;
+}
+
+<style>
+    .accordion-button {
+        font-size: 1.125em !important;
+    }
+</style>
+
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pedido/</span> Meus Pedidos</h4>
+
+<div class="row">
+    <div class="col-md mb-4 mb-md-0">
+
+        @foreach (var pedido in Model)
+        {
+            <!--Comecar o foreach de pedidos a partir daqui-->
+            <div class="card mb-3">
+                <div class="bg-holder d-none d-lg-block bg-card"></div>
+                <div class="card-body position-relative">
+                    <h5 class="accordion-header" id="heading-@pedido.Id">
+                        <button type="button"
+                                class="accordion-button p-0 collapsed"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#accordion-@pedido.Id"
+                                aria-expanded="false"
+                                aria-controls="accordion-@pedido.Id">
+                            Detalhes do pedido: #@pedido.Id
+                        </button>
+                    </h5>
+                    <p class="m-0">@DateTime.Now.ToString("dd-MM-yyyy")</p>
+
+                    <div id="accordion-@pedido.Id"
+                         class="accordion-collapse collapse">
+
+                        <div class="card-body accordion-body">
+                            <div class="table-responsive fs--1">
+                                <table class="table table-striped border-bottom">
+                                    <thead class="bg-200 text-900">
+                                        <tr>
+                                            <th class="border-0">Produto</th>
+                                            <th class="border-0 text-center">Quantidade</th>
+                                            <th class="border-0 text-end">Preço</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var produto in pedido?.Produtos)
+                                        {
+                                            <!--Comecar o foreach de produtos a partir daqui-->
+                                            <tr class="border-200">
+                                                <td class="align-middle">
+                                                    <h6 class="mb-0 text-nowrap">@produto.Modelo</h6>
+                                                    <p class="mb-0">@produto.Marca, @produto.Descricao</p>
+                                                </td>
+                                                <td class="align-middle text-center">1</td>
+                                                <td class="align-middle text-end">@this.FormatMoney(produto.Preco)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row g-0 justify-content-end">
+                                <div class="col-auto">
+                                    <table class="table table-sm table-borderless fs--1 text-end">
+                                        <tbody>
+                                            <tr>
+                                                <th class="text-900">Total:</th>
+                                                <td class="fw-semi-bold">@this.FormatMoney(@pedido.Total)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
