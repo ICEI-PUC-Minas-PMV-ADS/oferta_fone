@@ -54,37 +54,7 @@
                             @await Component.InvokeAsync("LoginPartial")
                         </div>
                     </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1 nav justify-content-end">
-                        @if (Context.User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <form asp-area="Core" asp-controller="Account" asp-action="Logout">
-                                    <button type="submit" class="btn btn-link">Logout</button>
-                                </form>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Pedido" asp-action="index">
-                                </a>
-                                <button type="submit" class="btn btn-link">Meus Pedidos</button>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                            </li>
-                        }
-                    </ul>
                 </div>
-            </div>
             </div>
         </section>
     </header>
@@ -125,9 +95,9 @@
                     <aside class="col-sm-4 col-md-3">
                         <h6 class="title">Serviços</h6>
                         <ul class="list-unstyled">
-                            <li> <a asp-controller="Pedido" asp-action="index">Meus Pedidos</a></li>
-                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Profile</a></li>
-                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Canceled orders</a></li>
+                            <li> <a asp-controller="Order" asp-action="MyOrders">Minhas Compras</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Perfil</a></li>
+                            <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Pedidos cancelados</a></li>
                             <li> <a target="_blank" href="https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone">Chargeback</a></li>
                         </ul>
                     </aside>
