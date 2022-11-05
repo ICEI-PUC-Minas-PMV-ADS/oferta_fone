@@ -1,9 +1,5 @@
 {
   "dependencies": {
-    "mssql1": {
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:DataContextConnection"
-    },
     "mssql2": {
       "type": "mssql",
       "connectionId": "VaultUri"
@@ -15,6 +11,10 @@
     "storage1": {
       "type": "storage",
       "connectionId": "ofertafoneblobstorage"
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:DataContextConnection"
     }
   }
 }

@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace OfertaFone.WebUI.ViewModels.Carrinho
 {
-    public class IndexViewModel
+    public class IndexViewModel : PedidoBaseViewModel
     {
-        public decimal Total { get; set; }
-        public int QuantidadeItens { get; set; }
-        public List<Vitrine.DetailsViewModel> Produtos { get; set; }
+        
     }
 }

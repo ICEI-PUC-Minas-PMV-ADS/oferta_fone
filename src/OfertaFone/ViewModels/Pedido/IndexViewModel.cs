@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OfertaFone.WebUI.ViewModels.Pedido
 {
-    public class IndexViewModel: BaseViewModel
+    public class IndexViewModel : PedidoBaseViewModel
     {
         public string Nome { get; set; }
         public decimal Preco { get; set; }

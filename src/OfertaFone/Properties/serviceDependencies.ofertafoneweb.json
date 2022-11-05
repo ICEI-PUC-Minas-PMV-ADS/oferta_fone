@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/ofertafonevault",
+      "type": "secrets.keyVault",
+      "connectionId": "VaultUri",
+      "secretStore": null
+    },
+    "storage1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/ofertafonestorage",
+      "type": "storage.azure",
+      "connectionId": "ofertafoneblobstorage",
+      "secretStore": "AzureKeyVault"
+    },
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/ofertafonesrvr/databases/ofertafone",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:DataContextConnection",
+      "secretStore": "AzureKeyVault"
+    }
+  }
+}

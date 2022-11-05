@@ -8,6 +8,7 @@ using OfertaFone.Domain.Interfaces;
 using OfertaFone.Utils.Attributes;
 using OfertaFone.Utils.Exceptions;
 using OfertaFone.Utils.Extensions;
+using OfertaFone.WebUI.Tipo;
 using OfertaFone.WebUI.ViewModels.Base;
 using OfertaFone.WebUI.ViewModels.Carrinho;
 using System;
@@ -42,7 +43,7 @@ namespace OfertaFone.WebUI.Controllers
             var pedido = await _pedidoRepository.Table
                 .Include(p => p.ItemPedido)
                 .ThenInclude(p => p.Produto)
-                .Where(pedido => pedido.Status == true && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
+                .Where(pedido => pedido.Status == TipoPedidoStatus._NAO_FINALIZADO && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
                 .SingleOrDefaultAsync();
 
             pedido ??= new Pedido();
@@ -80,7 +81,7 @@ namespace OfertaFone.WebUI.Controllers
                 }
 
                 var pedido = await _pedidoRepository.Table
-                    .Where(pedido => pedido.Status == true && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
+                    .Where(pedido => pedido.Status == TipoPedidoStatus._NAO_FINALIZADO && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
                     .SingleOrDefaultAsync();
 
                 if (pedido != null)
@@ -93,31 +94,32 @@ namespace OfertaFone.WebUI.Controllers
                     {
                         throw new LogicalException("Este item já se encontra no carrinho.");
                     }
-                }
 
-                if (pedido == null)
-                {
-                    pedido = new Pedido();
-                    pedido.Status = true;
-                    pedido.QuantidadeItens = 1;
-                    pedido.Total = produto.Preco;
-                    pedido.UsuarioId = HttpContext.Session.Get<int>("UserId");
-
-                    await _pedidoRepository.Insert(pedido);
-                    await _pedidoRepository.CommitAsync();
-                }
-                else
-                {
                     pedido.QuantidadeItens += 1;
                     pedido.Total += produto.Preco;
 
                     await _pedidoRepository.Update(pedido);
                     await _pedidoRepository.CommitAsync();
                 }
+                else
+                {
+                    pedido = new Pedido
+                    {
+                        Status = TipoPedidoStatus._NAO_FINALIZADO,
+                        QuantidadeItens = 1,
+                        Total = produto.Preco,
+                        UsuarioId = HttpContext.Session.Get<int>("UserId")
+                    };
 
-                var itemPedido = new ItemPedido();
-                itemPedido.PedidoId = pedido.Id;
-                itemPedido.ProdutoId = produto.Id;
+                    await _pedidoRepository.Insert(pedido);
+                    await _pedidoRepository.CommitAsync();
+                }
+
+                var itemPedido = new ItemPedido
+                {
+                    PedidoId = pedido.Id,
+                    ProdutoId = produto.Id
+                };
 
                 await _itemPedidoRepository.Insert(itemPedido);
                 await _itemPedidoRepository.CommitAsync();
