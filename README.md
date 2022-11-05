@@ -3,7 +3,7 @@
 
 # OfertaFone
 
-[![Deploy](https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone/actions/workflows/ofertafone.yml/badge.svg)](https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone/actions/workflows/ofertafone.yml)
+[![Deploy](https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone/actions/workflows/ofertafoneweb.yml/badge.svg)](https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone/actions/workflows/ofertafoneweb.yml)
 #### PONTIFÍCIA UNIVERSIDADE CATÓLICA DE MINAS GERAIS
 
 `TECNOLOGIA EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS`
@@ -31,7 +31,7 @@ O lançamento de novos modelos de telefones e tablets têm levado as pessoas a t
 
 ## Estamos Online
 
-Veja o projeto em execução na instância oficial do <a href="https://ofertafone.azurewebsites.net/" target="_blank">OfertaFone</a>.
+Veja o projeto em execução na instância oficial do <a href="https://ofertafoneweb.azurewebsites.net/" target="_blank">OfertaFone</a>.
 
 * usuário - admin
 * senha - admin@123
