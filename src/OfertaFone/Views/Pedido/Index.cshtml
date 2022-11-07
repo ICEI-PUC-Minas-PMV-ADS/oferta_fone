@@ -53,9 +53,11 @@
                                         {
                                             <!--Comecar o foreach de produtos a partir daqui-->
                                             <tr class="border-200">
-                                                <td class="align-middle">
-                                                    <h6 class="mb-0 text-nowrap">@produto.Modelo</h6>
-                                                    <p class="mb-0">@produto.Marca, @produto.Descricao</p>
+                                                
+                                                <td class="d-flex align-items-center">
+                                                    <img src="@produto.Image" width="80" class="img-fluid"/>
+                                                    <h6 class="mb-0 text-nowrap">@produto.Modelo </h6>
+                                                    <p class="mb-0"> @produto.Marca, @produto.Descricao</p>
                                                 </td>
                                                 <td class="align-middle text-center">1</td>
                                                 <td class="align-middle text-end">@this.FormatMoney(produto.Preco)</td>
