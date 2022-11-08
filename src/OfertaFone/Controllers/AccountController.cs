@@ -79,7 +79,7 @@ namespace OfertaFone.WebUI.Controllers
                     {
                         return !string.IsNullOrEmpty(loginViewModel.ReturnUrl) ?
                             Redirect(loginViewModel.ReturnUrl) :
-                            RedirectToAction("EditProfile", "Account");
+                            RedirectToAction("Index", "Home");
                     }
 
                 }
