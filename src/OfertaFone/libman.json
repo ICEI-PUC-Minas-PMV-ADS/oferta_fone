@@ -17,6 +17,13 @@
     {
       "library": "inputmask@4.0.9",
       "destination": "wwwroot/lib/inputmask/"
+    },
+    {
+      "library": "Chart.js@3.9.1",
+      "destination": "wwwroot/lib/Chart.js/",
+      "files": [
+        "chart.min.js"
+      ]
     }
   ]
 }

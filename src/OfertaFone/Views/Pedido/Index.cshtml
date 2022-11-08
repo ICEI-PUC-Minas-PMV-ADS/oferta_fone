@@ -55,9 +55,11 @@
                                             <tr class="border-200">
                                                 
                                                 <td class="d-flex align-items-center">
-                                                    <img src="@produto.Image" width="80" class="img-fluid"/>
-                                                    <h6 class="mb-0 text-nowrap">@produto.Modelo </h6>
-                                                    <p class="mb-0"> @produto.Marca, @produto.Descricao</p>
+                                                    <img src="@produto.Image" width="50"
+                                                         alt="@produto.Modelo (@produto.RAM, @produto.Camera)"
+                                                         class="img-fluid rounded-1 me-3 d-none d-md-block">
+                                                    <h6 class="mb-0 text-nowrap">@produto.Modelo&nbsp;</h6>
+                                                    <p class="mb-0"> (@produto.Marca, @produto.Descricao)</p>
                                                 </td>
                                                 <td class="align-middle text-center">1</td>
                                                 <td class="align-middle text-end">@this.FormatMoney(produto.Preco)</td>
