@@ -127,20 +127,24 @@ namespace OfertaFone.WebUI.Controllers
                     string UrlImg = await Request.UploadFile(fileStorage: _fileStorage);
                     var entity = await _produtoRepository.FindById(editViewModel.Id);
 
-                    var pedidos = await _pedidoRepository.Table
+                    // Atualiza o pedido somente se o preco anterior e o atual forem diferentes
+                    if (editViewModel.Preco != entity.Preco)
+                    {
+                        var pedidos = await _pedidoRepository.Table
                         .Include(p => p.ItemPedido)
                         .ThenInclude(p => p.Produto)
                         .Where(pedido => pedido.Status == TipoPedidoStatus._NAO_FINALIZADO && pedido.ItemPedido.Any(itemPedido => itemPedido.ProdutoId == editViewModel.Id))
                         .ToListAsync();
 
-                    foreach (var pedido in pedidos ?? Enumerable.Empty<Pedido>())
-                    {
-                        // subtrai o valor antigo e soma o novo valor
-                        pedido.Total -= entity.Preco; // valor antigo
-                        pedido.Total += editViewModel.Preco; // novo valor
+                        foreach (var pedido in pedidos ?? Enumerable.Empty<Pedido>())
+                        {
+                            // subtrai o valor antigo e soma o novo valor
+                            pedido.Total -= entity.Preco; // valor antigo
+                            pedido.Total += editViewModel.Preco; // novo valor
 
-                        await _pedidoRepository.Update(pedido);
-                        await _pedidoRepository.CommitAsync();
+                            await _pedidoRepository.Update(pedido);
+                            await _pedidoRepository.CommitAsync();
+                        }
                     }
 
                     entity.Preco = editViewModel.Preco;
