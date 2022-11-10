@@ -19,15 +19,21 @@ namespace OfertaFone.WebUI.Controllers
     public class ProdutoController : BaseController
     {
         private readonly IRepository<ProdutoEntity> _produtoRepository;
+        private readonly IRepository<Pedido> _pedidoRepository;
+        private readonly IRepository<ItemPedido> _itemPedidoRepository;
         private readonly IFileStorage _fileStorage;
         private readonly IMapper _imapper;
 
         public ProdutoController(
-            IRepository<ProdutoEntity> produtoRepository, 
-            IFileStorage fileStorage, 
+            IRepository<ProdutoEntity> produtoRepository,
+            IRepository<Pedido> pedidoRepository,
+            IRepository<ItemPedido> itemPedidoRepository,
+            IFileStorage fileStorage,
             IMapper imapper)
         {
             this._produtoRepository = produtoRepository;
+            this._pedidoRepository = pedidoRepository;
+            this._itemPedidoRepository = itemPedidoRepository;
             this._fileStorage = fileStorage;
             this._imapper = imapper;
         }
@@ -80,10 +86,10 @@ namespace OfertaFone.WebUI.Controllers
         {
             try
             {
-                if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     string UrlImg = await Request.UploadFile(fileStorage: _fileStorage, fileDefault: TipoImagensPadrao._PRODUTO);
-                    
+
                     var produtoEntity = _imapper.Map<ProdutoEntity>(createViewModel);
                     produtoEntity.Ativo = true;
                     produtoEntity.Image = UrlImg;
@@ -96,7 +102,7 @@ namespace OfertaFone.WebUI.Controllers
                     return RedirectToAction("Create", "Produto");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TratarException(ex);
             }
@@ -121,6 +127,22 @@ namespace OfertaFone.WebUI.Controllers
                     string UrlImg = await Request.UploadFile(fileStorage: _fileStorage);
                     var entity = await _produtoRepository.FindById(editViewModel.Id);
 
+                    var pedidos = await _pedidoRepository.Table
+                        .Include(p => p.ItemPedido)
+                        .ThenInclude(p => p.Produto)
+                        .Where(pedido => pedido.Status == TipoPedidoStatus._NAO_FINALIZADO && pedido.ItemPedido.Any(itemPedido => itemPedido.ProdutoId == editViewModel.Id))
+                        .ToListAsync();
+
+                    foreach (var pedido in pedidos ?? Enumerable.Empty<Pedido>())
+                    {
+                        // subtrai o valor antigo e soma o novo valor
+                        pedido.Total -= entity.Preco; // valor antigo
+                        pedido.Total += editViewModel.Preco; // novo valor
+
+                        await _pedidoRepository.Update(pedido);
+                        await _pedidoRepository.CommitAsync();
+                    }
+
                     entity.Preco = editViewModel.Preco;
                     entity.Descricao = editViewModel.Descricao;
                     entity.Modelo = editViewModel.Modelo;
@@ -142,6 +164,48 @@ namespace OfertaFone.WebUI.Controllers
                 TratarException(ex);
             }
             return View(editViewModel);
+        }
+
+        // POST: ProdutoController/Edit/5
+        [HttpPost, Authorize, SessionExpire]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var produto = await _produtoRepository.FindById(id);
+
+                var pedidos = await _pedidoRepository.Table
+                    .Include(p => p.ItemPedido)
+                    .ThenInclude(p => p.Produto)
+                    .Where(pedido => pedido.Status == TipoPedidoStatus._NAO_FINALIZADO && pedido.ItemPedido.Any(itemPedido => itemPedido.ProdutoId == id))
+                    .ToListAsync();
+
+                foreach(var pedido in pedidos ?? Enumerable.Empty<Pedido>())
+                {
+                    // Atualiza o pedido subtraindo o valor do produto que está sendo excluído
+                    pedido.QuantidadeItens -= 1;
+                    pedido.Total -= produto.Preco;
+
+                    // busca o item que esteja ligado ao produto para remover
+                    var itemPedido = pedido.ItemPedido.Where(itemPedido => itemPedido.ProdutoId == id).FirstOrDefault();
+
+                    await _pedidoRepository.Update(pedido);
+                    await _pedidoRepository.CommitAsync();
+
+                    await _itemPedidoRepository.Delete(itemPedido);
+                    await _itemPedidoRepository.CommitAsync();
+                }
+
+                await _produtoRepository.Delete(produto);
+                await _produtoRepository.CommitAsync();
+
+                AddSuccess("Produto removido com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                TratarException(ex);
+            }
+            return RedirectToAction("Index", "Produto");
         }
     }
 }
