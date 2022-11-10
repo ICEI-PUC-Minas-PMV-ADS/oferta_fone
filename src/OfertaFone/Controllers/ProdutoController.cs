@@ -49,6 +49,27 @@ namespace OfertaFone.WebUI.Controllers
             return View(model);
         }
 
+        // POST: ProdutoController
+        [HttpPost, Authorize, SessionExpire]
+
+        public async Task<IActionResult> Index(IndexViewModel indexViewModel)
+        {
+            var entity = await _produtoRepository.Table.Where(produto =>
+                produto.UsuarioId == HttpContext.Session.Get<int>("UserId") &&
+                (string.IsNullOrEmpty(indexViewModel.Modelo) || EF.Functions.Like(produto.Modelo, $"%{indexViewModel.Modelo}%")) &&
+                (string.IsNullOrEmpty(indexViewModel.Modelo) || EF.Functions.Like(produto.Marca, $"%{indexViewModel.Marca}%"))
+                ).ToListAsync();
+
+            var model = new IndexViewModel()
+            {
+                IndexTableViewModels = entity.Select(produto =>
+                    _imapper.Map<IndexTableViewModel>(produto)).ToList()
+            };
+
+            return View(model);
+
+        }
+
         // GET: ProdutoController/Create
         [HttpGet, Authorize, SessionExpire]
         public ActionResult Create()
