@@ -5,11 +5,11 @@
     Layout = TipoLayout.LAYOUT_DASHBOARD;
 }
 
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Produto/</span> Consultar Produto</h4>
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Produto/</span> Meus Anúncios</h4>
 
 <div class="card mb-12">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="FormTitle col-12">Meus Anúncios</h5>
+        <h5 class="FormTitle col-12">Consultar Produto</h5>
     </div>
     <div class="card-body">
         <form asp-action="index" asp-controller="produto" method="post">
@@ -70,17 +70,25 @@
                             @if (item.Ativo)
                             {
                                 <td><span class="badge bg-label-warning me-1">AGUARDANDO VENDA</span></td>
+                                <td>
+                                    <a class="dropdown-item" asp-controller="produto" asp-action="edit" asp-route-id="@item.Id"><i class="bx bx-edit-alt me-1"></i></a>
+                                </td>
+                                <td>
+                                    <form asp-controller="produto" asp-action="delete" asp-route-id="@item.Id" method="POST">
+                                        <button class="dropdown-item"><i class="bx bx-trash me-1"></i></button>
+                                    </form>
+                                </td>
                             }
                             else
                             {
                                 <td><span class="badge bg-label-success me-1">VENDIDO</span></td>
+                                <td>
+                                    <a class="dropdown-item disabled" style="opacity: 0.5;"><i class="bx bx-edit-alt me-1"></i></a>
+                                </td>
+                                <td>
+                                    <a class="dropdown-item disabled" style="opacity: 0.5;"><i class="bx bx-trash me-1"></i></a>
+                                </td>
                             }
-                            <td>
-                                <a class="dropdown-item" asp-controller="produto" asp-action="edit" asp-route-id="@item.Id"><i class="bx bx-edit-alt me-1"></i></a>
-                            </td>
-                            <td>
-                                <a class="dropdown-item" asp-controller="produto" asp-action="delete" asp-route-id="@item.Id"><i class="bx bx-trash me-1"></i></a>
-                            </td>
                         </tr>
                     }
                 }
