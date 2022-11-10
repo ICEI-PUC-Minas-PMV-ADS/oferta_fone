@@ -51,13 +51,12 @@ namespace OfertaFone.WebUI.Controllers
 
         // POST: ProdutoController
         [HttpPost, Authorize, SessionExpire]
-
         public async Task<IActionResult> Index(IndexViewModel indexViewModel)
         {
             var entity = await _produtoRepository.Table.Where(produto =>
                 produto.UsuarioId == HttpContext.Session.Get<int>("UserId") &&
-                (string.IsNullOrEmpty(indexViewModel.Modelo) || EF.Functions.Like(produto.Modelo, $"%{indexViewModel.Modelo}%")) &&
-                (string.IsNullOrEmpty(indexViewModel.Modelo) || EF.Functions.Like(produto.Marca, $"%{indexViewModel.Marca}%"))
+                    (string.IsNullOrEmpty(indexViewModel.Modelo) || EF.Functions.Like(produto.Modelo, $"%{indexViewModel.Modelo}%")) &&
+                    (string.IsNullOrEmpty(indexViewModel.Marca) || EF.Functions.Like(produto.Marca, $"%{indexViewModel.Marca}%"))
                 ).ToListAsync();
 
             var model = new IndexViewModel()
@@ -67,7 +66,6 @@ namespace OfertaFone.WebUI.Controllers
             };
 
             return View(model);
-
         }
 
         // GET: ProdutoController/Create
