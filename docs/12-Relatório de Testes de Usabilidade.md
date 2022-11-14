@@ -64,7 +64,7 @@ Durante a análise do teste em vídeo, notou-se que ao digitar o preço do produ
 
 - Análise 5:
 
-Durante a análise do teste em vídeo, notou-se que um dos participantes ficou confuso na tela de Consultar Produto, ele tentou buscar um produto e foi redirecionado para uma página de erro. 
+Durante a análise do teste em vídeo, notou-se que o participante ficou confuso na tela de consultar produto, ele tentou buscar um produto e foi redirecionado para uma página de erro. 
 
 <img src="/docs/img/plano_usabilidade/a5.png" width="500">
 
