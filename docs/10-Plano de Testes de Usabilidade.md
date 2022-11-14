@@ -10,7 +10,11 @@ Os objetivos dos testes de usabilidade durante o desenvolvimento do site OfertaF
 
 4. Enquanto o usuário estiver logado, ele poderá ver os itens comprados por ele; 
 
-5. Aprender mais sobre o usuário, seu comportamento e suas preferências, afim de melhorar a eficiência, produtividade e satisfação do usuário final. 
+5. Enquanto o usuário estiver logado, ele poderá editar um produto;
+
+6. Enquanto o usuário estiver logado, ele poderá excluir um produto.
+
+7. Aprender mais sobre o usuário, seu comportamento e suas preferências, afim de melhorar a eficiência, produtividade e satisfação do usuário final. 
 
  - Seleção dos participantes 
 
