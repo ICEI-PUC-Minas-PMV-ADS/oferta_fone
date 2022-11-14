@@ -88,25 +88,10 @@
 
 *    Exibir produtos adicionados no carrinho -  
 
- 
 
  
 
-## Plano de Teste 10 – Pagamento 
-
-*    Exibir opções de depósito bancário ou PIX -  
-
-*    Exibir opção para anexar o comprovante de pagamento -  
-
-*    Exibir status do pagamento: Aceito       Recusado      -  
-
-*   Exibir liberação do aparelho para envio após status Aceito -  
-
- 
-
- 
-
-## Plano de Teste 11 – Produto recebido 
+## Plano de Teste 10 – Produto recebido 
 
 *    Exibir opção para anexar comprovante de envio do aparelho 
 
@@ -126,7 +111,7 @@
 
  
 
-## Plano de Teste 8 – Compras efetuadas 
+## Plano de Teste 12 – Compras efetuadas 
 
 *    Acessar a tela Minhas Compras; 
 
@@ -134,7 +119,7 @@
 
  
 
-## Plano de Teste 9 – Redefinição de senha 
+## Plano de Teste 13 – Redefinição de senha 
 
 *    Enviar código numérico para o e-mail cadastrado -  
 
