@@ -64,4 +64,4 @@ A figura abaixo demonstra como as tecnologias empregadas se relacionam dentro do
 
 ## Hospedagem
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
+![Hospedagem](./img/web-app-access-storage.svg)
