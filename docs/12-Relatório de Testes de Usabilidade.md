@@ -60,9 +60,8 @@ Durante a análise do teste em vídeo, notou-se que o participante ficou confuso
 
 <img src="/docs/img/plano_usabilidade/a5.png" width="500">
 
-Proposta de solução: A tela deve deixar claro ao usuário que ao consultar um produto, ele busca somente os produtos anunciados por um usuário que deseja vender seu aparelho. 
+*Proposta de solução:* A tela deve deixar mais claro ao usuário que ao consultar um produto, ele busca somente os produtos anunciados, colocados à venda.
 
-<img src="/docs/img/plano_usabilidade/a6.png" width="500">
 
 - Análise 5:
 
