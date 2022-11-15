@@ -140,14 +140,14 @@ namespace OfertaFone.WebUI.Controllers
                         {
                             // subtrai o valor antigo e soma o novo valor
                             pedido.Total -= entity.Preco; // valor antigo
-                            pedido.Total += editViewModel.Preco; // novo valor
+                            pedido.Total += editViewModel.Preco.Value; // novo valor
 
                             await _pedidoRepository.Update(pedido);
                             await _pedidoRepository.CommitAsync();
                         }
                     }
 
-                    entity.Preco = editViewModel.Preco;
+                    entity.Preco = editViewModel.Preco.Value;
                     entity.Descricao = editViewModel.Descricao;
                     entity.Modelo = editViewModel.Modelo;
                     entity.Marca = editViewModel.Marca;
