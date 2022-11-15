@@ -20,9 +20,6 @@
 
 <img src="/docs/img/plano_usabilidade/r5.png" width="500">
  
- 6. Enquanto o usuário estiver logado, ele poderá excluir um produto. 
-
- <img src="/docs/img/plano_usabilidade/erro.png" width="500">
 
 
  ### Videos dos testes de usabilidade
