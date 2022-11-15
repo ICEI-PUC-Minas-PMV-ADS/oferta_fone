@@ -39,21 +39,13 @@ Durante a análise do teste em vídeo, notou-se que as imagens cadastradas do pr
 
 - Análise 2:
 
-Durante a análise do teste em vídeo, notou-se que os participantes ao tentarem excluir um produto cadastrado foram redirecionados para uma tela de erro.
-
-<img src="/docs/img/plano_usabilidade/erro.png" width="500">
-
-*Proposta de solução:* Corrigir o funcionamento da tela. 
-
-- Análise 3:
-
 Durante a análise do teste em vídeo, notou-se que os participantes tiveram dificuldades para cadastrar um produto na tela de consultar produto. 
 
 <img src="/docs/img/plano_usabilidade/analise3.png" width="500">
 
 *Proposta de solução:* Renomear o botão “novo” para que o usuário possa identificar que aquele botão cadastra um produto. 
 
-- Análise 4:
+- Análise 3:
 
 Durante a análise do teste em vídeo, notou-se que ao digitar o preço do produto o campo Preço estava sem formatação.
 
@@ -62,15 +54,17 @@ Durante a análise do teste em vídeo, notou-se que ao digitar o preço do produ
 *Proposta de solução:* Será necessário adicionar uma máscara no campo preço, para que quando o usuário digitar o valor, possa ser formatado corretamente.
 
 
-- Análise 5:
+- Análise 4:
 
-Durante a análise do teste em vídeo, notou-se que o participante ficou confuso na tela de consultar produto, ele tentou buscar um produto e foi redirecionado para uma página de erro. 
+Durante a análise do teste em vídeo, notou-se que o participante ficou confuso na tela de consultar produto, questionando o que seria o buscador de produto. 
 
 <img src="/docs/img/plano_usabilidade/a5.png" width="500">
 
+Proposta de solução: A tela deve deixar claro ao usuário que ao consultar um produto, ele busca somente os produtos anunciados por um usuário que deseja vender seu aparelho. 
+
 <img src="/docs/img/plano_usabilidade/a6.png" width="500">
 
-- Análise 6:
+- Análise 5:
 
 Durante a análise do teste em vídeo, notou-se que o participante não conseguiu identificar o botão “excluir” para remover um produto anunciado.
 
