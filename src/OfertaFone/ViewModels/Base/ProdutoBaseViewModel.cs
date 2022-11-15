@@ -9,7 +9,7 @@ namespace OfertaFone.WebUI.ViewModels.Base
     public class ProdutoBaseViewModel : BaseViewModel
     {
         [Required]
-        public decimal Preco { get; set; }
+        public decimal? Preco { get; set; }
         [Required]
         public string Descricao { get; set; }
         [Required]

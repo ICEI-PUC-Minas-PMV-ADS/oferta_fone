@@ -71,3 +71,16 @@
 </div>
 
 @await Html.PartialAsync("_ValidationScriptsPartial")
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function (){
+            SetTypeMask();
+        });
+
+        function SetTypeMask() {
+            $('input[Name="@nameof(Model.Preco)"]').mask('#.##0,00', {placeholder:"0,00", reverse: true});
+        }
+
+    </script>
+}
