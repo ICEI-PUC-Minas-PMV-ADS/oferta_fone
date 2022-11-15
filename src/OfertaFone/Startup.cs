@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -44,6 +45,11 @@ namespace OfertaFone
                 options.SlidingExpiration = true;
             });
 
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new RequestCulture("pt-BR");
+            });
+
             services.AddInfraEstructure(Configuration);
             services.IncludeWebUIDependencys();
         }
@@ -71,6 +77,8 @@ namespace OfertaFone
             app.UseAuthorization();
 
             app.UseSession();
+
+            app.UseRequestLocalization();
 
             app.UseEndpoints(endpoints =>
             {
