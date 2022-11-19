@@ -59,38 +59,43 @@ namespace OfertaFone.WebUI.Controllers
         }
 
         [HttpPost, Authorize, SessionExpire]
-        public async Task<IActionResult> Finalizar()
+        public async Task<IActionResult> Finalizar(FinalizarViewModel finalizarViewModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                var pedido = await _pedidoRepository.Table
-                    .Include(p => p.ItemPedido)
-                    .ThenInclude(p => p.Produto)
-                    .Where(pedido => pedido.Status == TipoPedidoStatus._NAO_FINALIZADO && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
-                    .SingleOrDefaultAsync();
-
-                pedido.Status = TipoPedidoStatus._FINALIZADO;
-
-                foreach (var itemPedido in pedido?.ItemPedido ?? Enumerable.Empty<ItemPedido>())
+                try
                 {
-                    // Seta o status do produto para inativo para que nao seja visualizado na vitrine
-                    var produto = await _produtoRepository.FindById(itemPedido.ProdutoId);
-                    produto.Ativo = false;
+                    var pedido = await _pedidoRepository.Table
+                        .Include(p => p.ItemPedido)
+                        .ThenInclude(p => p.Produto)
+                        .Where(pedido => pedido.Status == TipoPedidoStatus._NAO_FINALIZADO && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
+                        .SingleOrDefaultAsync();
 
-                    await _produtoRepository.Update(produto);
-                    await _produtoRepository.CommitAsync();
+                    pedido.Status = TipoPedidoStatus._FINALIZADO;
+
+                    foreach (var itemPedido in pedido?.ItemPedido ?? Enumerable.Empty<ItemPedido>())
+                    {
+                        // Seta o status do produto para inativo para que nao seja visualizado na vitrine
+                        var produto = await _produtoRepository.FindById(itemPedido.ProdutoId);
+                        produto.Ativo = false;
+
+                        await _produtoRepository.Update(produto);
+                        await _produtoRepository.CommitAsync();
+                    }
+
+                    await _pedidoRepository.Update(pedido);
+                    await _pedidoRepository.CommitAsync();
+
+                    AddSuccess("Pedido finalizado com sucesso!");
                 }
-
-                await _pedidoRepository.Update(pedido);
-                await _pedidoRepository.CommitAsync();
-
-                AddSuccess("Pedido finalizado com sucesso!");
+                catch (Exception ex)
+                {
+                    TratarException(ex);
+                }
+                return RedirectToAction("Index", "Pedido");
             }
-            catch (Exception ex)
-            {
-                TratarException(ex);
-            }
-            return RedirectToAction("Index", "Pedido");
+            AddError("Dados de pagamentos inválidos!");
+            return RedirectToAction("Index", "Carrinho");
         }
     }
 }
