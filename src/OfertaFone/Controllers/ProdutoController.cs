@@ -81,6 +81,7 @@ namespace OfertaFone.WebUI.Controllers
             return View(new CreateViewModel());
         }
 
+        // POST: ProdutoController/Create/{createViewModel}
         [HttpPost, Authorize, SessionExpire]
         public async Task<ActionResult> Create(CreateViewModel createViewModel)
         {
@@ -116,7 +117,7 @@ namespace OfertaFone.WebUI.Controllers
             return View(_imapper.Map<EditViewModel>(await _produtoRepository.FindById(id)));
         }
 
-        // GET: ProdutoController/Edit/5
+        // POST: ProdutoController/Edit/{editViewModel}
         [HttpPost, Authorize, SessionExpire]
         public async Task<IActionResult> Edit(EditViewModel editViewModel)
         {

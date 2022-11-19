@@ -19,13 +19,16 @@ namespace OfertaFone.WebUI.Controllers
     public class PedidoController : BaseController
     {
         private readonly IRepository<Pedido> _pedidoRepository;
+        private readonly IRepository<ProdutoEntity> _produtoRepository;
         private readonly IMapper _imapper;
 
         public PedidoController(
             IRepository<Pedido> pedidoRepository,
+            IRepository<ProdutoEntity> produtoRepository,
             IMapper imapper)
         {
             this._pedidoRepository = pedidoRepository;
+            this._produtoRepository = produtoRepository;
             this._imapper = imapper;
         }
 
@@ -53,6 +56,46 @@ namespace OfertaFone.WebUI.Controllers
             ).ToList();
 
             return View(model);
+        }
+
+        [HttpPost, Authorize, SessionExpire]
+        public async Task<IActionResult> Finalizar(FinalizarViewModel finalizarViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var pedido = await _pedidoRepository.Table
+                        .Include(p => p.ItemPedido)
+                        .ThenInclude(p => p.Produto)
+                        .Where(pedido => pedido.Status == TipoPedidoStatus._NAO_FINALIZADO && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
+                        .SingleOrDefaultAsync();
+
+                    pedido.Status = TipoPedidoStatus._FINALIZADO;
+
+                    foreach (var itemPedido in pedido?.ItemPedido ?? Enumerable.Empty<ItemPedido>())
+                    {
+                        // Seta o status do produto para inativo para que nao seja visualizado na vitrine
+                        var produto = await _produtoRepository.FindById(itemPedido.ProdutoId);
+                        produto.Ativo = false;
+
+                        await _produtoRepository.Update(produto);
+                        await _produtoRepository.CommitAsync();
+                    }
+
+                    await _pedidoRepository.Update(pedido);
+                    await _pedidoRepository.CommitAsync();
+
+                    AddSuccess("Pedido finalizado com sucesso!");
+                }
+                catch (Exception ex)
+                {
+                    TratarException(ex);
+                }
+                return RedirectToAction("Index", "Pedido");
+            }
+            AddError("Dados de pagamentos inválidos!");
+            return RedirectToAction("Index", "Carrinho");
         }
     }
 }

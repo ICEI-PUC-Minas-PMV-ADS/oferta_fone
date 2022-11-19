@@ -37,6 +37,7 @@ namespace OfertaFone.WebUI.Controllers
             this._imapper = imapper;
         }
 
+        // GET: CarrinhoController
         [HttpGet, Authorize, SessionExpire]
         public async Task<IActionResult> Index()
         {
@@ -60,12 +61,14 @@ namespace OfertaFone.WebUI.Controllers
             return View(model);
         }
 
+        // GET: CarrinhoController/Adicionar/5
         [HttpGet, Authorize, SessionExpire]
         public IActionResult Adicionar(int id)
         {
             return RedirectToAction("Details", "Vitrine", new { id });
         }
 
+        // POST: CarrinhoController/Adicionar/{baseViewModel}
         [HttpPost, Authorize, SessionExpire]
         public async Task<IActionResult> Adicionar(BaseViewModel baseViewModel)
         {
@@ -130,6 +133,42 @@ namespace OfertaFone.WebUI.Controllers
                 TratarException(ex);
             }
             return RedirectToAction("Details", "Vitrine", new { id = baseViewModel.Id });
+        }
+
+        // POST: CarrinhoController/Deletar/5
+        [HttpPost, Authorize, SessionExpire]
+        public async Task<IActionResult> Deletar(int id)
+        {
+            try
+            {
+                var produto = await _produtoRepository.FindById(id);
+
+                var pedido = await _pedidoRepository.Table
+                    .Include(p => p.ItemPedido)
+                    .ThenInclude(p => p.Produto)
+                    .Where(pedido => pedido.Status == TipoPedidoStatus._NAO_FINALIZADO && pedido.UsuarioId == HttpContext.Session.Get<int>("UserId"))
+                    .SingleOrDefaultAsync();
+
+                // Atualiza o pedido subtraindo o valor do produto que está sendo excluído
+                pedido.QuantidadeItens -= 1;
+                pedido.Total -= produto.Preco;
+
+                // busca o item que esteja ligado ao produto para remover
+                var itemPedido = pedido.ItemPedido.Where(itemPedido => itemPedido.ProdutoId == id).FirstOrDefault();
+
+                await _itemPedidoRepository.Delete(itemPedido);
+                await _itemPedidoRepository.CommitAsync();
+
+                await _pedidoRepository.Update(pedido);
+                await _pedidoRepository.CommitAsync();
+
+                AddSuccess("Produto removido do carrinho com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                TratarException(ex);
+            }
+            return RedirectToAction("Index", "Carrinho");
         }
     }
 }
