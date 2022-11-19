@@ -6,106 +6,192 @@
     Layout = TipoLayout.LAYOUT_VITRINE;
 }
 
-<div class="card mt-4 mb-4">
-    @if (Model.Produtos.Any())
-    {
+<style>
+    .form-check-input:checked[type=radio] {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='2' fill='%23fff'/%3E%3C/svg%3E");
+    }
 
-        <!--headers-->
-        <div class="card-header">
-            <div class="justify-content-between row">
-                <div class="col-md-auto">
-                    <h5 class="mb-3 mb-md-0">Carrinho de Compras (@this.FormatFraseItem(@Model.QuantidadeItens))</h5>
+    .form-check-input:checked[type=checkbox] {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3 6-6'/%3E%3C/svg%3E");
+    }
+
+    .form-check-input:checked {
+        background-color: #2c7be5;
+        border-color: #2c7be5;
+    }
+
+    .form-check-input[type=radio] {
+        border-radius: 50%;
+    }
+
+    .form-check .form-check-input {
+        float: left;
+        margin-left: -1.5em;
+    }
+
+    .form-check-input, .form-select {
+        -webkit-appearance: none;
+    }
+
+    .form-check-input {
+        width: 1em;
+        height: 1em;
+        margin-top: .25em;
+        vertical-align: top;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        background-size: contain;
+        border: 1px solid #b6c1d2;
+    }
+</style>
+
+@if (Model.Produtos.Any())
+{
+    <div class="row g-3 pt-2">
+        <div class="col-xl-4 order-xl-1">
+            <div class="card">
+                <div class="card-header bg-light btn-reveal-trigger d-flex flex-between-center">
+                    <h5 class="mb-0">Resumo do Pedido</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless fs--1 mb-0">
+                        <tbody>
+                            @foreach (var produto in Model?.Produtos)
+                            {
+                                <tr class="border-bottom">
+                                    <th class="ps-0 pt-0 p-0" style="font-weight: 400;">
+                                        <a asp-controller="vitrine" asp-action="details" asp-route-id="@produto.Id">
+                                            @produto.Marca @produto.Modelo x 1
+                                            <div class="fw-normal">
+                                                (@produto.RAM, @produto.Camera)
+                                            </div>
+                                        </a>
+                                        <form asp-controller="Carrinho" asp-action="Deletar" asp-route-id="@produto.Id">
+                                            <div class="fs--2 fs-md--1">
+                                                <button type="submit" class="text-danger fs--2 fs-md--1 fw-normal p-0 btn btn-link btn-sm">
+                                                    Remover
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </th>
+                                    <th class="pe-0 text-end pt-0">@this.FormatMoney(produto.Preco.Value)</th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--Totalizador Carrinho-->
+                <div class="card-footer d-flex justify-content-between bg-light">
+                    <div class="fw-semi-bold">Total a Pagar</div>
+                    <div><strong>@this.FormatMoney(@Model.Total)</strong></div>
                 </div>
             </div>
         </div>
-
-        <div class="p-0 card-body">
-            <!--Legendas-->
-            <div class="gx-card mx-0 bg-200 text-900 fs--1 fw-semi-bold row">
-                <div class="py-2 col-md-8 col-9">Produto</div>
-                <div class="col-md-4 col-3">
-                    <div class="row">
-                        <div class="py-2 d-none d-md-block text-center col-md-8">Quantidade</div>
-                        <div class="text-end py-2 col-md-4 col-12">Preço</div>
-                    </div>
+        <div class="col-xl-8">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Metódo de Pagamento</h5>
                 </div>
-            </div>
-
-            @foreach (var produto in Model?.Produtos)
-            {
-                <!--Produto-->
-                <div class="gx-card mx-0 align-items-center border-bottom border-200 row">
-                    <div class="py-3 col-8">
-                        <div class="d-flex align-items-center">
-                            <a asp-controller="vitrine" asp-action="details" asp-route-id="@produto.Id">
-                                <img src="@produto.Image" width="60"
-                                     alt="@produto.Modelo (@produto.RAM, @produto.Camera)"
-                                     class="img-fluid rounded-1 me-3 d-none d-md-block">
-                            </a>
-                            <div class="flex-1">
-                                <h5 class="fs-0">
-                                    <a class="text-900"
-                                       asp-controller="vitrine" asp-action="details" asp-route-id="@produto.Id">
-                                        @produto.Modelo (@produto.RAM, @produto.Camera)
-                                    </a>
-                                </h5>
-                                <form asp-controller="Carrinho" asp-action="Deletar" asp-route-id="@produto.Id">
-                                    <div class="fs--2 fs-md--1">
-                                        <button type="submit"
-                                                class="text-danger fs--2 fs-md--1 fw-normal p-0 btn btn-link btn-sm">
-                                            Remover
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+                <div class="card-body">
+                    <form asp-controller="Pedido" asp-action="Finalizar">
+                        <div class="form-check mb-0">
+                            <input class="form-check-input" type="radio" value="" id="credit-card" checked="checked" name="payment-method">
+                            <label class="form-check-label mb-2 fs-1" for="credit-card">Cartão de Crédito</label>
                         </div>
-                    </div>
-                    <div class="py-3 col-4">
-                        <div class="align-items-center row">
-                            <div class="d-flex justify-content-end justify-content-md-center col-md-8 order-md-0 order-1">
-                                <div>
-                                    <div class="input-group input-group-sm">
-                                        <input min="1"
-                                               readonly
-                                               type="number" class="text-center px-2 input-spin-none form-control" value="1"
-                                               style="width: 50px;">
+                        <div class="row gx-0 ps-2 mb-4">
+                            <div class="col-sm-8 px-3">
+                                <div class="mb-3">
+                                    <label asp-for="Numero_Cartao" class="form-label ls text-uppercase text-600 fw-semi-bold mb-0" for="inputNumber">Número do cartão</label>
+                                    <input asp-for="Numero_Cartao" type="text" class="form-control" id="inputNumber" placeholder="•••• •••• •••• ••••">
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-6">
+                                        <label asp-for="Data_Expiracao" class="form-label ls text-uppercase text-600 fw-semi-bold mb-0">Data Expiração</label>
+                                        <input asp-for="Data_Expiracao" class="form-control" type="text" placeholder="mm/yyyy">
+                                    </div>
+                                    <div class="col-6">
+                                        <label asp-for="CVV" class="form-label ls text-uppercase text-600 fw-semi-bold mb-0">
+                                            CVV
+                                            <a class="d-inline-block" href="#" data-bs-toggle="tooltip"
+                                               data-bs-placement="top" aria-label="Card verification value"
+                                               data-bs-original-title="Card verification value">
+                                            </a>
+                                        </label>
+                                        <input asp-for="CVV" class="form-control" type="text" placeholder="123" maxlength="3" pattern="[0-9]{3}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-end ps-0 mb-2 mb-md-0 text-600 col-md-4 order-md-1 order-0">@this.FormatMoney(produto.Preco.Value)</div>
+                            <div class="col-4 ps-3 text-center pt-2 d-none d-sm-block">
+                                <div class="rounded-1 p-2 mt-3 bg-100" style="background-color: rgba(249,250,253,1) !important;">
+                                    <span class="text-uppercase fs--2 fw-bold">NÓS ACEITAMOS</span>
+                                    <img src="~/assets/misc/icon-payment-methods-grid.png" alt="" width="120">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            }
+                        <div class="border-bottom border-dashed my-5">
 
-            <!--Totalizadores-->
-            <div class="fw-bold gx-card mx-0 row">
-                <div class="py-2 text-end text-900 col-md-8 col-9">Total</div>
-                <div class="px-0 col">
-                    <div class="gx-card mx-0 row">
-                        <div class="py-2 d-none d-md-block text-center col-md-7">@this.FormatFraseItem(@Model.QuantidadeItens)</div>
-                        <div class="text-end py-2 text-nowrap px-card col-md-5 col-12">@this.FormatMoney(@Model.Total)</div>
-                    </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7 col-xl-12 col-xxl-7 px-md-3 mb-xxl-0 position-relative">
+                                <div class="d-flex">
+                                    <img class="me-3" src="~/assets/misc/shield.png" alt="" width="60" height="60">
+                                    <div class="flex-1">
+                                        <h5 class="mb-2">Proteção ao comprador</h5>
+                                        <div class="form-check mb-0">
+                                            <input class="form-check-input" id="protection-option-1" type="checkbox" checked="checked">
+                                            <label class="form-check-label mb-0" for="protection-option-1">
+                                                <strong>
+                                                    Reembolso total,
+                                                </strong>Se você não
+                                                <br class="d-none d-md-block d-lg-none">receber seu pedido.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="protection-option-2" type="checkbox" checked="checked">
+                                            <label class="form-check-label mb-0" for="protection-option-2">
+                                                <strong>Reembolso total ou parcial, </strong>
+                                                Se o produto não for como descrito em detalhes.
+                                            </label>
+                                        </div>
+                                        <a class="fs--1 ms-3 ps-2" href="#!">Saber mais</a>
+                                    </div>
+                                </div>
+                                <div class="vertical-line d-none d-md-block d-xl-none d-xxl-block"> </div>
+                            </div>
+                            <div class="col-md-5 col-xl-12 col-xxl-5 ps-lg-4 ps-xl-2 ps-xxl-5 text-center text-md-start text-xl-center text-xxl-start">
+                                <div class="border-bottom border-dashed d-block d-md-none d-xl-block d-xxl-none my-4"></div>
+                                <div class="fs-2 fw-semi-bold" style="font-weight: 600 !important; font-size: 1.44rem !important; ">
+                                    Total: <span class="text-primary">@this.FormatMoney(@Model.Total)</span>
+                                </div>
+                                <button class="btn btn-success mt-3 px-5" type="submit">
+                                    <span class="text"> Confirmar &amp; Pagar</span>
+                                </button>
+                                <p class="fs--1 mt-3 mb-0">
+                                    Ao clicar no botão <strong>Confirmar &amp; Pagar </strong>
+                                    você concorda com os <a href="#!">Termos &amp; Condições</a>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-        <!--Finalizadores-->
-        <div class="bg-light d-flex justify-content-end card-footer">
-            <form asp-controller="Pedido" asp-action="Finalizar" class="me-3">
-                <button type="submit" class="btn btn-success">
-                    <span class="text">Finalizar</span>
-                </button>
-                <a asp-controller="Vitrine" asp-action="Index" class="btn  btn-info">
-                    <span class="text">Voltar</span>
-                </a>
-            </form>
-        </div>
-    }
-    else
-    {
+    </div>
+}
+else
+{
+    <div class="card mt-4 mb-4">
         <div class="col-md-12" style="text-align: center">
             <h2>Seu carrinho está vazio! 🛒</h2><h5>Adicione produtos clicando no botão "Adicionar" na página de produto!</h5>
         </div>
-    }
-</div>
+    </div>
+}
+
+<script>
+    window.onload = () => {
+        $('input[Name="@nameof(Model.Numero_Cartao)"]').mask('0000.0000.0000.0000');
+        $('input[Name="@nameof(Model.Data_Expiracao)"]').mask('99/9999');
+    };
+</script>
