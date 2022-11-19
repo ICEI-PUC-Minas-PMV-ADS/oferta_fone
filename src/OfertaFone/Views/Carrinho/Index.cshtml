@@ -7,95 +7,105 @@
 }
 
 <div class="card mt-4 mb-4">
-    <!--headers-->
-    <div class="card-header">
-        <div class="justify-content-between row">
-            <div class="col-md-auto">
-                <h5 class="mb-3 mb-md-0">Carrinho de Compras (@this.FormatFraseItem(@Model.QuantidadeItens))</h5>
-            </div>
-        </div>
-    </div>
+    @if (Model.Produtos.Any())
+    {
 
-    <div class="p-0 card-body">
-        <!--Legendas-->
-        <div class="gx-card mx-0 bg-200 text-900 fs--1 fw-semi-bold row">
-            <div class="py-2 col-md-8 col-9">Produto</div>
-            <div class="col-md-4 col-3">
-                <div class="row">
-                    <div class="py-2 d-none d-md-block text-center col-md-8">Quantidade</div>
-                    <div class="text-end py-2 col-md-4 col-12">Preço</div>
+        <!--headers-->
+        <div class="card-header">
+            <div class="justify-content-between row">
+                <div class="col-md-auto">
+                    <h5 class="mb-3 mb-md-0">Carrinho de Compras (@this.FormatFraseItem(@Model.QuantidadeItens))</h5>
                 </div>
             </div>
         </div>
 
-        @foreach (var produto in Model?.Produtos)
-        {
-            <!--Produto-->
-            <div class="gx-card mx-0 align-items-center border-bottom border-200 row">
-                <div class="py-3 col-8">
-                    <div class="d-flex align-items-center">
-                        <a asp-controller="vitrine" asp-action="details" asp-route-id="@produto.Id">
-                            <img src="@produto.Image" width="60"
-                                 alt="@produto.Modelo (@produto.RAM, @produto.Camera)"
-                                 class="img-fluid rounded-1 me-3 d-none d-md-block">
-                        </a>
-                        <div class="flex-1">
-                            <h5 class="fs-0">
-                                <a class="text-900"
-                                   asp-controller="vitrine" asp-action="details" asp-route-id="@produto.Id">
-                                    @produto.Modelo (@produto.RAM, @produto.Camera)
-                                </a>
-                            </h5>
-                            <form asp-controller="Carrinho" asp-action="Deletar" asp-route-id="@produto.Id">
-                                <div class="fs--2 fs-md--1">
-                                    <button type="submit"
-                                            class="text-danger fs--2 fs-md--1 fw-normal p-0 btn btn-link btn-sm">
-                                        Remover
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+        <div class="p-0 card-body">
+            <!--Legendas-->
+            <div class="gx-card mx-0 bg-200 text-900 fs--1 fw-semi-bold row">
+                <div class="py-2 col-md-8 col-9">Produto</div>
+                <div class="col-md-4 col-3">
+                    <div class="row">
+                        <div class="py-2 d-none d-md-block text-center col-md-8">Quantidade</div>
+                        <div class="text-end py-2 col-md-4 col-12">Preço</div>
                     </div>
                 </div>
-                <div class="py-3 col-4">
-                    <div class="align-items-center row">
-                        <div class="d-flex justify-content-end justify-content-md-center col-md-8 order-md-0 order-1">
-                            <div>
-                                <div class="input-group input-group-sm">
-                                    <input min="1"
-                                           readonly
-                                           type="number" class="text-center px-2 input-spin-none form-control" value="1"
-                                           style="width: 50px;">
-                                </div>
+            </div>
+
+            @foreach (var produto in Model?.Produtos)
+            {
+                <!--Produto-->
+                <div class="gx-card mx-0 align-items-center border-bottom border-200 row">
+                    <div class="py-3 col-8">
+                        <div class="d-flex align-items-center">
+                            <a asp-controller="vitrine" asp-action="details" asp-route-id="@produto.Id">
+                                <img src="@produto.Image" width="60"
+                                     alt="@produto.Modelo (@produto.RAM, @produto.Camera)"
+                                     class="img-fluid rounded-1 me-3 d-none d-md-block">
+                            </a>
+                            <div class="flex-1">
+                                <h5 class="fs-0">
+                                    <a class="text-900"
+                                       asp-controller="vitrine" asp-action="details" asp-route-id="@produto.Id">
+                                        @produto.Modelo (@produto.RAM, @produto.Camera)
+                                    </a>
+                                </h5>
+                                <form asp-controller="Carrinho" asp-action="Deletar" asp-route-id="@produto.Id">
+                                    <div class="fs--2 fs-md--1">
+                                        <button type="submit"
+                                                class="text-danger fs--2 fs-md--1 fw-normal p-0 btn btn-link btn-sm">
+                                            Remover
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="text-end ps-0 mb-2 mb-md-0 text-600 col-md-4 order-md-1 order-0">@this.FormatMoney(produto.Preco.Value)</div>
+                    </div>
+                    <div class="py-3 col-4">
+                        <div class="align-items-center row">
+                            <div class="d-flex justify-content-end justify-content-md-center col-md-8 order-md-0 order-1">
+                                <div>
+                                    <div class="input-group input-group-sm">
+                                        <input min="1"
+                                               readonly
+                                               type="number" class="text-center px-2 input-spin-none form-control" value="1"
+                                               style="width: 50px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-end ps-0 mb-2 mb-md-0 text-600 col-md-4 order-md-1 order-0">@this.FormatMoney(produto.Preco.Value)</div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!--Totalizadores-->
+            <div class="fw-bold gx-card mx-0 row">
+                <div class="py-2 text-end text-900 col-md-8 col-9">Total</div>
+                <div class="px-0 col">
+                    <div class="gx-card mx-0 row">
+                        <div class="py-2 d-none d-md-block text-center col-md-7">@this.FormatFraseItem(@Model.QuantidadeItens)</div>
+                        <div class="text-end py-2 text-nowrap px-card col-md-5 col-12">@this.FormatMoney(@Model.Total)</div>
                     </div>
                 </div>
             </div>
-        }
-
-        <!--Totalizadores-->
-        <div class="fw-bold gx-card mx-0 row">
-            <div class="py-2 text-end text-900 col-md-8 col-9">Total</div>
-            <div class="px-0 col">
-                <div class="gx-card mx-0 row">
-                    <div class="py-2 d-none d-md-block text-center col-md-7">@this.FormatFraseItem(@Model.QuantidadeItens)</div>
-                    <div class="text-end py-2 text-nowrap px-card col-md-5 col-12">@this.FormatMoney(@Model.Total)</div>
-                </div>
-            </div>
         </div>
-    </div>
 
-    <!--Finalizadores-->
-    <div class="bg-light d-flex justify-content-end card-footer">
-        <form asp-controller="Carrinho" asp-action="Finalizar" class="me-3">
-            <button type="submit" class="btn btn-success">
-                <span class="text">Finalizar</span>
-            </button>
-            <a asp-controller="Vitrine" asp-action="Index" class="btn  btn-info">
-                <span class="text">Voltar</span>
-            </a>
-        </form>
-    </div>
+        <!--Finalizadores-->
+        <div class="bg-light d-flex justify-content-end card-footer">
+            <form asp-controller="Pedido" asp-action="Finalizar" class="me-3">
+                <button type="submit" class="btn btn-success">
+                    <span class="text">Finalizar</span>
+                </button>
+                <a asp-controller="Vitrine" asp-action="Index" class="btn  btn-info">
+                    <span class="text">Voltar</span>
+                </a>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-12" style="text-align: center">
+            <h2>Seu carrinho está vazio! 🛒</h2><h5>Adicione produtos clicando no botão "Adicionar" na página de produto!</h5>
+        </div>
+    }
 </div>
