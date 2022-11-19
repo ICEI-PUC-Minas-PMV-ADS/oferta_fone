@@ -88,14 +88,20 @@
     </div>
 
     <!--Finalizadores-->
-    <div class="bg-light d-flex justify-content-end card-footer">
-        <form asp-controller="Carrinho" asp-action="Finalizar" class="me-3">
-            <button type="submit" class="btn btn-success">
-                <span class="text">Finalizar</span>
-            </button>
-            <a asp-controller="Vitrine" asp-action="Index" class="btn  btn-info">
-                <span class="text">Voltar</span>
-            </a>
-        </form>
-    </div>
+        <div class="col-4 col-xs-12 mb-3">
+            <label>
+                <h6>Inserir Comprovante de Pagamento:</h6>
+                <input name="Image" type="file" />
+            </label>
+        </div>
+        <div class="bg-light d-flex justify-content-end card-footer">
+            <form asp-controller="pedido" asp-action="index" class="me-3">
+                <button type="submit" class="btn btn-success">
+                    <span class="text">Finalizar</span>
+                </button>
+                   <a asp-controller="vitrine" asp-action="index" class="btn  btn-info">
+                       <span class="text">Cancelar</span>
+                   </a>
+            </form>
+        </div>
 </div>
