@@ -15,5 +15,7 @@ namespace OfertaFone.WebUI.ViewModels.Carrinho
         public int? Numero_Cartao { get; set; }
         [Required]
         public string? Data_Expiracao { get; set; }
+        [Required]
+        public string? TipoPagamento { get; set; }
     }
 }
