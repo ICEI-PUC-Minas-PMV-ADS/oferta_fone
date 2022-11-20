@@ -97,19 +97,21 @@
                 <div class="card-body">
                     <form asp-controller="Pedido" asp-action="Finalizar">
                         <div class="form-check mb-0">
-                            <input class="form-check-input" type="radio" value="" id="credit-card" checked="checked" name="payment-method">
-                            <label class="form-check-label mb-2 fs-1" for="credit-card">Cartão de Crédito</label>
+                            <input asp-for="TipoPagamento" class="form-check-input" type="radio" value="credit-card" id="credit-card" checked="checked" name="TipoPagamento">
+                            <label asp-for="TipoPagamento" class="form-check-label mb-2 fs-1" for="credit-card">Cartão de Crédito</label>
                         </div>
                         <div class="row gx-0 ps-2 mb-4">
                             <div class="col-sm-8 px-3">
                                 <div class="mb-3">
                                     <label asp-for="Numero_Cartao" class="form-label ls text-uppercase text-600 fw-semi-bold mb-0" for="inputNumber">Número do cartão</label>
                                     <input asp-for="Numero_Cartao" type="text" class="form-control" id="inputNumber" placeholder="•••• •••• •••• ••••">
+                                    <span asp-validation-for="Numero_Cartao" class="text-danger"></span>
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-6">
                                         <label asp-for="Data_Expiracao" class="form-label ls text-uppercase text-600 fw-semi-bold mb-0">Data Expiração</label>
                                         <input asp-for="Data_Expiracao" class="form-control" type="text" placeholder="mm/yyyy">
+                                        <span asp-validation-for="Data_Expiracao" class="text-danger"></span>
                                     </div>
                                     <div class="col-6">
                                         <label asp-for="CVV" class="form-label ls text-uppercase text-600 fw-semi-bold mb-0">
@@ -120,6 +122,7 @@
                                             </a>
                                         </label>
                                         <input asp-for="CVV" class="form-control" type="text" placeholder="123" maxlength="3" pattern="[0-9]{3}">
+                                        <span asp-validation-for="CVV" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -129,6 +132,12 @@
                                     <img src="~/assets/misc/icon-payment-methods-grid.png" alt="" width="120">
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-check d-flex align-items-center">
+                            <input asp-for="TipoPagamento" class="form-check-input" type="radio" value="paypal" id="paypal" name="TipoPagamento">
+                            <label asp-for="TipoPagamento" class="form-check-label mb-0 ms-2" for="paypal">
+                                <img src="~/assets/misc/icon-paypal-full.png" height="20" alt="paypal">
+                            </label>
                         </div>
                         <div class="border-bottom border-dashed my-5">
 
