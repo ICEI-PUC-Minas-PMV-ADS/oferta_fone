@@ -31,7 +31,7 @@ O lançamento de novos modelos de telefones e tablets têm levado as pessoas a t
 
 ## Estamos Online
 
-Veja o projeto em execução na instância oficial do <a href="https://ofertafoneweb.azurewebsites.net/" target="_blank">OfertaFone</a>.
+Veja o projeto em execução na instância oficial do <a href="https://ofertafonenaweb.azurewebsites.net/" target="_blank">OfertaFone</a>.
 
 * usuário - admin
 * senha - admin@123
