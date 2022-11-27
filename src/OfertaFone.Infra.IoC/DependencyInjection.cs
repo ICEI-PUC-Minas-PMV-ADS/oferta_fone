@@ -29,7 +29,7 @@ namespace OfertaFone.Infra.IoC
             var enviroment = services.BuildServiceProvider().GetRequiredService<IWebHostEnvironment>();
 
             services.AddDbContext<DatabaseContext>(options =>
-                options.UseSqlServer(enviroment.IsDevelopment() ? configuration.GetConnectionString("DataContextConnection") : configuration.GetSecret("DataContextConnection"),
+                options.UseSqlServer(enviroment.IsDevelopment() ? configuration.GetConnectionString("DataContextConnection") : configuration.GetSecret("ConnectionStrings--DataContextConnection"),
                 b => b.MigrationsAssembly(typeof(DatabaseContext).Assembly.FullName)));
             
             if (!enviroment.IsDevelopment())

@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/OfertaFoneWebUIvault",
+      "type": "secrets.keyVault",
+      "connectionId": "VaultUri"
+    },
+    "mssql2": {
+      "secretStore": "AzureKeyVault",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/ofertafonewebuidbserver/databases/OfertaFone.WebUI_db",
+      "type": "mssql.azure",
+      "connectionId": "VaultUri",
+      "dynamicId": null
+    },
+    "mssql1": {
+      "secretStore": "AzureKeyVault",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/ofertafonewebuidbserver/databases/OfertaFone.WebUI_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:DataContextConnection",
+      "dynamicId": null
+    },
+    "storage1": {
+      "secretStore": null,
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/ofertafonewebuistorage",
+      "type": "storage.azure",
+      "connectionId": "ofertafoneblobstorage",
+      "dynamicId": null
+    }
+  }
+}
