@@ -5,13 +5,13 @@ on:
     - main
 env:
   AZURE_WEBAPP_NAME: ofertafonenaweb
-  AZURE_WEBAPP_PACKAGE_PATH: OfertaFone\published
+  AZURE_WEBAPP_PACKAGE_PATH: OfertaFone/published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 5.0.x
-  WORKING_DIRECTORY: OfertaFone
+  WORKING_DIRECTORY: src/OfertaFone
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
