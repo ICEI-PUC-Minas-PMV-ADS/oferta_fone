@@ -1,6 +1,6 @@
 # REGISTRO DOS TESTES DE SOFTWARE
 
-## Plano de Teste 1 – Criar conta 
+## Plano de Teste 1 – Criar Conta 
 
 * Os campos estipulados no cadastro e dados pessoais foram devidamente preenchidos. Após o preenchimento de todos os campos o cadastro deve ser efetuado. Todos os testes realizados foram concluídos com sucesso nesta etapa.
 
@@ -19,8 +19,6 @@
 * Alterar as informações do usuário – OK. 
 
 * Informar ao usuário os campos obrigatórios quando estes não são devidamente preenchidos – OK. 
-
-* O CPF não deve ser alterado – Não passou no teste.
     
 <img src="/docs/img/Registro_Plano_Teste/4.jpeg" width="500">
 
@@ -28,13 +26,13 @@
 
 <img src="/docs/img/Registro_Plano_Teste/6.jpeg" width="500">
  
- ## Plano de Teste 4 – Cadastrar Produto 
+## Plano de Teste 4 – Cadastrar Produto 
 
-  *  Inserir e armazenar as informações do produto – OK. 
+*  Inserir e armazenar as informações do produto – OK. 
 
-  *  Armazenar as imagens do produto – Não passou no teste. 
+*  Armazenar as imagens do produto – OK. 
 
-  *  Alterar informações do produto cadastrado – OK.
+*  Alterar informações do produto cadastrado – OK.
 
 <img src="/docs/img/Registro_Plano_Teste/7.jpeg" width="500">
 
@@ -42,23 +40,23 @@
 
 <img src="/docs/img/Registro_Plano_Teste/9.jpeg" width="500">
 
-## Plano de Teste 5 - Produtos à venda 
+## Plano de Teste 5 - Produtos à Venda 
 
- *   Exibir lista dos produtos cadastrados – OK.
+*   Exibir lista dos produtos cadastrados – OK.
 
 <img src="/docs/img/Registro_Plano_Teste/10.jpeg" width="500">
 
-## Plano de Teste 6 – Editar produtos à venda 
+## Plano de Teste 6 – Editar Produtos à Venda 
 
 *    Editar e alterar informações dos produtos à venda – OK. 
 
 *    Verificar se os dados foram atualizados – OK. 
 
-*    Alterar imagem do produto – Não passou no teste. 
+*    Alterar imagem do produto – OK.
 
-*    Excluir anúncio do produto – Não passou no teste. 
+*    Excluir anúncio do produto – OK.
 
-*    Verificar se as informações foram deletadas – Não passou no teste.
+*    Verificar se as informações foram deletadas – OK.
 
 <img src="/docs/img/Registro_Plano_Teste/11.jpeg" width="500">
 
@@ -66,9 +64,7 @@
 
 <img src="/docs/img/Registro_Plano_Teste/13.jpeg" width="500">
 
-### Excluindo anúncio 
-
-<img src="/docs/img/Registro_Plano_Teste/14.jpeg" width="500">
+<img src="/docs/img/Registro_Plano_Teste/17.png" width="500">
 
 ## Plano de Teste 7 – Vitrine 
 
@@ -78,49 +74,52 @@
 
 ## Plano de Teste 8 – Comprar Produto 
 
-*    Exibir detalhes/informações sobre o produto -
+*    Exibir detalhes/informações sobre o produto - OK
     
-<img src="/docs/img/Registro_Plano_Teste/16.jpeg" width="500">
+<img src="/docs/img/Registro_Plano_Teste/18.jpg" width="500">
 
-## Plano de Teste 9 – Carrinho de compras 
+## Plano de Teste 9 – Carrinho de Compras 
 
-*    Adicionar produto no carrinho -  
+*    Adicionar produto no carrinho -  OK.
 
-*    Exibir produtos adicionados no carrinho -  
+*    Exibir produtos adicionados no carrinho -  OK.
 
+<img src="/docs/img/Registro_Plano_Teste/19.jpg" width="500">
+ 
+## Plano de Teste 10 – Pagamento
+
+*    Exibir opções de pagamento e total da compra - OK.
+
+*    Verificar se os dados foram preenchidos e confirmar o pedido – OK. 
+
+<img src="/docs/img/Registro_Plano_Teste/20.jpg" width="500">
+
+<img src="/docs/img/Registro_Plano_Teste/21.jpg" width="500">
 
  
+## Plano de Teste 11 – Produto Vendido 
 
-## Plano de Teste 10 – Produto recebido 
+*    Finalizar venda após confirmação de recebimento - OK.
 
-*    Exibir opção para anexar comprovante de envio do aparelho 
+*    Ocultar anúncio do produto vendido - OK.
 
-*    Exibir status de recebimento do cliente: Entregue       Recusado      - 
+*    Verificar se o anúncio do produto não é exibido após finalização da compra - OK.
 
-  
+<img src="/docs/img/Registro_Plano_Teste/22.jpg" width="500">
 
- 
+## Plano de Teste 12 – Meus Pedidos
 
-## Plano de Teste 11 – Produto vendido 
+*    Acessar a tela Meus Pedidos - OK.
 
-*    Finalizar venda após confirmação de recebimento -   
+*    Verificar se o histórico de pedidos foi exibido - OK.
 
-*    Ocultar anúncio do produto vendido -  
+<img src="/docs/img/Registro_Plano_Teste/23.jpg" width="500">
 
-*    Verificar se o anúncio do produto é exibido após finalização da compra -  
-
- 
-
-## Plano de Teste 12 – Compras efetuadas 
-
-*    Acessar a tela Minhas Compras; 
-
-*    Verificar se o histórico de compras foi exibido. 
-
- 
 
 ## Plano de Teste 13 – Redefinição de senha 
 
-*    Enviar código numérico para o e-mail cadastrado -  
+*    Exibir na tela confirmação de envio do e-mail para redefinição de senha – OK. 
 
-*    Verificar recebimento do código numérico no e-mail cadastrado -
+<img src="/docs/img/Registro_Plano_Teste/24.jpg" width="500">
+
+<img src="/docs/img/Registro_Plano_Teste/25.jpg" width="500">
