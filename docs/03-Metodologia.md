@@ -59,9 +59,9 @@ Scrum Master: Pedro Vitor.
 
 Product Owner: Ursula Figueiredo. 
 
-Equipe de Desenvolvimento: José Vicente, Karen Franco, Luiz Carlos, Vivian Kimie. 
+Equipe de Desenvolvimento: José Vicente, Karen Franco, Luiz Carlos. 
 
-Equipe de Design: José Vicente, Karen Franco, Luiz Carlos, Vivian Kimie.
+Equipe de Design: José Vicente, Karen Franco, Luiz Carlos.
 
 ### Processo
 
