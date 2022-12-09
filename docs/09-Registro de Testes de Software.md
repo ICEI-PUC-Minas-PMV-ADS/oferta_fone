@@ -1,4 +1,4 @@
-# REGISTRO DOS TESTES DE SOFTWARE
+# Registro de Testes de Software
 
 ## Plano de Teste 1 – Criar Conta 
 

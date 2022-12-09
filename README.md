@@ -23,7 +23,6 @@ O lançamento de novos modelos de telefones e tablets têm levado as pessoas a t
 * Luiz Carlos Gil de Souza
 * Pedro Vitor Rodrigues da Silva
 * Ursula Daniela Figueiredo Barbosa
-* Vivian Kimie Toyota
 
 ## Orientador
 
