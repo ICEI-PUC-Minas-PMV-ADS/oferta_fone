@@ -10,4 +10,4 @@ OfertaFone
 
 Logotipo
 
-! [alt text](./img/LogoProject/SGN_09_05_2022_1662421850206.png)
+[](./img/LogoProject/SGN_09_05_2022_1662421850206.png)
