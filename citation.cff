@@ -1,0 +1,24 @@
+message: Please cite this software using these metadata.
+title: OfertaFone
+authors:
+  - family-names: Vicente do Vale Melo
+    given-names: José
+  - family-names: Franco Alavarque Escobedo
+    given-names: Karen
+  - family-names: Carlos Gil de Souza
+    given-names: Luiz
+  - family-names: Vitor Rodrigues da Silva
+    given-names: Pedro
+  - family-names: Daniela Figueiredo Barbosa
+    given-names: Ursula
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Ribeiro da Mota
+    given-names: Rosilane
+keywords:
+  - Vendas
+  - Smartphone 
+  - Reutilizável
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-ADS/oferta_fone
+version: 1.0.0
+date-released: 2022-12-11
